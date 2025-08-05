@@ -1,8 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* New Modern Color Palette (used subtly) */
+    --rich-black: #011627;
+    --folly: #ff3366;
+    --light-sea-green: #2ec4b6;
+    --seasalt: #f6f7f8;
+    --celestial-blue: #20a4f3;
+    
+    /* Clean foundation with modern accents */
+    --bg-primary: #f6f7f8;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #fafafb;
+    --bg-quaternary: #fcfcfc;
+    --text-primary: #011627;
+    --text-secondary: #2c3137;
+    --text-tertiary: #57636f;
+    --text-quaternary: #8894a1;
+    --border-light: #e5e5e5;
+    --border-medium: #d4d4d4;
+    --accent-primary: #20a4f3;
+    --accent-hover: #0b89d1;
+    --accent-light: #d2edfd;
+  }
+
   * {
     @apply transition-all duration-250 ease-out;
   }
@@ -13,5 +46,29 @@
   
   body {
     @apply font-sans text-gray-900 antialiased;
+    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  }
+  
+  /* Custom cursor styles */
+  * {
+    cursor: none !important;
+  }
+  
+  /* Ensure cursor is hidden on all interactive elements */
+  a, button, input, textarea, select, [role="button"], [data-cursor="pointer"] {
+    cursor: none !important;
+  }
+  
+  * {
+    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+    font-weight: 600;
+  }
+  
+  button {
+    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
   }
 }

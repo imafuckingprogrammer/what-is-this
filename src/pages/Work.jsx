@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { CleanButton } from '../components/ui/clean-button'
+import SmoothTextReveal from '../components/ui/SmoothTextReveal'
+import AnimatedSection from '../components/ui/AnimatedSection'
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null)
 
   const filters = [
     { id: 'all', label: 'All Work' },
@@ -197,177 +202,351 @@ const Work = () => {
     : portfolio.filter(project => project.type === activeFilter)
 
   return (
-    <div>
-      <section className="pt-32 pb-20 px-6 lg:px-8">
+    <div className="bg-bg-primary">
+      <section className="h-screen flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-black mb-8">
-            Work that drives<br />
-            measurable impact
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            A showcase of strategic thinking, creative execution, and business results 
-            across diverse industries and market challenges.
-          </p>
+          <AnimatedSection direction="up" delay={0.1}>
+            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+              Work that drives<br />
+              measurable impact
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.3}>
+            <SmoothTextReveal 
+              text="A showcase of strategic thinking, creative execution, and business results across diverse industries and market challenges."
+              className="text-xl text-text-secondary leading-relaxed"
+              delay={0.2}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
-      <section className="py-20 px-6 lg:px-8">
+      <section className="py-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-3 text-sm font-medium transition-all ${
-                  activeFilter === filter.id
-                    ? 'bg-black text-white'
-                    : 'text-gray-600 hover:text-black hover:bg-gray-100'
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+          <AnimatedSection direction="up" delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              {filters.map((filter, index) => (
+                <motion.div
+                  key={filter.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 300, 
+                      damping: 20,
+                      delay: index * 0.1
+                    }
+                  }}
+                >
+                  <CleanButton
+                    onClick={() => setActiveFilter(filter.id)}
+                    text={filter.label.split(' ')[0]}
+                    className="w-auto px-6"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPortfolio.map((project) => (
-              <div key={project.id} className="group">
-                <div className="bg-gray-200 aspect-[4/3] mb-6 hover:opacity-90 transition-opacity"></div>
-                <div className="space-y-4">
-                  <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                    {project.category} • {project.year}
-                  </div>
-                  <h3 className="text-xl font-semibold text-black group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {project.description}
-                  </p>
-                  <div className="space-y-2">
-                    <div className="text-sm font-medium text-black">Key Results:</div>
-                    <div className="text-sm text-gray-600">
-                      {project.metrics.join(' • ')}
+            {filteredPortfolio.map((project, index) => (
+              <AnimatedSection key={project.id} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="group"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div 
+                    className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                    style={{
+                      backgroundImage: `url(https://picsum.photos/600/450?random=${index + 40}&t=${Date.now() + index})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20 
+                      }
+                    }}
+                  />
+                  <div className="space-y-4">
+                    <div className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
+                      {project.category} • {project.year}
+                    </div>
+                    <h3 className="text-xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed text-sm">
+                      {project.description}
+                    </p>
+                    <div className="space-y-2">
+                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
+                      <div className="text-sm text-text-secondary">
+                        {project.metrics.join(' • ')}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.services.map((service, serviceIndex) => (
+                        <motion.span
+                          key={serviceIndex}
+                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
+                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                          animate={{ 
+                            opacity: 1, 
+                            scale: 1, 
+                            y: 0,
+                            transition: { 
+                              type: "spring", 
+                              stiffness: 300, 
+                              damping: 20,
+                              delay: serviceIndex * 0.1 + 0.5
+                            }
+                          }}
+                          whileHover={{ 
+                            scale: 1.05,
+                            transition: { 
+                              type: "spring", 
+                              stiffness: 400, 
+                              damping: 25 
+                            }
+                          }}
+                        >
+                          {service}
+                        </motion.span>
+                      ))}
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.services.map((service, index) => (
-                      <span
-                        key={index}
-                        className="text-xs px-3 py-1 bg-gray-100 text-gray-700"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-gray-50">
+      <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
               Trusted by industry leaders
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We've had the privilege of partnering with innovative companies 
-              across various industries and stages of growth.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="We've had the privilege of partnering with innovative companies across various industries and stages of growth."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {clients.map((client, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center h-16 text-gray-400 font-medium hover:text-black transition-colors"
-              >
-                {client}
-              </div>
+              <AnimatedSection key={index} delay={index * 0.05} direction="up">
+                <motion.div
+                  className="flex items-center justify-center h-16 text-text-quaternary font-medium hover:text-text-primary transition-colors"
+                  whileHover={{ 
+                    scale: 1.1,
+                    transition: { type: "spring", stiffness: 400, damping: 25 }
+                  }}
+                >
+                  {client}
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8">
+      <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
               Case studies
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Deep dives into our most impactful projects, showcasing the strategic process 
-              and measurable outcomes that define our approach.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="Deep dives into our most impactful projects, showcasing the strategic process and measurable outcomes that define our approach."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
-          <div className="space-y-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((study, index) => (
-              <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                <div className="order-2 lg:order-1">
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="bg-bg-secondary p-8 rounded-2xl border border-border-light hover:border-border-medium transition-all duration-300 cursor-pointer h-full flex flex-col justify-between shadow-sm hover:shadow-md"
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -8,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
+                  onClick={() => setSelectedCaseStudy(study)}
+                >
+                  <div>
+                    <div 
+                      className="aspect-[4/3] mb-6 rounded-xl overflow-hidden"
+                      style={{
+                        backgroundImage: `url(https://picsum.photos/400/300?random=${index + 60}&t=${Date.now() + index + 60})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    
+                    <h3 className="text-xl font-bold text-text-primary mb-2">{study.title.split(':')[0]}</h3>
+                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{study.subtitle}</p>
+                    
+                    <div className="space-y-3">
+                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
+                      <div className="grid grid-cols-1 gap-2">
+                        {study.results.slice(0, 2).map((result, resultIndex) => (
+                          <div key={resultIndex} className="text-sm text-text-secondary font-medium">
+                            {result}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-border-light">
+                    <div className="text-sm text-text-primary font-medium hover:underline">
+                      Read full case study →
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Modal */}
+      <AnimatePresence>
+        {selectedCaseStudy && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCaseStudy(null)}
+          >
+            <motion.div
+              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ 
+                scale: 1, 
+                opacity: 1, 
+                y: 0,
+                transition: { 
+                  type: "spring", 
+                  stiffness: 300, 
+                  damping: 25 
+                }
+              }}
+              exit={{ 
+                scale: 0.9, 
+                opacity: 0, 
+                y: 20,
+                transition: { duration: 0.2 }
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-8">
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedCaseStudy(null)}
+                  className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M12.854 3.146a.5.5 0 0 0-.708 0L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0 0-.708z"/>
+                  </svg>
+                </button>
+
+                {/* Modal Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  {/* Left: Image */}
+                  <div>
+                    <div 
+                      className="aspect-[4/3] rounded-2xl overflow-hidden mb-6"
+                      style={{
+                        backgroundImage: `url(https://picsum.photos/600/450?random=${caseStudies.indexOf(selectedCaseStudy) + 60}&t=${Date.now() + caseStudies.indexOf(selectedCaseStudy)})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                  </div>
+
+                  {/* Right: Content */}
                   <div className="space-y-8">
                     <div>
-                      <h3 className="text-2xl font-bold text-black mb-2">{study.title}</h3>
-                      <p className="text-lg text-accent">{study.subtitle}</p>
+                      <h2 className="text-3xl font-bold text-black mb-3">{selectedCaseStudy.title}</h2>
+                      <p className="text-lg text-gray-600">{selectedCaseStudy.subtitle}</p>
                     </div>
-                    
+
                     <div>
-                      <h4 className="font-semibold text-black mb-3">Challenge</h4>
-                      <p className="text-gray-600 leading-relaxed">{study.challenge}</p>
+                      <h3 className="text-lg font-semibold text-black mb-3">Challenge</h3>
+                      <p className="text-gray-600 leading-relaxed">{selectedCaseStudy.challenge}</p>
                     </div>
-                    
+
                     <div>
-                      <h4 className="font-semibold text-black mb-3">Solution</h4>
-                      <p className="text-gray-600 leading-relaxed">{study.solution}</p>
+                      <h3 className="text-lg font-semibold text-black mb-3">Solution</h3>
+                      <p className="text-gray-600 leading-relaxed">{selectedCaseStudy.solution}</p>
                     </div>
-                    
+
                     <div>
-                      <h4 className="font-semibold text-black mb-3">Results</h4>
-                      <ul className="space-y-2">
-                        {study.results.map((result, resultIndex) => (
-                          <li key={resultIndex} className="flex items-start space-x-3">
-                            <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2.5 flex-shrink-0"></div>
-                            <span className="text-gray-600">{result}</span>
-                          </li>
+                      <h3 className="text-lg font-semibold text-black mb-3">Results</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {selectedCaseStudy.results.map((result, index) => (
+                          <div key={index} className="text-gray-600 font-medium">
+                            {result}
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
-                    
-                    <blockquote className="border-l-4 border-accent pl-6">
-                      <p className="text-lg italic text-gray-700 mb-4">"{study.testimonial.quote}"</p>
+
+                    <blockquote className="border-l-4 border-black pl-6">
+                      <p className="text-lg italic text-gray-700 mb-4">
+                        "{selectedCaseStudy.testimonial.quote}"
+                      </p>
                       <cite className="text-sm font-medium text-black">
-                        — {study.testimonial.author}
+                        — {selectedCaseStudy.testimonial.author}
                       </cite>
                     </blockquote>
                   </div>
                 </div>
-                
-                <div className="order-1 lg:order-2">
-                  <div className="bg-gray-200 aspect-[4/3] lg:sticky lg:top-32"></div>
-                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <section className="py-32 px-6 lg:px-8 bg-black text-white">
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Let's create something exceptional
-          </h2>
-          <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-            Ready to see your brand achieve similar results? Let's discuss how we can 
-            help accelerate your business growth through strategic brand development.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-white text-black px-12 py-4 text-lg font-medium hover:opacity-90 hover:scale-105"
-          >
-            Start Your Project
-          </Link>
+          <AnimatedSection direction="up" delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
+              Let's create something exceptional
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.3}>
+            <SmoothTextReveal 
+              text="Ready to see your brand achieve similar results? Let's discuss how we can help accelerate your business growth through strategic brand development."
+              className="text-xl text-text-secondary mb-12 leading-relaxed"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.5}>
+            <Link to="/contact">
+              <CleanButton 
+                text="Build" 
+                className="w-40"
+              />
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>

@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { CleanButton } from '../components/ui/clean-button'
+import AnimatedSection from '../components/ui/AnimatedSection'
+import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0)
@@ -219,109 +223,180 @@ const Services = () => {
 
   return (
     <div>
-      <section className="pt-32 pb-20 px-6 lg:px-8">
+      <section className="h-screen flex items-center justify-center px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-black mb-8">
-            Services that drive<br />
-            real business results
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            From strategic brand positioning to cutting-edge digital experiences, 
-            we deliver comprehensive solutions that accelerate growth and create lasting value.
-          </p>
+          <AnimatedSection direction="up" delay={0.2}>
+            <h1 className="text-5xl md:text-6xl font-bold text-black mb-8">
+              <SmoothTextReveal text="Services that drive real business results" />
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.4}>
+            <SmoothTextReveal 
+              text="From strategic brand positioning to cutting-edge digital experiences, we deliver comprehensive solutions that accelerate growth and create lasting value."
+              className="text-xl text-gray-600 leading-relaxed"
+              delay={0.1}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
       <section className="py-20 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <div className="lg:col-span-1">
-              <div className="lg:sticky lg:top-32">
-                <nav className="space-y-2">
-                  {services.map((service, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveService(index)}
-                      className={`w-full text-left p-4 transition-all ${
-                        activeService === index
-                          ? 'bg-black text-white'
-                          : 'text-gray-600 hover:text-black hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="font-semibold">{service.title}</div>
-                      <div className="text-sm opacity-80">{service.subtitle}</div>
-                    </button>
-                  ))}
-                </nav>
-              </div>
-            </div>
-            
-            <div className="lg:col-span-3">
-              <div className="bg-white p-8 lg:p-12">
-                <h2 className="text-3xl font-bold text-black mb-4">
-                  {services[activeService].title}
-                </h2>
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  {services[activeService].description}
-                </p>
+          {/* Service Navigation Pills */}
+          <AnimatedSection className="flex flex-wrap justify-center gap-4 mb-16">
+            {services.map((service, index) => (
+              <motion.button
+                key={index}
+                onMouseEnter={() => setActiveService(index)}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2,
+                  transition: { 
+                    type: "spring", 
+                    stiffness: 400, 
+                    damping: 25 
+                  }
+                }}
+                whileTap={{ 
+                  scale: 0.98,
+                  transition: { 
+                    type: "spring", 
+                    stiffness: 600, 
+                    damping: 30 
+                  }
+                }}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeService === index
+                    ? 'bg-black text-white'
+                    : 'bg-white text-gray-600 hover:text-black border border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                {service.title}
+              </motion.button>
+            ))}
+          </AnimatedSection>
+          
+          {/* Service Content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeService}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 25,
+                mass: 0.8
+              }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
+            >
+              {/* Left: Content */}
+              <div className="space-y-8">
+                <div>
+                  <h2 className="text-4xl font-bold text-black mb-4">
+                    {services[activeService].title}
+                  </h2>
+                  <p className="text-xl text-gray-600 leading-relaxed">
+                    {services[activeService].description}
+                  </p>
+                </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                  <div>
-                    <h3 className="text-lg font-semibold text-black mb-4">What's included:</h3>
-                    <ul className="space-y-3">
-                      {services[activeService].features.map((feature, index) => (
-                        <li key={index} className="flex items-start space-x-3">
-                          <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2.5 flex-shrink-0"></div>
-                          <span className="text-gray-600">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-semibold text-black mb-4">Case study:</h3>
-                    <div className="bg-gray-50 p-6">
-                      <div className="font-medium text-black mb-2">
-                        {services[activeService].caseStudy.client}
-                      </div>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {services[activeService].caseStudy.result}
-                      </p>
-                    </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-black mb-6">What's included:</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    {services[activeService].features.map((feature, index) => (
+                      <motion.div 
+                        key={index}
+                        className="flex items-start space-x-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ 
+                          opacity: 1, 
+                          x: 0,
+                          transition: { 
+                            type: "spring", 
+                            stiffness: 300, 
+                            damping: 20,
+                            delay: index * 0.1
+                          }
+                        }}
+                      >
+                        <span className="text-gray-600 font-medium">{feature}</span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
                 
-                <Link
-                  to="/contact"
-                  className="inline-block bg-black text-white px-8 py-3 font-medium hover:opacity-90 hover:scale-105"
-                >
-                  Start This Project
+                <div className="bg-gray-50 p-6 rounded-2xl">
+                  <h4 className="font-semibold text-black mb-3">Case study:</h4>
+                  <div className="font-medium text-black mb-2">
+                    {services[activeService].caseStudy.client}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    {services[activeService].caseStudy.result}
+                  </p>
+                </div>
+                
+                <Link to="/contact">
+                  <CleanButton 
+                    text="Launch" 
+                    className="w-40"
+                  />
                 </Link>
               </div>
-            </div>
-          </div>
+              
+              {/* Right: Image */}
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=${activeService + 30})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 20 
+                  }
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
       <section className="py-32 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Our process
+              <SmoothTextReveal text="Our process" />
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A proven methodology that ensures strategic alignment, exceptional execution, 
-              and measurable business impact across every engagement.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="A proven methodology that ensures strategic alignment, exceptional execution, and measurable business impact across every engagement."
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {process.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-accent mb-4">{step.step}</div>
-                <h3 className="text-xl font-semibold text-black mb-4">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{step.description}</p>
-              </div>
+              <AnimatedSection 
+                key={index} 
+                className="text-center" 
+                delay={index * 0.1}
+                direction="up"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="transition-all duration-300"
+                >
+                  <div className="text-4xl font-bold text-black mb-4">{step.step}</div>
+                  <h3 className="text-xl font-semibold text-black mb-4">{step.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -329,24 +404,38 @@ const Services = () => {
 
       <section className="py-32 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Pricing packages
+              <SmoothTextReveal text="Pricing packages" />
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Transparent pricing for every stage of business growth. 
-              All packages can be customized to meet your specific needs and objectives.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="Transparent pricing for every stage of business growth. All packages can be customized to meet your specific needs and objectives."
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {pricingTiers.map((tier, index) => (
-              <div
+              <AnimatedSection
                 key={index}
-                className={`bg-white p-8 hover:shadow-lg hover:translate-y-[-4px] transition-all ${
-                  tier.popular ? 'ring-2 ring-black' : ''
-                }`}
+                delay={index * 0.1}
+                direction="up"
               >
+                <motion.div
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -12,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
+                  className={`bg-white p-8 border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-2xl ${
+                    tier.popular ? 'border-black border-2' : ''
+                  }`}
+                >
                 {tier.popular && (
                   <div className="bg-black text-white text-sm font-medium px-4 py-2 inline-block mb-6">
                     Most Popular
@@ -359,26 +448,22 @@ const Services = () => {
                 </div>
                 <p className="text-gray-600 mb-8 leading-relaxed">{tier.description}</p>
                 
-                <ul className="space-y-3 mb-8">
+                <div className="space-y-3 mb-8">
                   {tier.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start space-x-3">
-                      <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2.5 flex-shrink-0"></div>
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
+                    <div key={featureIndex} className="text-gray-600 font-medium">
+                      {feature}
+                    </div>
                   ))}
-                </ul>
+                </div>
                 
-                <Link
-                  to="/contact"
-                  className={`block text-center py-3 px-6 font-medium transition-all ${
-                    tier.popular
-                      ? 'bg-black text-white hover:opacity-90'
-                      : 'border-2 border-black text-black hover:bg-black hover:text-white'
-                  }`}
-                >
-                  {tier.cta}
+                <Link to="/contact">
+                  <CleanButton 
+                    text={tier.name === 'Enterprise' ? 'Contact' : 'Choose'}
+                    className="w-full"
+                  />
                 </Link>
-              </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -386,22 +471,37 @@ const Services = () => {
 
       <section className="py-32 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-20">
+          <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Frequently asked questions
+              <SmoothTextReveal text="Frequently asked questions" />
             </h2>
-            <p className="text-xl text-gray-600">
-              Common questions about our services, process, and approach to brand development.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="Common questions about our services, process, and approach to brand development."
+              className="text-xl text-gray-600"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="bg-white">
-                <button
-                  onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                  className="w-full text-left p-6 hover:bg-gray-50 transition-colors"
+              <AnimatedSection key={index} delay={index * 0.05}>
+                <motion.div 
+                  className="bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -4,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
                 >
+                  <motion.button
+                    onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                    className="w-full text-left p-6 hover:bg-gray-50 transition-colors rounded-xl"
+                    whileHover={{ x: 4 }}
+                  >
                   <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-black pr-8">{faq.question}</h3>
                     <div className={`transform transition-transform ${activeFaq === index ? 'rotate-180' : ''}`}>
@@ -410,33 +510,49 @@ const Services = () => {
                       </svg>
                     </div>
                   </div>
-                </button>
-                {activeFaq === index && (
-                  <div className="px-6 pb-6">
-                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                  </div>
-                )}
-              </div>
+                  </motion.button>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div 
+                        className="px-6 pb-6"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+                      >
+                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-black text-white">
+      <section className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to get started?
-          </h2>
-          <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-            Let's discuss your project and explore how TrendArt can help 
-            accelerate your business growth through strategic brand development.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-white text-black px-12 py-4 text-lg font-medium hover:opacity-90 hover:scale-105"
-          >
-            Start Your Project
-          </Link>
+          <AnimatedSection direction="up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">
+              <SmoothTextReveal text="Ready to get started?" className="text-black" />
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.2}>
+            <SmoothTextReveal 
+              text="Let's discuss your project and explore how TrendArt can help accelerate your business growth through strategic brand development."
+              className="text-xl text-gray-600 mb-12 leading-relaxed"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.4}>
+            <Link to="/contact">
+              <CleanButton 
+                text="Create" 
+                className="w-40"
+              />
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>

@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { SplashCursor } from '../components/ui/splash-cursor'
+import { CleanButton } from '../components/ui/clean-button'
+import AnimatedSection from '../components/ui/AnimatedSection'
+import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 
 const Home = () => {
   const services = [
@@ -71,49 +76,117 @@ const Home = () => {
 
   return (
     <div>
-      <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-black mb-8 leading-none">
-            We craft brands<br />
-            that <span className="italic">matter</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            TrendArt partners with forward-thinking companies to create exceptional brand experiences 
-            that drive growth and forge lasting customer connections.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-black text-white px-12 py-4 text-lg font-medium hover:opacity-90 hover:scale-105"
-          >
-            Start Your Project
-          </Link>
+      <section className="relative h-screen flex items-center justify-center px-6 lg:px-8 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <SplashCursor />
+        </div>
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <AnimatedSection direction="up" delay={0.2}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-black mb-8 leading-tight">
+              We craft brands that matter
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.6}>
+            <SmoothTextReveal 
+              text="TrendArt partners with forward-thinking companies to create exceptional brand experiences that drive growth and forge lasting customer connections."
+              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.8}>
+            <Link to="/contact">
+              <CleanButton 
+                text="Start" 
+                className="w-40"
+              />
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
 
       <section className="py-32 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
               Services that drive results
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From strategic brand positioning to cutting-edge digital experiences, 
-              we deliver comprehensive solutions that accelerate business growth.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="From strategic brand positioning to cutting-edge digital experiences, we deliver comprehensive solutions that accelerate business growth."
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="group">
-                <div className="bg-white p-8 h-full hover:shadow-lg hover:translate-y-[-4px] transition-all">
-                  <h3 className="text-xl font-semibold text-black mb-4 group-hover:text-accent transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="group relative"
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -12,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25,
+                      mass: 0.8
+                    }
+                  }}
+                  whileTap={{ 
+                    scale: 0.98,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 600, 
+                      damping: 30 
+                    }
+                  }}
+                >
+                  <div className="bg-white p-8 h-80 flex flex-col justify-between border border-gray-100 hover:border-gray-200 transition-all duration-300 rounded-2xl relative overflow-hidden">
+                    {/* Background image that appears on hover */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
+                      style={{
+                        backgroundImage: `url(https://picsum.photos/400/320?random=${index + 1})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    
+                    <div className="relative z-10">
+                      <h3 className="text-xl font-semibold text-black mb-4 group-hover:text-black transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed text-sm">
+                        {service.description}
+                      </p>
+                    </div>
+                    
+                    {/* Floating image on mouse hover */}
+                    <motion.div
+                      className="absolute pointer-events-none opacity-0 group-hover:opacity-100 z-20"
+                      style={{
+                        width: '200px',
+                        height: '150px',
+                        backgroundImage: `url(https://picsum.photos/200/150?random=${index + 10})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        borderRadius: '12px',
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                      }}
+                      initial={{ scale: 0, rotate: -10 }}
+                      whileHover={{ 
+                        scale: 1, 
+                        rotate: 0,
+                        transition: { 
+                          type: "spring", 
+                          stiffness: 300, 
+                          damping: 20 
+                        }
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -121,85 +194,145 @@ const Home = () => {
 
       <section className="py-32 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
               Featured work
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A selection of our most impactful projects, showcasing the strategic thinking 
-              and creative execution that delivers measurable business outcomes.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="A selection of our most impactful projects, showcasing the strategic thinking and creative execution that delivers measurable business outcomes."
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {featuredWork.map((project, index) => (
-              <div key={index} className="group">
-                <div className="bg-gray-200 aspect-[4/3] mb-8 hover:opacity-90 transition-opacity"></div>
-                <div className="space-y-4">
-                  <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                    {project.category}
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="group cursor-pointer"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                >
+                  <motion.div 
+                    className="aspect-[4/3] mb-8 transition-opacity rounded-2xl overflow-hidden"
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20 
+                      }
+                    }}
+                    style={{
+                      backgroundImage: `url(https://picsum.photos/600/450?random=${index + 20})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                  <div className="space-y-4">
+                    <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      {project.category}
+                    </div>
+                    <h3 className="text-2xl font-semibold text-black group-hover:text-black transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="text-sm font-medium text-black">
+                      {project.metrics}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-semibold text-black group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="text-sm font-medium text-black">
-                    {project.metrics}
-                  </div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
           
           <div className="text-center mt-16">
-            <Link
-              to="/work"
-              className="inline-block border-2 border-black text-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-all"
-            >
-              View All Work
+            <Link to="/work">
+              <CleanButton 
+                text="View" 
+                className="w-36"
+              />
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-black text-white">
+      <section className="py-32 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-black">
               What our clients say
             </h2>
-          </div>
+          </AnimatedSection>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="text-center">
-                <blockquote className="text-xl leading-relaxed mb-8 italic">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="space-y-2">
-                  <div className="text-lg font-semibold">{testimonial.author}</div>
-                  <div className="text-gray-300">{testimonial.role}, {testimonial.company}</div>
-                </div>
-              </div>
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300 h-full flex flex-col justify-between"
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -8,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
+                >
+                  <div className="mb-6">
+                    <p className="text-lg leading-relaxed text-gray-700 italic">
+                      "{testimonial.quote}"
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center space-x-4">
+                    <div 
+                      className="w-12 h-12 rounded-full bg-gray-200"
+                      style={{
+                        backgroundImage: `url(https://picsum.photos/100/100?random=${index + 100})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    <div>
+                      <div className="font-semibold text-black">{testimonial.author}</div>
+                      <div className="text-sm text-gray-600">{testimonial.role}, {testimonial.company}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8">
+      <section className="py-32 px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index}>
-                <div className="text-4xl md:text-5xl font-bold text-black mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </div>
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div
+                  className="bg-gray-50 p-8 rounded-2xl text-center border border-gray-100 hover:border-gray-200 transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -8,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
+                >
+                  <div className="text-4xl md:text-5xl font-bold text-black mb-3">
+                    {stat.number}
+                  </div>
+                  <div className="text-gray-600 font-medium text-sm">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -207,19 +340,26 @@ const Home = () => {
 
       <section className="py-32 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-            Ready to start your project?
-          </h2>
-          <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-            Let's discuss how TrendArt can help accelerate your business growth 
-            through strategic brand development and innovative digital experiences.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block bg-black text-white px-12 py-4 text-lg font-medium hover:opacity-90 hover:scale-105"
-          >
-            Get Started Today
-          </Link>
+          <AnimatedSection direction="up" delay={0.1}>
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Ready to start your project?
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.3}>
+            <SmoothTextReveal 
+              text="Let's discuss how TrendArt can help accelerate your business growth through strategic brand development and innovative digital experiences."
+              className="text-xl text-gray-600 mb-12 leading-relaxed"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.5}>
+            <Link to="/contact">
+              <CleanButton 
+                text="Begin" 
+                className="w-40"
+              />
+            </Link>
+          </AnimatedSection>
         </div>
       </section>
     </div>

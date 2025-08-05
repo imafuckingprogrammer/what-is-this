@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+  }
+
+  * {
+    @apply transition-all duration-250 ease-out;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-swiss text-gray-900 antialiased;
+    font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  }
+  
+  * {
+    font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+    font-weight: 600;
+  }
+  
+  button {
+    font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  }
+}

@@ -1,90 +1,67 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 
 const Footer = () => {
-  const [email, setEmail] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setEmail('')
-  }
 
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-rich-black text-white" data-nav-theme="dark">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-6">TrendArt</h3>
+            <h3 className="text-2xl font-bold mb-6 text-celestial-blue">TrendArt</h3>
             <p className="text-gray-300 mb-8 text-lg leading-relaxed max-w-md">
               We craft exceptional brand experiences that drive growth and create lasting connections between companies and their customers.
             </p>
-            <form onSubmit={handleSubmit} className="flex max-w-md">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
-                required
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-white text-black font-medium hover:opacity-90 hover:scale-105"
-              >
-                Subscribe
-              </button>
-            </form>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Company</h4>
+            <h4 className="font-semibold mb-6 text-lg text-white">Company</h4>
             <nav className="flex flex-col space-y-4">
-              <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
+              <Link to="/about" className="text-gray-400 hover:text-light-sea-green transition-colors">
                 About Us
               </Link>
-              <Link to="/work" className="text-gray-300 hover:text-white transition-colors">
+              <Link to="/work" className="text-gray-400 hover:text-light-sea-green transition-colors">
                 Our Work
               </Link>
-              <Link to="/services" className="text-gray-300 hover:text-white transition-colors">
+              <Link to="/services" className="text-gray-400 hover:text-light-sea-green transition-colors">
                 Services
               </Link>
-              <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
+              <Link to="/contact" className="text-gray-400 hover:text-light-sea-green transition-colors">
                 Contact
               </Link>
             </nav>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Services</h4>
+            <h4 className="font-semibold mb-6 text-lg text-white">Services</h4>
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
                 Brand Strategy
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
                 Digital Marketing
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
                 Creative Campaigns
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
+              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
                 Web Development
               </a>
             </nav>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-600 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-500 text-sm">
             © 2024 TrendArt. All rights reserved.
           </p>
           <div className="flex space-x-8 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Careers
             </a>
           </div>

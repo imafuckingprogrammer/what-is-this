@@ -1,3 +1,7 @@
+import { motion } from 'framer-motion'
+import SmoothTextReveal from '../components/ui/SmoothTextReveal'
+import AnimatedSection from '../components/ui/AnimatedSection'
+
 const About = () => {
   const team = [
     {
@@ -69,145 +73,217 @@ const About = () => {
   ]
 
   return (
-    <div>
-      <section className="pt-32 pb-20 px-6 lg:px-8">
+    <div className="bg-bg-primary">
+      <section className="h-screen flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-black mb-8">
-            We believe in the power<br />
-            of purposeful creativity
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            TrendArt was founded on the principle that exceptional brands are built through 
-            the intersection of strategic insight, creative excellence, and measurable results.
-          </p>
+          <AnimatedSection direction="up" delay={0.1}>
+            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+              We believe in the power<br />
+              of purposeful creativity
+            </h1>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.3}>
+            <SmoothTextReveal 
+              text="TrendArt was founded on the principle that exceptional brands are built through the intersection of strategic insight, creative excellence, and measurable results."
+              className="text-xl text-text-secondary leading-relaxed"
+              delay={0.2}
+            />
+          </AnimatedSection>
         </div>
       </section>
 
-      <section className="py-20 px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-black mb-8">Our story</h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl font-bold text-text-primary mb-8">Our story</h2>
+              <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>
-                  TrendArt began in 2016 when Elena Vasquez left her position at Pentagram to create 
-                  an agency that would challenge the traditional boundaries between strategy and design. 
-                  She believed that the most powerful brands emerged from deep strategic thinking 
-                  combined with exceptional creative execution.
+                  TrendArt began in 2016 when Elena Vasquez left her position at Pentagram to create an agency that would challenge the traditional boundaries between strategy and design. She believed that the most powerful brands emerged from deep strategic thinking combined with exceptional creative execution.
                 </p>
                 <p>
-                  What started as a small studio in San Francisco has grown into a team of strategists, 
-                  designers, and developers who share a common obsession: creating brands that don't 
-                  just look great, but drive real business results. We've had the privilege of working 
-                  with everyone from emerging startups to Fortune 500 companies.
+                  What started as a small studio in San Francisco has grown into a team of strategists, designers, and developers who share a common obsession: creating brands that don't just look great, but drive real business results. We've had the privilege of working with everyone from emerging startups to Fortune 500 companies.
                 </p>
                 <p>
-                  Today, TrendArt continues to push the boundaries of what's possible in brand development. 
-                  We combine data-driven insights with creative intuition, always with the goal of 
-                  creating authentic connections between brands and their audiences.
+                  Today, TrendArt continues to push the boundaries of what's possible in brand development. We combine data-driven insights with creative intuition, always with the goal of creating authentic connections between brands and their audiences.
                 </p>
               </div>
-            </div>
-            <div className="bg-gray-200 aspect-[4/3] lg:aspect-[3/4]"></div>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] lg:aspect-[3/4] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/800?random=70)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8">
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
               Meet our team
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A diverse group of strategists, creatives, and technologists united by 
-              our passion for building meaningful brands and driving business growth.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="A diverse group of strategists, creatives, and technologists united by our passion for building meaningful brands and driving business growth."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {team.map((member, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-gray-200 aspect-square mb-6 hover:opacity-90 transition-opacity"></div>
-                <h3 className="text-xl font-semibold text-black mb-2">{member.name}</h3>
-                <div className="text-accent font-medium mb-4">{member.role}</div>
-                <p className="text-gray-600 leading-relaxed text-sm">{member.bio}</p>
-              </div>
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="text-center"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <motion.div 
+                    className="aspect-square mb-6 rounded-2xl overflow-hidden"
+                    style={{
+                      backgroundImage: `url(https://picsum.photos/400/400?random=${index + 80})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { type: "spring", stiffness: 400, damping: 25 }
+                    }}
+                  />
+                  <h3 className="text-xl font-semibold text-text-primary mb-2">{member.name}</h3>
+                  <div className="text-text-tertiary font-medium mb-4">{member.role}</div>
+                  <p className="text-text-secondary leading-relaxed text-sm">
+                    {member.bio}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-black text-white">
+      <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
               Our values
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              These principles guide every decision we make and every project we undertake. 
-              They're not just words on a wall – they're the foundation of how we work.
-            </p>
-          </div>
+            <SmoothTextReveal 
+              text="These principles guide every decision we make and every project we undertake. They're not just words on a wall – they're the foundation of how we work."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {values.map((value, index) => (
-              <div key={index}>
-                <h3 className="text-xl font-semibold mb-4">{value.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{value.description}</p>
-              </div>
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <h3 className="text-xl font-semibold mb-4 text-text-primary">{value.title}</h3>
+                  <p className="text-text-secondary leading-relaxed">
+                    {value.description}
+                  </p>
+                </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8">
+      <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-black mb-8">Recognition</h2>
-              <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-                We're honored to have our work recognized by the industry's most prestigious 
-                organizations. These awards reflect our commitment to excellence and innovation.
-              </p>
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl font-bold text-text-primary mb-8">Recognition</h2>
+              <SmoothTextReveal 
+                text="We're honored to have our work recognized by the industry's most prestigious organizations. These awards reflect our commitment to excellence and innovation."
+                className="text-xl text-text-secondary mb-12 leading-relaxed"
+                delay={0.1}
+              />
               <div className="space-y-4">
                 {awards.map((award, index) => (
-                  <div key={index} className="flex items-center space-x-4">
-                    <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                    <span className="text-gray-700">{award}</span>
-                  </div>
+                  <motion.div 
+                    key={index} 
+                    className="text-text-secondary font-medium"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20,
+                        delay: index * 0.1 + 0.3
+                      }
+                    }}
+                  >
+                    {award}
+                  </motion.div>
                 ))}
               </div>
-            </div>
-            <div className="bg-gray-200 aspect-[4/3]"></div>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=90)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-gray-50">
+      <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="bg-gray-200 aspect-[4/3]"></div>
-            <div>
-              <h2 className="text-4xl font-bold text-black mb-8">Our culture</h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+            <AnimatedSection direction="left" delay={0.1}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=95)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <h2 className="text-4xl font-bold text-text-primary mb-8">Our culture</h2>
+              <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>
-                  At TrendArt, we believe that great work comes from great people who are 
-                  passionate about what they do. We've built a culture that values curiosity, 
-                  collaboration, and continuous learning.
+                  At TrendArt, we believe that great work comes from great people who are passionate about what they do. We've built a culture that values curiosity, collaboration, and continuous learning.
                 </p>
                 <p>
-                  Our team enjoys flexible working arrangements, professional development 
-                  opportunities, and a comprehensive benefits package. We invest in the 
-                  latest tools and technologies to ensure our team can do their best work.
+                  Our team enjoys flexible working arrangements, professional development opportunities, and a comprehensive benefits package. We invest in the latest tools and technologies to ensure our team can do their best work.
                 </p>
                 <p>
-                  We're always looking for talented individuals who share our vision. 
-                  If you're passionate about building meaningful brands and driving 
-                  business results, we'd love to hear from you.
+                  We're always looking for talented individuals who share our vision. If you're passionate about building meaningful brands and driving business results, we'd love to hear from you.
                 </p>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
