@@ -7,7 +7,7 @@ import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 import AnimatedSection from '../components/ui/AnimatedSection'
 
 const Work = () => {
-  const [activeFilter, setActiveFilter] = useState(['all'])
+  const [activeFilter, setActiveFilter] = useState(['All Work'])
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null)
 
   const filterOptions = ['All Work', 'Branding', 'Digital', 'Campaigns', 'Web Development']
