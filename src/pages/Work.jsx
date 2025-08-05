@@ -2,20 +2,22 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CleanButton } from '../components/ui/clean-button'
+import { MultiSelectButtons } from '../components/ui/multi-select-buttons'
 import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 import AnimatedSection from '../components/ui/AnimatedSection'
 
 const Work = () => {
-  const [activeFilter, setActiveFilter] = useState('all')
+  const [activeFilter, setActiveFilter] = useState(['all'])
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null)
 
-  const filters = [
-    { id: 'all', label: 'All Work' },
-    { id: 'branding', label: 'Branding' },
-    { id: 'digital', label: 'Digital' },
-    { id: 'campaigns', label: 'Campaigns' },
-    { id: 'web', label: 'Web Development' },
-  ]
+  const filterOptions = ['All Work', 'Branding', 'Digital', 'Campaigns', 'Web Development']
+  const filterMap = {
+    'All Work': 'all',
+    'Branding': 'branding', 
+    'Digital': 'digital',
+    'Campaigns': 'campaigns',
+    'Web Development': 'web'
+  }
 
   const portfolio = [
     {
@@ -197,9 +199,9 @@ const Work = () => {
     },
   ]
 
-  const filteredPortfolio = activeFilter === 'all' 
+  const filteredPortfolio = activeFilter[0] === 'All Work' || filterMap[activeFilter[0]] === 'all'
     ? portfolio 
-    : portfolio.filter(project => project.type === activeFilter)
+    : portfolio.filter(project => project.type === filterMap[activeFilter[0]])
 
   return (
     <div className="bg-bg-primary">
@@ -224,29 +226,14 @@ const Work = () => {
       <section className="py-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
-              {filters.map((filter, index) => (
-                <motion.div
-                  key={filter.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { 
-                      type: "spring", 
-                      stiffness: 300, 
-                      damping: 20,
-                      delay: index * 0.1
-                    }
-                  }}
-                >
-                  <CleanButton
-                    onClick={() => setActiveFilter(filter.id)}
-                    text={filter.label.split(' ')[0]}
-                    className="w-auto px-6"
-                  />
-                </motion.div>
-              ))}
+            <div className="flex justify-center mb-16">
+              <MultiSelectButtons
+                options={filterOptions}
+                selectedValues={activeFilter}
+                onChange={setActiveFilter}
+                multiple={false}
+                className="justify-center"
+              />
             </div>
           </AnimatedSection>
           

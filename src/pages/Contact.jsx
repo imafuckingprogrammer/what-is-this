@@ -11,7 +11,6 @@ const Contact = () => {
     email: '',
     company: '',
     projectType: [],
-    budget: [],
     message: '',
   })
   const [errors, setErrors] = useState({})
@@ -28,13 +27,7 @@ const Contact = () => {
     'Other',
   ]
 
-  const budgetRanges = [
-    '$15,000 - $35,000',
-    '$35,000 - $75,000',
-    '$75,000 - $150,000',
-    '$150,000+',
-    'Not sure yet',
-  ]
+
 
   const teamContacts = [
     {
@@ -113,7 +106,6 @@ const Contact = () => {
       email: '',
       company: '',
       projectType: [],
-      budget: [],
       message: '',
     })
   }
@@ -215,16 +207,6 @@ const Contact = () => {
                   required={true}
                   error={errors.projectType}
                   multiple={true}
-                />
-
-                <MultiSelectButtons
-                  options={budgetRanges}
-                  selectedValues={formData.budget}
-                  onChange={(values) => handleMultiSelectChange('budget', values)}
-                  label="Budget Range"
-                  required={false}
-                  error={errors.budget}
-                  multiple={false}
                 />
 
                 <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +36,7 @@ const MultiSelectButtons = ({
       <div className="flex flex-wrap gap-3">
         {options.map((option, index) => {
           const isSelected = selectedValues.includes(option);
+          const [isHovered, setIsHovered] = useState(false);
           
           return (
             <motion.button
@@ -43,14 +44,13 @@ const MultiSelectButtons = ({
               type="button"
               onClick={() => handleToggle(option)}
               className={cn(
-                "relative cursor-pointer overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300",
-                isSelected 
-                  ? "text-white" 
-                  : "text-black hover:text-white"
+                "relative cursor-pointer overflow-hidden rounded-full px-4 py-2 text-sm font-medium bg-transparent text-black"
               )}
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
               whileHover={{ 
                 scale: 1.05,
-                y: -1,
+                y: -2,
                 transition: { 
                   type: "spring", 
                   stiffness: 400, 
@@ -60,6 +60,7 @@ const MultiSelectButtons = ({
               }}
               whileTap={{ 
                 scale: 0.95,
+                y: 0,
                 transition: { 
                   type: "spring", 
                   stiffness: 600, 
@@ -80,9 +81,19 @@ const MultiSelectButtons = ({
               }}
             >
               {/* Text */}
-              <span className="relative z-10 block">
+              <motion.span 
+                className="relative z-10 block"
+                animate={{ 
+                  y: isHovered || isSelected ? -1 : 0,
+                  color: isHovered || isSelected ? "#ffffff" : "#000000"
+                }}
+                transition={{ 
+                  duration: 0.3,
+                  ease: [0.4, 0.0, 0.2, 1]
+                }}
+              >
                 {option}
-              </span>
+              </motion.span>
 
               {/* Glass blur background - always visible */}
               <div className="absolute inset-0 backdrop-blur-xl rounded-full border border-white/10" 
@@ -93,24 +104,14 @@ const MultiSelectButtons = ({
                      background: 'rgba(255,255,255,0.05)'
                    }} />
 
-              {/* Black overlay for selected state */}
+              {/* Black slide-in overlay - shows on hover or when selected */}
               <motion.div 
+                key={isHovered || isSelected ? "active" : "inactive"}
                 className="absolute inset-0 rounded-full bg-black z-[5]"
-                initial={{ scale: isSelected ? 1 : 0 }}
-                animate={{ scale: isSelected ? 1 : 0 }}
+                initial={{ y: isHovered || isSelected ? "100%" : "0%" }}
+                animate={{ y: isHovered || isSelected ? "0%" : "-100%" }}
                 transition={{
-                  duration: 0.2,
-                  ease: [0.4, 0.0, 0.2, 1]
-                }}
-              />
-
-              {/* Hover overlay */}
-              <motion.div 
-                className="absolute inset-0 rounded-full bg-black z-[4]"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: isSelected ? 0 : 1 }}
-                transition={{
-                  duration: 0.2,
+                  duration: 0.25,
                   ease: [0.4, 0.0, 0.2, 1]
                 }}
               />
