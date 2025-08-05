@@ -8,108 +8,144 @@ import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 const Services = () => {
   const [activeService, setActiveService] = useState(0)
   const [activeFaq, setActiveFaq] = useState(null)
+  const [showLearnMore, setShowLearnMore] = useState(false)
 
   const services = [
     {
-      title: 'Brand Strategy',
-      subtitle: 'Foundation for growth',
-      description: 'Comprehensive brand positioning and strategic framework development that differentiates your company in competitive markets.',
+      title: 'Brand Strategy & Identity',
+      subtitle: 'Make your brand make sense',
+      description: 'Before people buy into your product, they buy into your story. We help you get the message right, and make it stick.',
       features: [
-        'Market research and competitive analysis',
-        'Brand positioning and messaging framework',
-        'Target audience definition and personas',
-        'Brand architecture and portfolio strategy',
-        'Go-to-market strategy development',
-        'Brand guidelines and implementation roadmap',
+        'Brand positioning & voice',
+        'Messaging strategy',
+        'Visual identity (logos, color, typography)',
+        'Brand guidelines',
       ],
+      learnMore: 'A strong brand isn\'t just a logo, it\'s how people feel when they see, hear, or interact with you. We help you find your voice, clarify your story, and shape a brand that\'s built to last.',
+      detailedFeatures: [
+        'Positioning: We define where your brand stands in the market and why people should care.',
+        'Messaging: We write the words that make people get it, and remember it.',
+        'Tone of Voice: From captions to campaigns, we help your brand sound like itself.',
+        'Visual Identity: Logos, color palettes, typography, and guidelines, crafted to reflect who you are, not just what\'s trendy.',
+      ],
+      whyItMatters: 'If your brand feels unclear, inconsistent, or forgettable, strategy fixes that. This is the foundation everything else is built on.',
       caseStudy: {
-        client: 'Nexus Financial',
-        result: 'Repositioned fintech startup, resulting in 340% user growth and $50M Series B funding.',
+        client: 'Eblon Dynamics',
+        result: 'We partnered with Eblon to build a bold identity and digital presence, resulting in 4 new partnership opportunities and internal confidence to scale from Lebanon to the wider MENA market.',
       },
     },
     {
-      title: 'Visual Identity',
-      subtitle: 'Distinctive brand presence',
-      description: 'Complete visual identity systems that capture brand essence and create memorable customer touchpoints.',
+      title: 'Web & Digital',
+      subtitle: 'Your digital presence, designed to perform',
+      description: 'Your website is often your first impression. We make sure it\'s not your last.',
       features: [
-        'Logo design and brand mark development',
-        'Typography and color palette selection',
-        'Visual style guide and design system',
-        'Brand applications across all touchpoints',
-        'Packaging and collateral design',
-        'Digital asset library creation',
+        'Custom websites (static, e-commerce, mobile-first)',
+        'Mobile app development',
+        'SEO optimization',
+        'Performance & speed tuning',
+        'Ongoing support and hosting (optional)',
       ],
+      learnMore: 'Your website is more than a portfolio. It\'s your digital home, your sales tool, and your first impression. We design and develop with all of that in mind, clean UX, responsive design, and performance that keeps people around.',
+      detailedFeatures: [
+        'Static & E-commerce Sites: Fast, beautiful, and mobile-ready, with clean interfaces and smart flows.',
+        'App Development: User-focused mobile apps, built custom from the ground up.',
+        'Performance Optimization: Speed, SEO, and mobile responsiveness, so your site ranks and loads right.',
+        'Ongoing Support (Optional): Hosting, updates, and analytics dashboards tailored to your needs.',
+      ],
+      whyItMatters: 'A pretty site means nothing if it\'s slow, clunky, or confusing. We design to convert, not just to impress.',
       caseStudy: {
-        client: 'Verde Wellness',
-        result: 'New identity system increased brand recognition by 85% and supported expansion into 5 European markets.',
+        client: 'Nexus Bridge Advisors',
+        result: 'We helped Nexus Bridge tell a clearer story with professional web design, creating a visual identity that inspires trust and a scalable platform ready for growth.',
       },
     },
     {
-      title: 'Digital Marketing',
-      subtitle: 'Data-driven growth',
-      description: 'Strategic digital campaigns that drive engagement, conversion, and measurable business growth across all channels.',
+      title: 'Content & Production',
+      subtitle: 'Scroll-stopping content, built for your brand',
+      description: 'We create content that feels good, looks good, and performs even better.',
       features: [
-        'Multi-channel campaign strategy',
-        'Content marketing and social media',
-        'Search engine optimization (SEO)',
-        'Pay-per-click advertising (PPC)',
-        'Email marketing automation',
-        'Performance tracking and optimization',
+        'Reels, short-form, and before/after edits',
+        'Product and brand photography',
+        'High-end ad campaigns (video, scripting, editing)',
       ],
+      learnMore: 'The scroll is ruthless, if your content doesn\'t stop someone, it gets skipped. We create with intention: content that catches attention, tells your story, and drives action.',
+      detailedFeatures: [
+        'Reels & Short-form Video: Scripted or organic, edited to match your tone and goals.',
+        'Photography: From lifestyle to product, we handle lighting, styling, and retouching.',
+        'Before & After Edits: Perfect for transformation-based businesses (cosmetics, beauty, fitness, etc.).',
+        'High-End Ads: Cinematic visuals, full production, storyboarding, scripting, editing.',
+      ],
+      whyItMatters: 'Good content builds trust. Great content builds momentum. We make sure your brand looks its best, and performs at its best.',
       caseStudy: {
-        client: 'TechCorp Platform',
-        result: 'Integrated campaign generated 280% increase in qualified leads and 40% improvement in conversion rate.',
+        client: 'Case Study Coming Soon',
+        result: 'Detailed case study to be added.',
       },
     },
     {
-      title: 'Web Development',
-      subtitle: 'Performance-focused experiences',
-      description: 'High-performance websites and applications built with modern technologies, optimized for user experience and business results.',
+      title: 'Marketing & Growth',
+      subtitle: 'Strategy that scales. Execution that delivers',
+      description: 'Design is just the beginning, we help you reach the right people, in the right way, at the right time.',
       features: [
-        'Custom website design and development',
-        'E-commerce platform development',
-        'Content management system (CMS)',
-        'Mobile-responsive design',
-        'Performance optimization',
-        'Analytics and conversion tracking',
+        'Digital marketing campaigns',
+        'Social media management',
+        'Paid ads (Meta, Google, TikTok, etc.)',
+        'Funnel planning & performance tracking',
+        'Analytics dashboards (optional)',
       ],
+      learnMore: 'Your audience won\'t just show up. We help you find them, speak to them, and guide them through a journey, from awareness to conversion.',
+      detailedFeatures: [
+        'Digital Campaigns: Strategy-led ads across Meta, Google, TikTok, and more.',
+        'Social Media Management: Planning, posting, captioning, and calendar building — tailored to your audience.',
+        'Funnel Planning: Build out customer paths that drive action and revenue.',
+        'Analytics & Optimization: Ongoing performance checks, tracking tools, and clarity on what\'s working (or not).',
+      ],
+      whyItMatters: 'Marketing without strategy is guesswork. We bring clarity, consistency, and results, so every move has a reason.',
       caseStudy: {
-        client: 'Retail Innovation Co.',
-        result: 'New e-commerce platform increased online sales by 150% and reduced bounce rate by 35%.',
+        client: 'Case Study Coming Soon',
+        result: 'Detailed case study to be added.',
       },
     },
     {
-      title: 'Creative Campaigns',
-      subtitle: 'Memorable brand moments',
-      description: 'Award-winning creative concepts that capture attention, communicate value, and drive authentic customer connections.',
+      title: 'Consulting & Training',
+      subtitle: 'Want to build in-house? We\'ve got you',
+      description: 'We help internal teams level up, with clear frameworks, hands-on guidance, and real marketing skills.',
       features: [
-        'Creative concept development',
-        'Multi-channel campaign execution',
-        'Video and motion graphics production',
-        'Print and outdoor advertising',
-        'Event and experiential marketing',
-        'Influencer partnership strategies',
+        'One-on-one consulting',
+        'In-house team training',
+        'Strategic audits & planning',
       ],
+      learnMore: 'If you\'re building an in-house team or just need sharper direction, we can guide the way. From audits to custom workshops, we share the same thinking we use in our own work, and tailor it to yours.',
+      detailedFeatures: [
+        '1:1 Consulting: Strategy sessions for founders, CMOs, or anyone shaping the brand.',
+        'In-house Team Training: We train your team to think like marketers, not just post like them.',
+        'Brand & Content Audits: Honest, thorough reviews with actionable insights.',
+      ],
+      whyItMatters: 'Sometimes you don\'t need an agency forever, you just need one that helps you grow smarter. We\'re that team.',
       caseStudy: {
-        client: 'Urban Fashion Brand',
-        result: 'Viral campaign reached 50M+ impressions and drove 300% increase in brand mentions across social media.',
+        client: 'Case Study Coming Soon',
+        result: 'Detailed case study to be added.',
       },
     },
     {
-      title: 'Brand Consulting',
-      subtitle: 'Strategic guidance',
-      description: 'Expert consulting and strategic guidance for complex brand challenges and organizational transformations.',
+      title: 'B2B Marketing & Partnerships',
+      subtitle: 'Build credibility. Grow smarter. Get seen by the right people',
+      description: 'We help business-facing brands position themselves with confidence, attract better leads, and turn relationships into real growth.',
       features: [
-        'Brand audit and assessment',
-        'Strategic planning workshops',
-        'Organizational brand alignment',
-        'Merger and acquisition brand strategy',
-        'Crisis communication planning',
-        'Executive leadership coaching',
+        'LinkedIn Strategy & Management',
+        'Referral Program Campaigns',
+        'Thought Leadership Content',
+        'Lead Magnet & Funnel Setup',
       ],
+      learnMore: 'B2B isn\'t about going viral, it\'s about building trust, showing value, and staying top-of-mind. We help you do that with the right content, on the right platforms, for the right people.',
+      detailedFeatures: [
+        'LinkedIn Strategy & Management: From content to engagement, we help you grow a presence that earns respect, not just likes.',
+        'Thought Leadership Content: Posts, carousels, and videos that position you as the go-to expert in your space.',
+        'Referral Program Campaigns: Smart systems to turn existing clients into active promoters.',
+        'Lead Magnet & Funnel Setup: Build assets that give value and capture leads, guides, checklists, landing pages, and more.',
+      ],
+      whyItMatters: 'B2B buyers move slower, think deeper, and expect more. We help you show up like a brand they can trust, with content that leads to real conversations.',
       caseStudy: {
-        client: 'Global Manufacturing Inc.',
-        result: 'Post-merger brand consolidation strategy unified 3 legacy brands and improved customer clarity by 60%.',
+        client: 'Case Study Coming Soon',
+        result: 'Detailed case study to be added.',
       },
     },
   ]
@@ -142,54 +178,87 @@ const Services = () => {
     },
   ]
 
-  const pricingTiers = [
+  const packages = [
     {
-      name: 'Essentials',
-      price: '$15,000',
-      period: 'Starting at',
-      description: 'Perfect for startups and small businesses looking to establish a professional brand presence.',
+      name: 'Brand Clarity Kit',
+      description: 'For brands that feel scattered and need direction.',
+      subtitle: 'Your brand should speak for itself, clearly, confidently, and consistently. This package gives you the strategic foundation you\'ve been missing.',
       features: [
-        'Brand strategy foundation',
-        'Logo and visual identity',
-        'Brand guidelines',
-        'Business card and letterhead design',
-        '3 rounds of revisions',
-        '8-week timeline',
+        'Brand Positioning & Messaging',
+        'Tone of Voice Guidelines',
+        'Visual Identity (logo, color, typography)',
+        'Brand Style Guide',
       ],
-      cta: 'Get Started',
+      bestFor: 'Startups, rebrands, or anyone who says "we\'re not sure how to talk about ourselves."',
       popular: false,
     },
     {
-      name: 'Professional',
-      price: '$35,000',
-      period: 'Starting at',
-      description: 'Comprehensive branding solution for growing companies ready to scale their market presence.',
+      name: 'Launch-Ready Web',
+      description: 'For businesses that need a clean, fast, high-performing website.',
+      subtitle: 'We build websites that don\'t just look good, they load fast, convert well, and feel effortless to use.',
       features: [
-        'Complete brand strategy',
-        'Visual identity system',
-        'Website design and development',
-        'Marketing collateral suite',
-        'Digital marketing setup',
-        'Unlimited revisions',
-        '12-week timeline',
+        'Custom Website Design (Static or E-Commerce)',
+        'Mobile Optimization & Responsive UX',
+        'SEO Foundations',
+        'Performance Tuning',
+        'Optional: App Development or Hosting',
       ],
-      cta: 'Most Popular',
+      bestFor: 'Product launches, brand relaunches, or anyone embarrassed by their current website.',
+      popular: false,
+    },
+    {
+      name: 'Content Engine',
+      description: 'For brands that need to show up online, and look good doing it.',
+      subtitle: 'Stop guessing what to post. We help you create content that\'s built for your brand and optimized for the scroll.',
+      features: [
+        'Reels & Short-Form Video',
+        'Professional Photography',
+        'Scripted Video Ads or UGC-style Content',
+        'Before/After Edits (if applicable)',
+        'Optional: Ad Cutdowns or Paid Versions',
+      ],
+      bestFor: 'Beauty, fashion, clinics, restaurants, or anyone who needs consistent visual content.',
       popular: true,
     },
     {
-      name: 'Enterprise',
-      price: 'Custom',
-      period: 'Pricing',
-      description: 'Tailored solutions for large organizations requiring comprehensive brand transformation.',
+      name: 'Growth Loop',
+      description: 'For brands ready to grow, with real marketing, not just posting.',
+      subtitle: 'We create a clear growth strategy, run the right campaigns, and track what\'s working, so you can stop throwing money into the void.',
       features: [
-        'Multi-brand strategy',
-        'Global brand implementation',
-        'Advanced digital solutions',
-        'Ongoing support and consultation',
-        'Dedicated account management',
-        'Custom timeline and scope',
+        'Paid Campaigns (Meta, Google, TikTok)',
+        'Social Media Management',
+        'Funnel Strategy & Planning',
+        'Performance Reporting & Dashboards',
+        'Optional: Website Conversion Audit',
       ],
-      cta: 'Contact Us',
+      bestFor: 'Brands stuck in a plateau or wasting budget on ads that don\'t convert.',
+      popular: false,
+    },
+    {
+      name: 'Inside-Out Consulting',
+      description: 'For teams who want to do it right, but need help getting there.',
+      subtitle: 'We help your in-house team think like marketers, plan like strategists, and execute with clarity.',
+      features: [
+        '1:1 Consulting Sessions',
+        'In-House Team Training',
+        'Strategic & Creative Audits',
+        'Custom Playbooks',
+      ],
+      bestFor: 'Founders, CMOs, or marketing teams building their internal capabilities.',
+      popular: false,
+    },
+    {
+      name: 'B2B Growth Suite',
+      description: 'For brands selling to other businesses — and ready to be taken seriously.',
+      subtitle: 'Stop blending in. We help you show up with authority, build trust at every touchpoint, and generate leads without chasing them.',
+      features: [
+        'LinkedIn Strategy & Management',
+        'Weekly Thought Leadership Content',
+        'Referral Program Campaigns',
+        'Lead Magnet Creation (guides, landing pages, gated downloads)',
+        'Optional: CRM setup, outbound email flows, analytics dashboards',
+      ],
+      bestFor: 'Consulting firms, service providers, B2B startups, SaaS, and niche agencies that grow through relationships, credibility, and clarity.',
       popular: false,
     },
   ]
@@ -227,12 +296,12 @@ const Services = () => {
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.2}>
             <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
-              <SmoothTextReveal text="Services that drive real business results" />
+              <SmoothTextReveal text="Everything you need. Nothing you don't." />
             </h1>
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.4}>
             <SmoothTextReveal 
-              text="From strategic brand positioning to cutting-edge digital experiences, we deliver comprehensive solutions that accelerate growth and create lasting value."
+              text="We build brands with intention — from strategy to launch and beyond."
               className="text-xl text-text-secondary leading-relaxed"
               delay={0.1}
             />
@@ -308,7 +377,7 @@ const Services = () => {
                     {services[activeService].features.map((feature, index) => (
                       <motion.div 
                         key={index}
-                        className="text-text-secondary font-medium"
+                        className="flex items-start space-x-3"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ 
                           opacity: 1, 
@@ -321,10 +390,62 @@ const Services = () => {
                           }
                         }}
                       >
-                        {feature}
+                        <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                        <span className="text-text-secondary font-medium">{feature}</span>
                       </motion.div>
                     ))}
                   </div>
+                </div>
+
+                <div>
+                  <div className="mb-4">
+                    <CleanButton
+                      text={showLearnMore ? 'Show Less' : 'Learn More'}
+                      onClick={() => setShowLearnMore(!showLearnMore)}
+                      className={showLearnMore ? 'ring-2 ring-black' : ''}
+                    />
+                  </div>
+                  
+                  <AnimatePresence>
+                    {showLearnMore && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="space-y-6 pt-4 border-t border-border-light">
+                          <p className="text-text-secondary leading-relaxed">
+                            {services[activeService].learnMore}
+                          </p>
+                          
+                          {services[activeService].detailedFeatures && (
+                            <div>
+                              <h4 className="font-semibold text-text-primary mb-3">What we offer:</h4>
+                              <div className="space-y-3">
+                                {services[activeService].detailedFeatures.map((feature, index) => (
+                                  <div key={index} className="flex items-start space-x-3">
+                                    <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                                    <span className="text-text-secondary text-sm leading-relaxed">{feature}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {services[activeService].whyItMatters && (
+                            <div>
+                              <h4 className="font-semibold text-text-primary mb-3">Why it matters:</h4>
+                              <p className="text-text-secondary leading-relaxed">
+                                {services[activeService].whyItMatters}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 
                 <div className="bg-bg-tertiary p-6 rounded-2xl border border-border-light">
@@ -406,6 +527,67 @@ const Services = () => {
         </div>
       </section>
 
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+              <SmoothTextReveal text="Packages" />
+            </h2>
+            <SmoothTextReveal 
+              text="Choose the package that fits your needs and goals."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {packages.map((pkg, index) => (
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className={`p-8 rounded-2xl border h-full transition-all duration-300 ${
+                    pkg.popular 
+                      ? 'bg-bg-quaternary border-border-medium shadow-lg' 
+                      : 'bg-bg-tertiary border-border-light hover:border-border-medium shadow-sm hover:shadow-md'
+                  }`}
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -8,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25 
+                    }
+                  }}
+                >
+                  {pkg.popular && (
+                    <div className="bg-text-accent text-bg-primary px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
+                      Most Popular
+                    </div>
+                  )}
+                  <h3 className="text-xl font-bold text-text-primary mb-3">{pkg.name}</h3>
+                  <p className="text-text-tertiary font-medium mb-4">{pkg.description}</p>
+                  <p className="text-text-secondary mb-6 leading-relaxed">{pkg.subtitle}</p>
+                  
+                  <div className="space-y-3 mb-6">
+                    {pkg.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                        <span className="text-text-secondary text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-auto pt-4 border-t border-border-light">
+                    <p className="text-text-tertiary text-sm font-medium mb-2">Best for:</p>
+                    <p className="text-text-secondary text-sm leading-relaxed">{pkg.bestFor}</p>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
@@ -452,17 +634,21 @@ const Services = () => {
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.2}>
             <SmoothTextReveal 
-              text="Let's discuss your project and explore how TrendArt can help accelerate your business growth through strategic brand development."
+              text="Let's discuss your project and explore how we can help accelerate your business growth through strategic brand development."
               className="text-xl text-text-secondary mb-12 leading-relaxed"
               delay={0.1}
             />
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.4}>
             <Link to="/contact">
-              <CleanButton 
-                text="Create" 
-                className="w-40"
-              />
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <CleanButton className="px-8 py-4">
+                  Start a Project
+                </CleanButton>
+                <CleanButton className="px-8 py-4">
+                  Book a Discovery Call
+                </CleanButton>
+              </div>
             </Link>
           </AnimatedSection>
         </div>

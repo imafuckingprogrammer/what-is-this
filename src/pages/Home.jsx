@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
 import { SplashCursor } from '../components/ui/splash-cursor'
 import { CleanButton } from '../components/ui/clean-button'
 import AnimatedSection from '../components/ui/AnimatedSection'
@@ -8,43 +9,55 @@ import usePerformanceOptimization from '../hooks/usePerformanceOptimization'
 
 const Home = () => {
   const { shouldRender, getOptimizedProps, enableAnimations, enableComplexEffects, isMobile, isTablet } = usePerformanceOptimization()
+  const [showProcessDetails, setShowProcessDetails] = useState({})
+
+  const toggleProcessDetails = (stepIndex) => {
+    setShowProcessDetails(prev => ({
+      ...prev,
+      [stepIndex]: !prev[stepIndex]
+    }))
+  }
   const services = [
     {
-      title: 'Brand Strategy',
-      description: 'Comprehensive brand positioning, identity development, and strategic framework to differentiate your company in competitive markets.',
+      title: 'Brand Strategy & Identity',
+      description: 'Make your brand make sense. Before people buy into your product, they buy into your story. We help you get the message right, and make it stick.',
     },
     {
-      title: 'Digital Marketing',
-      description: 'Data-driven campaigns across all digital channels, optimized for engagement, conversion, and measurable business growth.',
+      title: 'Web & Digital',
+      description: 'Your digital presence, designed to perform. Your website is often your first impression. We make sure it\'s not your last.',
     },
     {
-      title: 'Creative Campaigns',
-      description: 'Award-winning creative concepts that capture attention, communicate value, and drive authentic customer connections.',
+      title: 'Content & Production',
+      description: 'Scroll-stopping content, built for your brand. We create content that feels good, looks good, and performs even better.',
     },
     {
-      title: 'Web Development',
-      description: 'High-performance websites and applications built with modern technologies, focusing on user experience and business results.',
+      title: 'Marketing & Growth',
+      description: 'Strategy that scales. Execution that delivers. Design is just the beginning, we help you reach the right people, in the right way, at the right time.',
     },
   ]
 
   const featuredWork = [
     {
-      title: 'Nexus Financial',
-      category: 'Fintech Rebrand',
-      description: 'Complete brand transformation for emerging fintech platform, resulting in 340% increase in user acquisition and $50M Series B funding.',
-      metrics: '340% user growth, $50M funding',
+      id: 1,
+      title: 'Eblon Dynamics',
+      category: 'Heavy Machinery Parts',
+      type: 'branding',
+      description: 'We partnered with Eblon to build a bold identity and digital presence that tells customers: "You\'ve found your performance partner. You\'re in good hands."',
+      metrics: ['4 new partnership opportunities', 'Scalable brand identity', 'Lebanon to MENA expansion'],
+      services: ['Branding', 'Creative Direction', 'Web Development'],
+      year: '2024',
+      heroImage: '/images/casestudies/eblon/Mockup2.png',
     },
     {
-      title: 'Verde Wellness',
-      category: 'Digital Campaign',
-      description: 'Integrated campaign strategy for wellness brand expansion into European markets, achieving 180% revenue growth in 12 months.',
-      metrics: '180% revenue growth, 5 new markets',
-    },
-    {
-      title: 'TechCorp Platform',
-      category: 'Web Development',
-      description: 'Enterprise platform redesign and development, improving user engagement by 65% and reducing support tickets by 40%.',
-      metrics: '65% engagement, 40% fewer tickets',
+      id: 2,
+      title: 'Nexus Bridge Advisors',
+      category: 'International Consulting',
+      type: 'branding',
+      description: 'We helped Nexus Bridge tell a clearer story, positioning it as the obvious guide for international companies navigating Syria\'s high-risk, high-potential market.',
+      metrics: ['Visual identity that inspires trust', 'Scalable platform ready for growth', 'Matched real-world authority'],
+      services: ['Branding', 'Creative Direction', 'Web Design'],
+      year: '2024',
+      heroImage: '/images/casestudies/nexus/Frame109.png',
     },
   ]
 
@@ -69,6 +82,57 @@ const Home = () => {
     },
   ]
 
+  const process = [
+    {
+      step: 'Discover',
+      subtitle: 'You have a vision. We help you see it clearly.',
+      description: 'Before anything is designed or planned, we get to know you. We listen, observe, and dig deep into your brand, your goals, and your challenges, so we can understand where you stand and where you want to go.',
+      details: [
+        'We talk: about your business, your audience, your struggles, and your goals',
+        'We research your market and competitors',
+        'We review your brand, content, and digital presence',
+        'We learn how your audience thinks, feels, and behaves'
+      ],
+      whyItMatters: 'If we don\'t start with clarity, we risk building the wrong thing. This step ensures we\'re solving the right problem, and sets us up to make smarter decisions moving forward.'
+    },
+    {
+      step: 'Define',
+      subtitle: 'You need direction. We bring focus.',
+      description: 'Once we\'ve gathered the full picture, we make sense of it. We distill the noise into clear insights and define exactly what needs to be solved, and why it matters.',
+      details: [
+        'We turn your insights into a clear strategy',
+        'We identify the core challenge (or opportunity)',
+        'We align on what success looks like',
+        'We make sure you and our team are moving in sync'
+      ],
+      whyItMatters: 'Without a shared understanding of the goal, projects drift. This step makes sure everyone\'s rowing in the same direction, with clarity, purpose, and a plan.'
+    },
+    {
+      step: 'Develop',
+      subtitle: 'You bring the ambition. We build the path.',
+      description: 'Now, the ideas start to take shape. Based on everything we\'ve learned, we explore solutions — visually, strategically, and technically, and test what works best for your audience and goals.',
+      details: [
+        'We brainstorm and build creative concepts',
+        'We design drafts, prototypes, mockups, or sample content',
+        'We gather feedback and collaborate',
+        'We refine and improve until it\'s ready to move forward'
+      ],
+      whyItMatters: 'This phase gives room to test, learn, and evolve, so when we land on the solution, it\'s not just creative. It\'s right.'
+    },
+    {
+      step: 'Deliver',
+      subtitle: 'You expect results. We make it real.',
+      description: 'This is where we launch, but we don\'t just press publish and disappear. We finalize, refine, and help bring the solution to life across every platform it needs to live on.',
+      details: [
+        'We wrap up design, strategy, copy, web, content, or campaign assets',
+        'We test everything to make sure it\'s flawless',
+        'We launch, hand off, or go live, depending on what\'s needed',
+        'We support with training, improvements, or next steps'
+      ],
+      whyItMatters: 'This is what people see, the final outcome. And it needs to be smooth, sharp, and built to perform. We don\'t settle for "done." We deliver with intent.'
+    }
+  ]
+
   const stats = [
     { number: '150+', label: 'Projects Delivered' },
     { number: '95%', label: 'Client Retention' },
@@ -87,24 +151,96 @@ const Home = () => {
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up" delay={0.2}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary mb-8 leading-tight">
-              We craft brands that matter
+              In a world of noise, we help you shape what people remember
             </h1>
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.6}>
-            <SmoothTextReveal 
-              text="TrendArt partners with forward-thinking companies to create exceptional brand experiences that drive growth and forge lasting customer connections."
-              className="text-xl md:text-2xl text-text-secondary mb-12 max-w-3xl mx-auto leading-relaxed"
-              delay={0.1}
-            />
+            <div className="text-center">
+              <SmoothTextReveal 
+                text="Smart strategies. Clean design. Content that moves."
+                className="text-xl md:text-2xl text-text-secondary mb-12 max-w-3xl mx-auto leading-relaxed justify-center"
+                delay={0.1}
+              />
+            </div>
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.8}>
-            <Link to="/contact">
-              <CleanButton 
-                text="Start" 
-                className="w-40"
-              />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link to="/contact">
+                <CleanButton 
+                  text="Start Your Project" 
+                  className="px-8 py-4"
+                />
+              </Link>
+              <Link to="/work">
+                <CleanButton 
+                  text="See Our Work" 
+                  className="px-8 py-4"
+                />
+              </Link>
+            </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+                The Problem We Solve
+              </h2>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're not here because you're short on ideas.
+              </p>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're here because your marketing isn't landing the way it should.
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  'Confusing messaging',
+                  'Wasted ad spend', 
+                  'Low engagement',
+                  'A brand that doesn\'t feel like you'
+                ].map((problem, index) => (
+                  <motion.div 
+                    key={index}
+                    className="flex items-start space-x-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20,
+                        delay: index * 0.1 + 0.3
+                      }
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-3 flex-shrink-0" />
+                    <span className="text-text-secondary">{problem}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <p className="text-xl font-semibold text-text-primary">
+                You shouldn't have to settle for mediocre marketing.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=200)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -112,10 +248,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
-              Services that drive results
+              What we do
             </h2>
             <SmoothTextReveal 
-              text="From strategic brand positioning to cutting-edge digital experiences, we deliver comprehensive solutions that accelerate business growth."
+              text="We help brands cut through the noise and make things people care about, with strategy, design, content, and marketing that's clear, intentional, and built to perform."
               className="text-xl text-text-secondary max-w-3xl mx-auto"
               delay={0.1}
             />
@@ -195,6 +331,15 @@ const Home = () => {
               </AnimatedSection>
             ))}
           </div>
+          
+          <div className="text-center mt-16">
+            <Link to="/services">
+              <CleanButton 
+                text="View All Services" 
+                className="px-8 py-4"
+              />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -211,7 +356,7 @@ const Home = () => {
             />
           </AnimatedSection>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {featuredWork.map((project, index) => (
               <AnimatedSection key={index} delay={index * 0.1} direction="up">
                 <motion.div 
@@ -229,14 +374,14 @@ const Home = () => {
                       }
                     }}
                     style={{
-                      backgroundImage: `url(https://picsum.photos/600/450?random=${index + 20}&t=${Date.now()})`,
+                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 20}&t=${Date.now()}`})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}
                   />
                   <div className="space-y-4">
                     <div className="text-sm font-medium text-accent-primary uppercase tracking-wide">
-                      {project.category}
+                      {project.category} • {project.year}
                     </div>
                     <h3 className="text-2xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
                       {project.title}
@@ -244,8 +389,21 @@ const Home = () => {
                     <p className="text-text-secondary leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="text-sm font-medium text-text-primary">
-                      {project.metrics}
+                    <div className="space-y-2">
+                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
+                      <div className="text-sm text-text-secondary">
+                        {project.metrics.join(' • ')}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.services.map((service, serviceIndex) => (
+                        <span
+                          key={serviceIndex}
+                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
+                        >
+                          {service}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </motion.div>
@@ -268,15 +426,20 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
-              What our clients say
+              Our Process
             </h2>
+            <SmoothTextReveal 
+              text="From discovery to delivery, our proven methodology ensures every project is grounded in strategy and designed for impact."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
           </AnimatedSection>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {process.map((step, index) => (
               <AnimatedSection key={index} delay={index * 0.1} direction="up">
                 <motion.div 
-                  className="bg-bg-secondary p-8 rounded-2xl border border-border-light hover:border-border-medium transition-all duration-300 h-full flex flex-col justify-between shadow-sm hover:shadow-md"
+                  className="bg-bg-secondary p-8 rounded-2xl border border-border-light hover:border-border-medium transition-all duration-300 h-full shadow-sm hover:shadow-md"
                   whileHover={{ 
                     scale: 1.02, 
                     y: -8,
@@ -288,24 +451,48 @@ const Home = () => {
                   }}
                 >
                   <div className="mb-6">
-                    <p className="text-lg leading-relaxed text-text-secondary italic">
-                      "{testimonial.quote}"
-                    </p>
+                    <h3 className="text-2xl font-bold text-text-primary mb-2">{step.step}</h3>
+                    <p className="text-lg font-semibold text-text-primary mb-4">{step.subtitle}</p>
+                    <p className="text-text-secondary leading-relaxed mb-6">{step.description}</p>
                   </div>
                   
-                  <div className="flex items-center space-x-4">
-                    <div 
-                      className="w-12 h-12 rounded-full bg-bg-tertiary"
-                      style={{
-                        backgroundImage: `url(https://picsum.photos/100/100?random=${index + 100}&t=${Date.now() + index})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
+                  <div className="mb-6">
+                    <CleanButton
+                      text={showProcessDetails[index] ? 'Show Less' : 'Learn More'}
+                      onClick={() => toggleProcessDetails(index)}
+                      className={`mb-4 ${showProcessDetails[index] ? 'ring-2 ring-black' : ''}`}
                     />
-                    <div>
-                      <div className="font-semibold text-text-primary">{testimonial.author}</div>
-                      <div className="text-sm text-text-tertiary">{testimonial.role}, {testimonial.company}</div>
-                    </div>
+                    
+                    <AnimatePresence>
+                      {showProcessDetails[index] && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="space-y-4 pt-4 border-t border-border-light">
+                            <div>
+                              <h4 className="font-semibold text-text-primary mb-3">Here's what happens:</h4>
+                              <div className="space-y-2">
+                                {step.details.map((detail, detailIndex) => (
+                                  <div key={detailIndex} className="flex items-start space-x-3">
+                                    <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                                    <span className="text-text-secondary text-sm leading-relaxed">{detail}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <h4 className="font-semibold text-text-primary mb-3">Why it matters:</h4>
+                              <p className="text-text-secondary leading-relaxed">{step.whyItMatters}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               </AnimatedSection>
@@ -315,31 +502,66 @@ const Home = () => {
       </section>
 
       <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedSection key={index} delay={index * 0.1} direction="up">
-                <motion.div
-                  className="bg-bg-secondary p-8 rounded-2xl text-center border border-border-light hover:border-border-medium transition-all duration-300 shadow-sm hover:shadow-md"
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -8,
-                    transition: { 
-                      type: "spring", 
-                      stiffness: 400, 
-                      damping: 25 
-                    }
-                  }}
-                >
-                  <div className="text-4xl md:text-5xl font-bold text-accent-primary mb-3">
-                    {stat.number}
-                  </div>
-                  <div className="text-text-tertiary font-medium text-sm">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+                Real marketers. Not just button-pushers.
+              </h2>
+              <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
+                <p>
+                  Let's be honest, a lot of "agencies" are just designers with a logo. They know how to make things look good, but not how to make them work. That's why brands end up with flashy content, weak messaging, and no real results.
+                </p>
+                <p>
+                  We're here to change that.
+                </p>
+                <p>
+                  At TrendArt, strategy comes first. We know how to position brands, build campaigns that convert, and create content that actually connects. Every visual has a purpose. Every decision is backed by thinking.
+                </p>
+              </div>
+              
+              <div className="mt-8 space-y-4">
+                <h3 className="text-xl font-semibold text-text-primary mb-6">Three quick points:</h3>
+                {[
+                  'We think before we design — strategy always leads',
+                  'We cut the noise — clarity over clutter',
+                  'We build for impact — not just attention'
+                ].map((point, index) => (
+                  <motion.div 
+                    key={index}
+                    className="flex items-start space-x-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20,
+                        delay: index * 0.1 + 0.3
+                      }
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-text-accent rounded-full mt-3 flex-shrink-0" />
+                    <span className="text-text-secondary">{point}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=300)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -353,21 +575,30 @@ const Home = () => {
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.3}>
             <SmoothTextReveal 
-              text="Let's discuss how TrendArt can help accelerate your business growth through strategic brand development and innovative digital experiences."
+              text="Let's discuss how we can help accelerate your business growth through strategic brand development and innovative digital experiences."
               className="text-xl text-text-secondary mb-12 leading-relaxed"
               delay={0.1}
             />
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.5}>
-            <Link to="/contact">
-              <CleanButton 
-                text="Begin" 
-                className="w-40"
-              />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link to="/contact">
+                <CleanButton 
+                  text="Start a Project" 
+                  className="px-8 py-4"
+                />
+              </Link>
+              <Link to="/work">
+                <CleanButton 
+                  text="See Our Work" 
+                  className="px-8 py-4"
+                />
+              </Link>
+            </div>
           </AnimatedSection>
         </div>
       </section>
+
     </div>
   )
 }

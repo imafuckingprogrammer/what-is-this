@@ -22,182 +22,111 @@ const Work = () => {
   const portfolio = [
     {
       id: 1,
-      title: 'Nexus Financial',
-      category: 'Fintech Rebrand',
-      type: 'branding',
-      description: 'Complete brand transformation for emerging fintech platform, positioning them as a trusted leader in digital banking solutions.',
-      metrics: ['340% user growth', '$50M Series B funding', '95% brand recognition'],
-      services: ['Brand Strategy', 'Visual Identity', 'Digital Marketing'],
-      year: '2023',
+      title: 'Eblon Dynamics',
+      category: 'Heavy Machinery Parts',
+      type: 'digital',
+      tags: ['Digital', 'Web Dev', 'Branding', 'B2B', 'Industrial', 'MENA'],
+      description: 'We partnered with Eblon to build a bold identity and digital presence that tells customers: "You\'ve found your performance partner. You\'re in good hands."',
+      metrics: ['4 new partnership opportunities', 'Scalable brand identity', 'Lebanon to MENA expansion'],
+      services: ['Branding', 'Creative Direction', 'Web Development'],
+      year: '2024',
+      heroImage: '/images/casestudies/eblon/Mockup2.png',
+      websiteUrl: 'https://eblondynamics.com',
+      fullCaseStudy: {
+        subtitle: 'Helping Machinery Buyers Feel Confident Again',
+        challenge: 'Buyers were looking for a reliable, forward-thinking parts supplier — but Eblon\'s old presentation didn\'t match the quality behind the scenes. They needed more than just a logo or a landing page. They needed a brand story that inspired trust, clarity, and confidence.',
+        solution: 'We helped Eblon show up like the high-performance partner they already were — visually, verbally, and strategically.',
+        details: [
+          {
+            title: 'Branding',
+            description: 'We designed a powerful, modern logo combining a gear and a rising pyramid — symbolizing both industrial strength and forward momentum. The color scheme (black, silver, and deep purple) evokes confidence, durability, and aspiration.',
+            image: '/images/casestudies/eblon/ElponDynamicsLogov2 1.png'
+          },
+          {
+            title: 'Creative Direction', 
+            description: 'Our visual direction avoided fluff and focused on what heavy equipment buyers care about: performance, precision, and results. High-res imagery of rugged materials with clean, bold layouts.',
+            image: '/images/casestudies/eblon/Frame 5.png'
+          },
+          {
+            title: 'Web Development',
+            description: 'We built a fast, mobile-optimized website with conversion-friendly layout for B2B buyers, service sections tailored to procurement teams, and structured content built for SEO.',
+            image: '/images/casestudies/eblon/Screenshot 2025-08-05 135448.png'
+          }
+        ],
+        results: [
+          'A scalable brand identity that speaks trust and ambition',
+          'A clean website that drives engagement and inquiries', 
+          'Four new partnership opportunities from impressed companies',
+          'Internal confidence to scale from Lebanon to wider MENA market'
+        ],
+        testimonial: {
+          quote: 'We finally feel like a real company. The new brand helped us close deals faster — and it shows people we\'re serious.',
+          author: 'Eblon Dynamics Team'
+        },
+        gallery: [
+          '/images/casestudies/eblon/Logo_on_the_Builiding_Mockup_12.png',
+          '/images/casestudies/eblon/close-up-logo-mockup.png',
+          '/images/casestudies/eblon/Frame 7.png'
+        ]
+      }
     },
     {
       id: 2,
-      title: 'Verde Wellness',
-      category: 'Global Expansion Campaign',
-      type: 'campaigns',
-      description: 'Integrated campaign strategy for wellness brand expansion into European markets, focusing on sustainable health solutions.',
-      metrics: ['180% revenue growth', '5 new markets', '2M+ campaign reach'],
-      services: ['Creative Campaigns', 'Digital Marketing', 'Brand Strategy'],
-      year: '2023',
-    },
-    {
-      id: 3,
-      title: 'TechCorp Platform',
-      category: 'Enterprise Web Development',
+      title: 'Nexus Bridge Advisors',
+      category: 'International Consulting',
       type: 'web',
-      description: 'Complete platform redesign and development for B2B software company, focusing on user experience and conversion optimization.',
-      metrics: ['65% engagement increase', '40% fewer support tickets', '150% lead generation'],
-      services: ['Web Development', 'UX Design', 'Digital Marketing'],
-      year: '2022',
-    },
-    {
-      id: 4,
-      title: 'Urban Fashion Co.',
-      category: 'Digital-First Campaign',
-      type: 'digital',
-      description: 'Viral social media campaign for sustainable fashion brand, leveraging influencer partnerships and user-generated content.',
-      metrics: ['50M+ impressions', '300% social mentions', '85% sentiment positive'],
-      services: ['Creative Campaigns', 'Digital Marketing', 'Social Media'],
-      year: '2023',
-    },
-    {
-      id: 5,
-      title: 'Apex Manufacturing',
-      category: 'Industrial Rebrand',
-      type: 'branding',
-      description: 'Modern rebrand for 50-year-old manufacturing company, bridging traditional expertise with innovative technology.',
-      metrics: ['45% brand awareness lift', '60% website traffic increase', '25% new client acquisition'],
-      services: ['Brand Strategy', 'Visual Identity', 'Web Development'],
-      year: '2022',
-    },
-    {
-      id: 6,
-      title: 'Health Innovation Lab',
-      category: 'Research Platform',
-      type: 'web',
-      description: 'Custom web platform for healthcare research organization, enabling collaboration between researchers and practitioners.',
-      metrics: ['10,000+ active users', '40% faster research workflows', '95% user satisfaction'],
-      services: ['Web Development', 'UX Design', 'Brand Strategy'],
-      year: '2023',
-    },
-    {
-      id: 7,
-      title: 'Coastal Real Estate',
-      category: 'Premium Property Campaign',
-      type: 'campaigns',
-      description: 'Luxury real estate marketing campaign targeting high-net-worth individuals, featuring immersive virtual experiences.',
-      metrics: ['$250M in sales', '35% faster closing time', '90% client retention'],
-      services: ['Creative Campaigns', 'Digital Marketing', 'Web Development'],
-      year: '2022',
-    },
-    {
-      id: 8,
-      title: 'Future Mobility',
-      category: 'EV Startup Brand',
-      type: 'branding',
-      description: 'Complete brand development for electric vehicle startup, creating a distinctive identity in the competitive EV market.',
-      metrics: ['$100M funding round', '500% pre-order growth', '80% brand recall'],
-      services: ['Brand Strategy', 'Visual Identity', 'Digital Marketing'],
-      year: '2023',
-    },
-    {
-      id: 9,
-      title: 'Global Consulting Group',
-      category: 'Digital Transformation',
-      type: 'digital',
-      description: 'Digital marketing transformation for international consulting firm, modernizing their approach to client acquisition.',
-      metrics: ['200% qualified leads', '60% shorter sales cycle', '45% revenue increase'],
-      services: ['Digital Marketing', 'Web Development', 'Brand Strategy'],
-      year: '2022',
-    },
-    {
-      id: 10,
-      title: 'Artisan Coffee Co.',
-      category: 'Retail Experience',
-      type: 'campaigns',
-      description: 'Omnichannel brand experience for specialty coffee retailer, connecting online and in-store customer journeys.',
-      metrics: ['120% online sales growth', '40% customer lifetime value', '95% satisfaction score'],
-      services: ['Creative Campaigns', 'Digital Marketing', 'Brand Strategy'],
-      year: '2023',
-    },
-    {
-      id: 11,
-      title: 'Quantum Research Institute',
-      category: 'Academic Platform',
-      type: 'web',
-      description: 'Advanced web platform for quantum computing research, facilitating collaboration and knowledge sharing.',
-      metrics: ['50+ research institutions', '1000+ published papers', '30% faster collaboration'],
-      services: ['Web Development', 'UX Design', 'Digital Marketing'],
-      year: '2022',
-    },
-    {
-      id: 12,
-      title: 'Sustainable Energy Corp',
-      category: 'Clean Energy Brand',
-      type: 'digital',
-      description: 'Digital brand strategy for renewable energy company, positioning them as leaders in sustainable technology.',
-      metrics: ['300% investor interest', '150% partnership inquiries', '85% market awareness'],
-      services: ['Digital Marketing', 'Brand Strategy', 'Web Development'],
-      year: '2023',
-    },
+      tags: ['Digital', 'Web Dev', 'Branding', 'B2B', 'Consulting', 'International'],
+      description: 'We helped Nexus Bridge tell a clearer story, positioning it as the obvious guide for international companies navigating Syria\'s high-risk, high-potential market.',
+      metrics: ['Visual identity that inspires trust', 'Scalable platform ready for growth', 'Matched real-world authority'],
+      services: ['Branding', 'Creative Direction', 'Web Design'],
+      year: '2024',
+      heroImage: '/images/casestudies/nexus/paper%20logo%20mockup.png',
+      websiteUrl: 'https://nexusbridgeadvisors.com',
+      fullCaseStudy: {
+        subtitle: 'Helping Global Businesses Enter Syria with Confidence',
+        challenge: 'For over a decade, Nexus Bridge had advised 50+ global companies on market entry into Syria, but their outdated visual identity and missing web presence made it difficult for prospects to trust what they couldn\'t see.',
+        solution: 'We applied clear messaging, confident design, and strategic direction to show potential clients: "You\'re in the right place. You don\'t have to figure this out alone."',
+        details: [
+          {
+            title: 'Branding',
+            description: 'We created a clean, minimal logo centered around a stylized arch, representing Nexus\'s role in helping clients cross into new markets with stability. The refined serif wordmark projects professionalism and legacy.',
+            image: '/images/casestudies/nexus/NexusBridgeLogoName.V1.png'
+          },
+          {
+            title: 'Creative Direction',
+            description: 'Balanced layouts and clean whitespace to signal clarity, with understated imagery and visual metaphors (paths, bridges, arches) that reinforce connection and guidance.',
+            image: '/images/casestudies/nexus/Frame 9.png'
+          },
+          {
+            title: 'Web Design',
+            description: 'A professional, conversion-friendly layout with SEO-optimized structure, messaging that makes the visitor the hero, and Nexus the expert guide.',
+            image: '/images/casestudies/nexus/Screenshot 2025-08-05 142203.png'
+          }
+        ],
+        results: [
+          'A visual identity that inspires trust at first glance',
+          'A website that tells their story with precision and authority',
+          'A scalable platform ready to support growth and partner outreach',
+          'Confidence to pursue bigger opportunities without explaining from scratch'
+        ],
+        testimonial: {
+          quote: 'Our new identity doesn\'t just look good, it finally matches the level of impact we\'ve had behind the scenes for years. It\'s clear, confident, and allows us to speak to the right people.',
+          author: 'Partner at Nexus Bridge Advisors'
+        },
+        gallery: [
+          '/images/casestudies/nexus/paper%20logo%20mockup.png',
+          '/images/casestudies/nexus/NexusBridgeLogo.V1.png'
+        ]
+      }
+    }
   ]
 
   const clients = [
-    'Microsoft', 'Apple', 'Google', 'Amazon', 'Tesla', 'Netflix',
-    'Adobe', 'Salesforce', 'Airbnb', 'Spotify', 'Uber', 'LinkedIn',
-    'Meta', 'Twitter', 'Dropbox', 'Slack', 'Zoom', 'Shopify',
+    'Axiom Dynamics', 'Zenith Solutions', 'Vortex Industries', 'Pinnacle Systems', 'Quantum Ventures', 'Nexus Global',
+    'Stellar Corp', 'Infinity Labs', 'Apex Technologies', 'Matrix Enterprises', 'Phoenix Partners', 'Summit Group',
   ]
 
-  const caseStudies = [
-    {
-      title: 'Nexus Financial: Fintech Transformation',
-      subtitle: 'How strategic rebranding accelerated Series B funding',
-      challenge: 'Nexus Financial was struggling to differentiate in the crowded fintech space. Their existing brand lacked credibility and failed to communicate their innovative approach to digital banking.',
-      solution: 'We developed a comprehensive brand strategy focused on trust and innovation, creating a visual identity that balanced professionalism with approachability. The rebrand included new messaging, website, and go-to-market strategy.',
-      results: [
-        '340% increase in user acquisition',
-        '$50M Series B funding secured',
-        '95% improvement in brand recognition',
-        '60% increase in investor interest',
-      ],
-      testimonial: {
-        quote: 'TrendArt didn\'t just redesign our brand – they transformed how our market perceives us. The strategic insights were game-changing.',
-        author: 'Sarah Chen, CEO',
-      },
-    },
-    {
-      title: 'Verde Wellness: European Expansion',
-      subtitle: 'Scaling a wellness brand across international markets',
-      challenge: 'Verde Wellness needed to expand from the US market into 5 European countries, each with different cultural attitudes toward wellness and sustainability.',
-      solution: 'Our team conducted extensive market research and developed localized campaigns for each market while maintaining brand consistency. We created culturally-sensitive messaging and partnerships with local influencers.',
-      results: [
-        '180% revenue growth in 12 months',
-        'Successful launch in 5 European markets',
-        '2M+ people reached through campaigns',
-        '75% brand awareness in target markets',
-      ],
-      testimonial: {
-        quote: 'The cultural intelligence TrendArt brought to our expansion was invaluable. They made complex market entry feel seamless.',
-        author: 'Michael Rodriguez, CMO',
-      },
-    },
-    {
-      title: 'TechCorp Platform: UX Revolution',
-      subtitle: 'Transforming enterprise software user experience',
-      challenge: 'TechCorp\'s platform suffered from poor user adoption and high support ticket volume. The interface was complex and unintuitive, hindering business growth.',
-      solution: 'We redesigned the entire user experience from the ground up, conducting extensive user research and implementing modern design patterns. The new platform prioritized usability and efficiency.',
-      results: [
-        '65% improvement in user engagement',
-        '40% reduction in support tickets',
-        '150% increase in lead generation',
-        '90% user satisfaction score',
-      ],
-      testimonial: {
-        quote: 'Our platform went from being a barrier to growth to our biggest competitive advantage. The transformation exceeded all expectations.',
-        author: 'Jessica Park, VP of Product',
-      },
-    },
-  ]
+  const caseStudies = portfolio.filter(item => item.fullCaseStudy)
 
   const filteredPortfolio = activeFilter[0] === 'All Work' || filterMap[activeFilter[0]] === 'all'
     ? portfolio 
@@ -246,9 +175,9 @@ const Work = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <motion.div 
-                    className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                    className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
                     style={{
-                      backgroundImage: `url(https://picsum.photos/600/450?random=${index + 40}&t=${Date.now() + index})`,
+                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 40}&t=${Date.now() + index}`})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}
@@ -277,35 +206,37 @@ const Work = () => {
                         {project.metrics.join(' • ')}
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.services.map((service, serviceIndex) => (
-                        <motion.span
-                          key={serviceIndex}
-                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
-                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                          animate={{ 
-                            opacity: 1, 
-                            scale: 1, 
-                            y: 0,
-                            transition: { 
-                              type: "spring", 
-                              stiffness: 300, 
-                              damping: 20,
-                              delay: serviceIndex * 0.1 + 0.5
-                            }
-                          }}
-                          whileHover={{ 
-                            scale: 1.05,
-                            transition: { 
-                              type: "spring", 
-                              stiffness: 400, 
-                              damping: 25 
-                            }
-                          }}
-                        >
-                          {service}
-                        </motion.span>
-                      ))}
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap gap-2">
+                        {project.services.map((service, serviceIndex) => (
+                          <motion.span
+                            key={serviceIndex}
+                            className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
+                            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                            animate={{ 
+                              opacity: 1, 
+                              scale: 1, 
+                              y: 0,
+                              transition: { 
+                                type: "spring", 
+                                stiffness: 300, 
+                                damping: 20,
+                                delay: serviceIndex * 0.1 + 0.5
+                              }
+                            }}
+                            whileHover={{ 
+                              scale: 1.05,
+                              transition: { 
+                                type: "spring", 
+                                stiffness: 400, 
+                                damping: 25 
+                              }
+                            }}
+                          >
+                            {service}
+                          </motion.span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -379,19 +310,19 @@ const Work = () => {
                     <div 
                       className="aspect-[4/3] mb-6 rounded-xl overflow-hidden"
                       style={{
-                        backgroundImage: `url(https://picsum.photos/400/300?random=${index + 60}&t=${Date.now() + index + 60})`,
+                        backgroundImage: `url(${study.id === 2 ? study.fullCaseStudy?.gallery?.[0] : study.heroImage})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}
                     />
                     
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{study.title.split(':')[0]}</h3>
-                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{study.subtitle}</p>
+                    <h3 className="text-xl font-bold text-text-primary mb-2">{study.title}</h3>
+                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{study.fullCaseStudy?.subtitle}</p>
                     
                     <div className="space-y-3">
                       <div className="text-sm font-medium text-text-primary">Key Results:</div>
                       <div className="grid grid-cols-1 gap-2">
-                        {study.results.slice(0, 2).map((result, resultIndex) => (
+                        {study.metrics.slice(0, 2).map((result, resultIndex) => (
                           <div key={resultIndex} className="text-sm text-text-secondary font-medium">
                             {result}
                           </div>
@@ -414,96 +345,154 @@ const Work = () => {
 
       {/* Case Study Modal */}
       <AnimatePresence>
-        {selectedCaseStudy && (
+        {selectedCaseStudy && selectedCaseStudy.fullCaseStudy && (
           <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedCaseStudy(null)}
           >
             <motion.div
-              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ 
-                scale: 1, 
-                opacity: 1, 
-                y: 0,
-                transition: { 
-                  type: "spring", 
-                  stiffness: 300, 
-                  damping: 25 
-                }
-              }}
-              exit={{ 
-                scale: 0.9, 
-                opacity: 0, 
-                y: 20,
-                transition: { duration: 0.2 }
-              }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="bg-bg-primary rounded-2xl max-w-4xl max-h-[90vh] overflow-y-auto relative"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-8">
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedCaseStudy(null)}
-                  className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M12.854 3.146a.5.5 0 0 0-.708 0L8 7.293 3.854 3.146a.5.5 0 1 0-.708.708L7.293 8l-4.147 4.146a.5.5 0 0 0 .708.708L8 8.707l4.146 4.147a.5.5 0 0 0 .708-.708L8.707 8l4.147-4.146a.5.5 0 0 0 0-.708z"/>
-                  </svg>
-                </button>
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedCaseStudy(null)}
+                className="absolute top-6 right-6 w-10 h-10 bg-bg-secondary rounded-full flex items-center justify-center text-text-primary hover:bg-bg-tertiary transition-colors z-10"
+              >
+                ✕
+              </button>
 
-                {/* Modal Content */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                  {/* Left: Image */}
-                  <div>
-                    <div 
-                      className="aspect-[4/3] rounded-2xl overflow-hidden mb-6"
-                      style={{
-                        backgroundImage: `url(https://picsum.photos/600/450?random=${caseStudies.indexOf(selectedCaseStudy) + 60}&t=${Date.now() + caseStudies.indexOf(selectedCaseStudy)})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
+              {/* Hero Section */}
+              <div className="relative h-64 rounded-t-2xl overflow-hidden">
+                <div 
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${selectedCaseStudy.id === 2 ? selectedCaseStudy.fullCaseStudy?.gallery?.[0] : selectedCaseStudy.heroImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-6 left-6 text-white">
+                  <div className="text-sm font-medium uppercase tracking-wide mb-2">
+                    {selectedCaseStudy.category}
                   </div>
+                  <h2 className="text-3xl font-bold mb-2">{selectedCaseStudy.title}</h2>
+                  <p className="text-sm opacity-90">{selectedCaseStudy.services.join(' · ')}</p>
+                </div>
+              </div>
 
-                  {/* Right: Content */}
+              {/* Content */}
+              <div className="p-8">
+                {/* Subtitle */}
+                <h3 className="text-2xl font-semibold text-text-primary mb-6">
+                  {selectedCaseStudy.fullCaseStudy.subtitle}
+                </h3>
+
+                {/* Challenge */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-text-primary mb-4">The Challenge</h4>
+                  <p className="text-text-secondary leading-relaxed">
+                    {selectedCaseStudy.fullCaseStudy.challenge}
+                  </p>
+                </div>
+
+                {/* Solution */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-text-primary mb-4">Our Solution</h4>
+                  <p className="text-text-secondary leading-relaxed">
+                    {selectedCaseStudy.fullCaseStudy.solution}
+                  </p>
+                </div>
+
+                {/* What We Did */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-text-primary mb-6">What We Did</h4>
                   <div className="space-y-8">
-                    <div>
-                      <h2 className="text-3xl font-bold text-black mb-3">{selectedCaseStudy.title}</h2>
-                      <p className="text-lg text-gray-600">{selectedCaseStudy.subtitle}</p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-black mb-3">Challenge</h3>
-                      <p className="text-gray-600 leading-relaxed">{selectedCaseStudy.challenge}</p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-black mb-3">Solution</h3>
-                      <p className="text-gray-600 leading-relaxed">{selectedCaseStudy.solution}</p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-black mb-3">Results</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {selectedCaseStudy.results.map((result, index) => (
-                          <div key={index} className="text-gray-600 font-medium">
-                            {result}
-                          </div>
-                        ))}
+                    {selectedCaseStudy.fullCaseStudy.details.map((detail, index) => (
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div className={index % 2 === 0 ? 'order-1' : 'order-2'}>
+                          <h5 className="text-md font-semibold text-text-primary mb-3">{detail.title}</h5>
+                          <p className="text-text-secondary leading-relaxed text-sm">{detail.description}</p>
+                        </div>
+                        <div className={index % 2 === 0 ? 'order-2' : 'order-1'}>
+                          <img 
+                            src={detail.image} 
+                            alt={detail.title}
+                            className="w-full rounded-xl shadow-sm"
+                          />
+                        </div>
                       </div>
-                    </div>
+                    ))}
+                  </div>
+                </div>
 
-                    <blockquote className="border-l-4 border-black pl-6">
-                      <p className="text-lg italic text-gray-700 mb-4">
-                        "{selectedCaseStudy.testimonial.quote}"
-                      </p>
-                      <cite className="text-sm font-medium text-black">
-                        — {selectedCaseStudy.testimonial.author}
-                      </cite>
-                    </blockquote>
+                {/* Results */}
+                <div className="mb-8">
+                  <h4 className="text-lg font-semibold text-text-primary mb-4">The Results</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {selectedCaseStudy.fullCaseStudy.results.map((result, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                        <span className="text-text-secondary text-sm">{result}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Testimonial */}
+                <div className="bg-bg-secondary p-6 rounded-xl mb-8">
+                  <p className="text-lg text-text-secondary italic leading-relaxed mb-4">
+                    "{selectedCaseStudy.fullCaseStudy.testimonial.quote}"
+                  </p>
+                  <p className="text-text-primary font-semibold">
+                    — {selectedCaseStudy.fullCaseStudy.testimonial.author}
+                  </p>
+                </div>
+
+                {/* Gallery */}
+                {selectedCaseStudy.fullCaseStudy.gallery && selectedCaseStudy.fullCaseStudy.gallery.length > 0 && (
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold text-text-primary mb-4">Gallery</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {selectedCaseStudy.fullCaseStudy.gallery.map((image, index) => (
+                        <img 
+                          key={index}
+                          src={image} 
+                          alt={`Gallery image ${index + 1}`}
+                          className="w-full aspect-square object-cover rounded-xl shadow-sm"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* CTA */}
+                <div className="text-center pt-6 border-t border-border-light">
+                  <p className="text-text-secondary mb-6">
+                    Ready to transform your brand like we did for {selectedCaseStudy.title}?
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    {selectedCaseStudy.websiteUrl && (
+                      <a 
+                        href={selectedCaseStudy.websiteUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={() => setSelectedCaseStudy(null)}
+                      >
+                        <CleanButton text="Visit Website" className="px-8 py-4" />
+                      </a>
+                    )}
+                    <Link to="/contact" onClick={() => setSelectedCaseStudy(null)}>
+                      <CleanButton text="Start Your Project" className="px-8 py-4" />
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -8,8 +8,16 @@ const PageTransition = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [prevLocation, setPrevLocation] = useState(location.pathname);
 
+  // Always scroll to top on mount/refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     if (location.pathname !== prevLocation) {
+      // Scroll to top when route changes
+      window.scrollTo(0, 0);
+      
       setIsTransitioning(true);
 
       // Switch content behind the overlay after it covers the screen
