@@ -64,12 +64,13 @@ const CleanButton = React.forwardRef(
         </motion.span>
 
         {/* Glass blur background - always visible */}
-        <div className="absolute inset-0 backdrop-blur-xl rounded-full border border-white/10" 
+        <div className="absolute inset-0 backdrop-blur-xl rounded-full border border-gray-200/20" 
              style={{
                backdropFilter: 'blur(12px) saturate(200%) contrast(150%) brightness(110%) hue-rotate(2deg)',
                WebkitBackdropFilter: 'blur(12px) saturate(200%) contrast(150%) brightness(110%) hue-rotate(2deg)',
                filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
-               background: 'rgba(255,255,255,0.05)'
+               background: 'rgba(255,255,255,0.05)',
+               borderColor: 'rgba(156, 163, 175, 0.25)' // Subtle gray border that's visible on white
              }} />
 
         {/* Black slide-in overlay - comes from bottom on hover, exits through top */}

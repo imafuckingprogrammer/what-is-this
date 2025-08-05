@@ -1,87 +1,88 @@
 import { useState, useEffect } from 'react'
 
 const usePerformanceOptimization = () => {
-  const [deviceCapabilities, setDeviceCapabilities] = useState({
-    isLowEnd: false,
-    isMobile: false,
-    isTablet: false,
-    reducedMotion: false,
-    slowConnection: false,
-    lowMemory: false,
-    enableAnimations: true,
-    enableCustomCursor: true,
-    enableParallax: true,
-    enableComplexEffects: true
+  // Initialize with optimistic defaults - fast first render
+  const [deviceCapabilities, setDeviceCapabilities] = useState(() => {
+    // Ultra-fast synchronous detection on first render
+    try {
+      const isMobile = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) || 'ontouchstart' in window
+      const isTablet = /iPad/i.test(navigator.userAgent)
+      
+      return {
+        isLowEnd: false,
+        isMobile,
+        isTablet,
+        reducedMotion: false,
+        slowConnection: false,
+        lowMemory: false,
+        enableAnimations: true,
+        enableCustomCursor: !isMobile, // Only disable on mobile
+        enableParallax: !isMobile,
+        enableComplexEffects: true
+      }
+    } catch {
+      // Safe fallback
+      return {
+        isLowEnd: false,
+        isMobile: false,
+        isTablet: false,
+        reducedMotion: false,
+        slowConnection: false,
+        lowMemory: false,
+        enableAnimations: true,
+        enableCustomCursor: true,
+        enableParallax: true,
+        enableComplexEffects: true
+      }
+    }
   })
 
   useEffect(() => {
+    // Simplified, fast device detection - no blocking operations
     const detectDeviceCapabilities = () => {
-      // Check if user prefers reduced motion
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      try {
+        // Quick mobile detection
+        const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+        const isTablet = /iPad/i.test(navigator.userAgent)
+        
+        // Quick motion preference check
+        const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches || false
+        
+        // Simple capabilities based on basic detection
+        const capabilities = {
+          isLowEnd: isMobile, // Assume mobile = low end for simplicity
+          isMobile,
+          isTablet,
+          reducedMotion: prefersReducedMotion,
+          slowConnection: false, // Skip complex connection checks
+          lowMemory: false, // Skip memory checks
+          enableAnimations: !prefersReducedMotion,
+          enableCustomCursor: !isMobile && !isTablet,
+          enableParallax: !isMobile,
+          enableComplexEffects: true // Always enable, let components handle optimization
+        }
 
-      // Check device type
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      const isTablet = /iPad|Android(?=.*Mobile)/i.test(navigator.userAgent) || 
-                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-
-      // Check connection speed
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
-      const slowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')
-
-      // Check memory (if available)
-      const lowMemory = navigator.deviceMemory && navigator.deviceMemory < 4
-
-      // Check hardware concurrency (CPU cores)
-      const lowCPU = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4
-
-      // Performance score calculation
-      let performanceScore = 100
-      
-      if (isMobile) performanceScore -= 20
-      if (isTablet) performanceScore -= 10
-      if (slowConnection) performanceScore -= 30
-      if (lowMemory) performanceScore -= 25
-      if (lowCPU) performanceScore -= 15
-      if (prefersReducedMotion) performanceScore -= 20
-
-      const isLowEnd = performanceScore < 50
-
-      // Feature flags based on device capabilities
-      const capabilities = {
-        isLowEnd,
-        isMobile,
-        isTablet,
-        reducedMotion: prefersReducedMotion,
-        slowConnection: !!slowConnection,
-        lowMemory: !!lowMemory,
-        enableAnimations: !prefersReducedMotion && performanceScore > 30,
-        enableCustomCursor: !isMobile && !isTablet && performanceScore > 40,
-        enableParallax: !isMobile && performanceScore > 60,
-        enableComplexEffects: performanceScore > 70
-      }
-
-      setDeviceCapabilities(capabilities)
-
-      // Log performance info in development
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Device Performance Analysis:', {
-          score: performanceScore,
-          ...capabilities,
-          connection: connection?.effectiveType,
-          memory: navigator.deviceMemory,
-          cores: navigator.hardwareConcurrency
+        setDeviceCapabilities(capabilities)
+      } catch (error) {
+        // Fallback to safe defaults if detection fails
+        console.warn('Performance detection failed, using defaults:', error)
+        setDeviceCapabilities({
+          isLowEnd: false,
+          isMobile: false,
+          isTablet: false,
+          reducedMotion: false,
+          slowConnection: false,
+          lowMemory: false,
+          enableAnimations: true,
+          enableCustomCursor: true,
+          enableParallax: true,
+          enableComplexEffects: true
         })
       }
     }
 
+    // Run immediately without delays
     detectDeviceCapabilities()
-
-    // Listen for connection changes
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection
-    if (connection) {
-      connection.addEventListener('change', detectDeviceCapabilities)
-      return () => connection.removeEventListener('change', detectDeviceCapabilities)
-    }
   }, [])
 
   // Utility functions for conditional rendering

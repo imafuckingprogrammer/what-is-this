@@ -4,6 +4,7 @@ import PageTransition from './components/PageTransition'
 import CustomCursor from './components/ui/CustomCursor'
 import InitialLoader from './components/InitialLoader'
 import { useInitialLoader } from './hooks/useInitialLoader'
+import usePerformanceOptimization from './hooks/usePerformanceOptimization'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -12,10 +13,11 @@ import Contact from './pages/Contact'
 
 function App() {
   const { shouldShowLoader, handleLoadingComplete } = useInitialLoader()
+  const { shouldRender } = usePerformanceOptimization()
 
   return (
     <>
-      <CustomCursor />
+      {shouldRender('cursor') && <CustomCursor />}
       <Layout>
         <PageTransition>
           <Routes>
@@ -28,7 +30,7 @@ function App() {
           </Routes>
         </PageTransition>
       </Layout>
-      
+
       {shouldShowLoader && <InitialLoader onComplete={handleLoadingComplete} />}
     </>
   )

@@ -16,6 +16,10 @@ const CustomCursor = () => {
   const cursorYSpring = useSpring(cursorY, springConfig)
 
   useEffect(() => {
+    // Check if mobile to avoid conflicts
+    const isMobile = 'ontouchstart' in window
+    if (isMobile) return // Skip on mobile devices
+    
     const moveCursor = (e) => {
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
@@ -47,19 +51,23 @@ const CustomCursor = () => {
     const handleMouseEnterWindow = () => setIsVisible(true)
     const handleMouseLeaveWindow = () => setIsVisible(false)
 
-    // Add event listeners
-    document.addEventListener('mousemove', moveCursor)
-    document.addEventListener('mouseover', handleMouseEnter)
-    document.addEventListener('mouseout', handleMouseLeave)
-    document.addEventListener('mouseenter', handleMouseEnterWindow)
-    document.addEventListener('mouseleave', handleMouseLeaveWindow)
+    // Add event listeners only on desktop
+    if (!isMobile) {
+      document.addEventListener('mousemove', moveCursor)
+      document.addEventListener('mouseover', handleMouseEnter)
+      document.addEventListener('mouseout', handleMouseLeave)
+      document.addEventListener('mouseenter', handleMouseEnterWindow)
+      document.addEventListener('mouseleave', handleMouseLeaveWindow)
+    }
 
     return () => {
-      document.removeEventListener('mousemove', moveCursor)
-      document.removeEventListener('mouseover', handleMouseEnter)
-      document.removeEventListener('mouseout', handleMouseLeave)
-      document.removeEventListener('mouseenter', handleMouseEnterWindow)
-      document.removeEventListener('mouseleave', handleMouseLeaveWindow)
+      if (!isMobile) {
+        document.removeEventListener('mousemove', moveCursor)
+        document.removeEventListener('mouseover', handleMouseEnter)
+        document.removeEventListener('mouseout', handleMouseLeave)
+        document.removeEventListener('mouseenter', handleMouseEnterWindow)
+        document.removeEventListener('mouseleave', handleMouseLeaveWindow)
+      }
     }
   }, [cursorX, cursorY])
 

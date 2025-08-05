@@ -21,30 +21,55 @@ function SplashCursor({
 }) {
     const canvasRef = useRef(null);
     const [isLowPerformance, setIsLowPerformance] = useState(false);
+    const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
+        // Delay initialization to not block initial page load
+        const startInitialization = () => {
+            let initAttempts = 0;
+            const maxAttempts = 3;
+            
+            const initializeSplashCursor = () => {
+            const canvas = canvasRef.current;
+            if (!canvas) {
+                if (initAttempts < maxAttempts) {
+                    initAttempts++;
+                    setTimeout(initializeSplashCursor, 100);
+                }
+                return;
+            }
 
-        // Performance detection
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                         ('ontouchstart' in window) || 
-                         (navigator.maxTouchPoints > 0);
-        const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+            try {
+            // Performance detection
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                             ('ontouchstart' in window) || 
+                             (navigator.maxTouchPoints > 0);
+            const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
 
-        if (isMobile || isLowEnd) {
-            setIsLowPerformance(true);
-        }
+            if (isMobile || isLowEnd) {
+                setIsLowPerformance(true);
+            }
+
+            // Allow splash cursor on all screen sizes including mobile
 
         // Ensure canvas is properly sized on load
         const initializeCanvas = () => {
-            const rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width * (window.devicePixelRatio || 1);
-            canvas.height = rect.height * (window.devicePixelRatio || 1);
+            try {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width === 0 || rect.height === 0) {
+                    // Canvas not ready yet, retry
+                    setTimeout(initializeCanvas, 50);
+                    return;
+                }
+                canvas.width = rect.width * (window.devicePixelRatio || 1);
+                canvas.height = rect.height * (window.devicePixelRatio || 1);
+            } catch (error) {
+                console.warn('Canvas initialization failed:', error);
+            }
         };
         
-        // Initial resize
-        initializeCanvas();
+        // Initial resize with delay
+        setTimeout(initializeCanvas, 100);
         
         // Handle window resize
         window.addEventListener('resize', initializeCanvas);
@@ -108,22 +133,27 @@ function SplashCursor({
         }
 
         function getWebGLContext(canvas) {
-            const params = {
-                alpha: true,
-                depth: false,
-                stencil: false,
-                antialias: false,
-                preserveDrawingBuffer: false,
-                powerPreference: "high-performance",
-            };
+            try {
+                const params = {
+                    alpha: true,
+                    depth: false,
+                    stencil: false,
+                    antialias: false,
+                    preserveDrawingBuffer: false,
+                    powerPreference: isMobile ? "default" : "high-performance", // Use default for mobile
+                    failIfMajorPerformanceCaveat: false // Don't fail on slower GPUs
+                };
 
-            let gl = canvas.getContext("webgl2", params);
-            const isWebGL2 = !!gl;
-            if (!isWebGL2) {
-                gl = canvas.getContext("webgl", params) || canvas.getContext("experimental-webgl", params);
-            }
+                let gl = canvas.getContext("webgl2", params);
+                const isWebGL2 = !!gl;
+                if (!isWebGL2) {
+                    gl = canvas.getContext("webgl", params) || canvas.getContext("experimental-webgl", params);
+                }
 
-            if (!gl) return { gl: null, ext: null };
+                if (!gl) {
+                    console.warn('WebGL context creation failed');
+                    return { gl: null, ext: null };
+                }
 
             let halfFloat;
             let supportLinearFiltering;
@@ -160,6 +190,10 @@ function SplashCursor({
                     supportLinearFiltering,
                 },
             };
+            } catch (error) {
+                console.warn('WebGL context creation failed:', error);
+                return { gl: null, ext: null };
+            }
         }
 
         function getSupportedFormat(gl, internalFormat, format, type) {
@@ -1026,23 +1060,23 @@ function SplashCursor({
                 let posX = scaleByPixelRatio(touches[i].clientX);
                 let posY = scaleByPixelRatio(touches[i].clientY);
                 const color = generateColor();
-                color.r *= 4; // More intense on mobile
-                color.g *= 4;
-                color.b *= 4;
+                color.r *= 1.8; // Much gentler on mobile
+                color.g *= 1.8;
+                color.b *= 1.8;
                 updatePointerMoveData(pointer, posX, posY, color);
             }
         };
 
         const handleScroll = () => {
             if (isMobile) {
-                // Create splash effects during scroll on mobile
+                // Create gentle splash effects during scroll on mobile
                 const pointer = pointers[0];
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
                 const color = generateColor();
-                color.r *= 3;
-                color.g *= 3;
-                color.b *= 3;
+                color.r *= 1.2; // Very gentle scroll effects
+                color.g *= 1.2;
+                color.b *= 1.2;
                 updatePointerMoveData(pointer, x, y, color);
             }
         };
@@ -1053,6 +1087,9 @@ function SplashCursor({
         
         // Add scroll listener for mobile splash effects
         let throttledScroll;
+        let handleTouchStart;
+        let handleAnyTouchEvent;
+        
         if (isMobile) {
             let scrollTimeout;
             throttledScroll = () => {
@@ -1067,17 +1104,18 @@ function SplashCursor({
                 }, 50); // Throttle to 20fps
             };
             window.addEventListener("scroll", throttledScroll, { passive: true });
-            const handleTouchStart = (e) => {
+            
+            handleTouchStart = (e) => {
                 try {
-                    // Add splash on touch start for mobile
+                    // Add gentle splash on touch start for mobile
                     const touch = e.touches[0];
                     if (!touch) return;
                     const x = scaleByPixelRatio(touch.clientX);
                     const y = scaleByPixelRatio(touch.clientY);
                     const color = generateColor();
-                    color.r *= 6; // Very intense splash on touch start
-                    color.g *= 6;
-                    color.b *= 6;
+                    color.r *= 2; // Moderate splash on touch start
+                    color.g *= 2;
+                    color.b *= 2;
                     updatePointerMoveData(pointers[0], x, y, color);
                 } catch (error) {
                     console.warn('Splash cursor touch start error:', error);
@@ -1087,16 +1125,16 @@ function SplashCursor({
             window.addEventListener("touchstart", handleTouchStart, { passive: true });
             
             // Add more frequent mobile splashes during any interaction
-            const handleAnyTouchEvent = (e) => {
+            handleAnyTouchEvent = (e) => {
                 try {
                     const touch = e.touches[0] || e.changedTouches[0];
                     if (touch) {
                         const x = scaleByPixelRatio(touch.clientX);
                         const y = scaleByPixelRatio(touch.clientY);
                         const color = generateColor();
-                        color.r *= 3;
-                        color.g *= 3;
-                        color.b *= 3;
+                        color.r *= 1.5; // Much gentler
+                        color.g *= 1.5;
+                        color.b *= 1.5;
                         updatePointerMoveData(pointers[0], x, y, color);
                     }
                 } catch (error) {
@@ -1108,37 +1146,37 @@ function SplashCursor({
             window.addEventListener("touchcancel", handleAnyTouchEvent, { passive: true });
         }
 
-        // INTENSE automatic color bursts for first 3 seconds - EVERYWHERE!
+        // Gentle automatic color bursts for first 2 seconds
         const startTime = Date.now();
         const autoBurstInterval = setInterval(() => {
             const elapsed = (Date.now() - startTime) / 1000;
             
-            // Stop after 3 seconds
-            if (elapsed >= 3) {
+            // Stop after 2 seconds
+            if (elapsed >= 2) {
                 clearInterval(autoBurstInterval);
                 return;
             }
             
-            // Create 24 INTENSE bursts with LONG STROKES everywhere
-            const numBursts = 24; // Fixed 24 bursts per cycle!
+            // Create 3-5 gentle bursts
+            const numBursts = 3 + Math.floor(Math.random() * 3); // 3-5 bursts
             for (let i = 0; i < numBursts; i++) {
                 setTimeout(() => {
                     const pointer = pointers[0];
                     
-                    // Create long stroke movements for glassy effect
+                    // Create shorter, gentler movements
                     const startX = Math.random() * canvas.width;
                     const startY = Math.random() * canvas.height;
-                    const strokeLength = 200 + Math.random() * 300; // 200-500px strokes
-                    const angle = Math.random() * Math.PI * 2; // Random direction
+                    const strokeLength = 50 + Math.random() * 100; // 50-150px strokes
+                    const angle = Math.random() * Math.PI * 2;
                     
                     const color = generateColor();
-                    // SUPER INTENSE colors for auto bursts
-                    color.r *= 12;
-                    color.g *= 12;
-                    color.b *= 12;
+                    // Moderate intensity for auto bursts
+                    color.r *= 2;
+                    color.g *= 2;
+                    color.b *= 2;
                     
-                    // Create stroke by moving pointer along path
-                    const strokeSteps = 15; // Steps in the stroke
+                    // Create stroke with fewer steps
+                    const strokeSteps = 5; // Much fewer steps
                     for (let step = 0; step < strokeSteps; step++) {
                         setTimeout(() => {
                             const progress = step / strokeSteps;
@@ -1150,69 +1188,52 @@ function SplashCursor({
                             const clampedY = Math.max(0, Math.min(canvas.height, currentY));
                             
                             updatePointerMoveData(pointer, clampedX, clampedY, color);
-                        }, step * 8); // 8ms between stroke steps for smooth movement
+                        }, step * 20); // Slower stroke steps
                     }
-                }, i * 20); // Faster staggering - 20ms apart
+                }, i * 100); // More spacing between bursts
             }
-        }, 150 + Math.random() * 100); // MUCH faster interval: 150-250ms
+        }, 400 + Math.random() * 200); // Slower interval: 400-600ms
 
-        // Periodic smaller bursts every 5 seconds (after initial 3 seconds)
+        // Subtle periodic bursts every 8 seconds (after initial 2 seconds)
         const periodicBurstTimeout = setTimeout(() => {
             const periodicBurstInterval = setInterval(() => {
-                // Create smaller burst for 1 second
-                const burstStartTime = Date.now();
-                const smallBurstInterval = setInterval(() => {
-                    const burstElapsed = (Date.now() - burstStartTime) / 1000;
-                    
-                    // Stop after 1 second
-                    if (burstElapsed >= 1) {
-                        clearInterval(smallBurstInterval);
-                        return;
-                    }
-                    
-                    // Create 6 smaller bursts with shorter strokes
-                    const numSmallBursts = 6;
-                    for (let i = 0; i < numSmallBursts; i++) {
-                        setTimeout(() => {
-                            const pointer = pointers[0];
-                            
-                            // Create shorter stroke movements
-                            const startX = Math.random() * canvas.width;
-                            const startY = Math.random() * canvas.height;
-                            const strokeLength = 80 + Math.random() * 120; // 80-200px strokes (smaller)
-                            const angle = Math.random() * Math.PI * 2;
-                            
-                            const color = generateColor();
-                            // Moderate intensity for periodic bursts
-                            color.r *= 6;
-                            color.g *= 6;
-                            color.b *= 6;
-                            
-                            // Create stroke with fewer steps
-                            const strokeSteps = 8; // Fewer steps for smaller bursts
-                            for (let step = 0; step < strokeSteps; step++) {
-                                setTimeout(() => {
-                                    const progress = step / strokeSteps;
-                                    const currentX = startX + Math.cos(angle) * strokeLength * progress;
-                                    const currentY = startY + Math.sin(angle) * strokeLength * progress;
-                                    
-                                    // Keep within canvas bounds
-                                    const clampedX = Math.max(0, Math.min(canvas.width, currentX));
-                                    const clampedY = Math.max(0, Math.min(canvas.height, currentY));
-                                    
-                                    updatePointerMoveData(pointer, clampedX, clampedY, color);
-                                }, step * 12); // Slightly slower stroke steps
-                            }
-                        }, i * 40); // More spacing between small bursts
-                    }
-                }, 200 + Math.random() * 150); // 200-350ms interval for small bursts
-            }, 5000); // Every 5 seconds
+                // Create single gentle burst
+                const pointer = pointers[0];
+                
+                // Single burst location
+                const startX = Math.random() * canvas.width;
+                const startY = Math.random() * canvas.height;
+                const strokeLength = 30 + Math.random() * 60; // 30-90px strokes (very small)
+                const angle = Math.random() * Math.PI * 2;
+                
+                const color = generateColor();
+                // Very gentle intensity for periodic bursts
+                color.r *= 1.5;
+                color.g *= 1.5;
+                color.b *= 1.5;
+                
+                // Create simple stroke with minimal steps
+                const strokeSteps = 3; // Very few steps
+                for (let step = 0; step < strokeSteps; step++) {
+                    setTimeout(() => {
+                        const progress = step / strokeSteps;
+                        const currentX = startX + Math.cos(angle) * strokeLength * progress;
+                        const currentY = startY + Math.sin(angle) * strokeLength * progress;
+                        
+                        // Keep within canvas bounds
+                        const clampedX = Math.max(0, Math.min(canvas.width, currentX));
+                        const clampedY = Math.max(0, Math.min(canvas.height, currentY));
+                        
+                        updatePointerMoveData(pointer, clampedX, clampedY, color);
+                    }, step * 30); // Slower stroke steps
+                }
+            }, 8000); // Every 8 seconds (less frequent)
             
             // Store interval for cleanup
             window.periodicBurstInterval = periodicBurstInterval;
-        }, 3000); // Start after initial 3 seconds
+        }, 2000); // Start after initial 2 seconds
 
-        // Mobile-specific: Add continuous gentle splashes to keep cursor visible
+        // Mobile-specific: Add very gentle splashes to keep cursor visible
         let mobileSplashInterval;
         if (isMobile) {
             mobileSplashInterval = setInterval(() => {
@@ -1220,15 +1241,18 @@ function SplashCursor({
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
                 const color = generateColor();
-                color.r *= 1.5;
-                color.g *= 1.5;
-                color.b *= 1.5;
+                color.r *= 0.8; // Even gentler on mobile
+                color.g *= 0.8;
+                color.b *= 0.8;
                 updatePointerMoveData(pointer, x, y, color);
-            }, 2000); // Gentle splash every 2 seconds
+            }, 4000); // Less frequent - every 4 seconds
         }
 
         // Start animation
         updateFrame();
+        
+        // Mark as initialized
+        setIsInitialized(true);
 
         // Cleanup function
         return () => {
@@ -1252,13 +1276,42 @@ function SplashCursor({
             window.removeEventListener("touchmove", handleTouchMove);
             window.removeEventListener('resize', initializeCanvas);
             document.removeEventListener('visibilitychange', handleVisibilityChange);
-            if (isMobile && throttledScroll) {
-                window.removeEventListener("scroll", throttledScroll);
-                window.removeEventListener("touchstart", handleTouchStart);
-                window.removeEventListener("touchend", handleAnyTouchEvent);
-                window.removeEventListener("touchcancel", handleAnyTouchEvent);
+            if (isMobile) {
+                if (throttledScroll) {
+                    window.removeEventListener("scroll", throttledScroll);
+                }
+                if (handleTouchStart) {
+                    window.removeEventListener("touchstart", handleTouchStart);
+                }
+                if (handleAnyTouchEvent) {
+                    window.removeEventListener("touchend", handleAnyTouchEvent);
+                    window.removeEventListener("touchcancel", handleAnyTouchEvent);
+                }
             }
         };
+
+            } catch (error) {
+                console.warn('Splash cursor initialization failed:', error);
+                // Retry if we haven't exceeded max attempts
+                if (initAttempts < maxAttempts) {
+                    initAttempts++;
+                    setTimeout(initializeSplashCursor, 200);
+                }
+                return;
+            }
+        };
+
+            // Start initialization with a small delay to ensure DOM is ready
+            setTimeout(initializeSplashCursor, 50);
+        };
+
+        // Delay the entire splash cursor initialization to not block page load
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if (window.requestIdleCallback) {
+            requestIdleCallback(startInitialization, { timeout: 1000 });
+        } else {
+            setTimeout(startInitialization, 500);
+        }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
@@ -1286,11 +1339,12 @@ function SplashCursor({
                 style={{
                     mixBlendMode: 'normal',
                     background: 'transparent',
-                    opacity: isLowPerformance ? 0.6 : 0.8,
+                    opacity: isInitialized ? (isLowPerformance ? 0.6 : 0.8) : 0,
                     touchAction: 'none',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',
-                    WebkitTouchCallout: 'none'
+                    WebkitTouchCallout: 'none',
+                    transition: 'opacity 0.5s ease-in-out'
                 }}
             />
         </div>

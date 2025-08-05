@@ -7,7 +7,7 @@ import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 import usePerformanceOptimization from '../hooks/usePerformanceOptimization'
 
 const Home = () => {
-  const { shouldRender, getOptimizedProps, enableAnimations, enableComplexEffects } = usePerformanceOptimization()
+  const { shouldRender, getOptimizedProps, enableAnimations, enableComplexEffects, isMobile, isTablet } = usePerformanceOptimization()
   const services = [
     {
       title: 'Brand Strategy',
