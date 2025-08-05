@@ -27,12 +27,39 @@ function SplashCursor({
         if (!canvas) return;
 
         // Performance detection
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                         ('ontouchstart' in window) || 
+                         (navigator.maxTouchPoints > 0);
         const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
 
         if (isMobile || isLowEnd) {
             setIsLowPerformance(true);
         }
+
+        // Ensure canvas is properly sized on load
+        const initializeCanvas = () => {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * (window.devicePixelRatio || 1);
+            canvas.height = rect.height * (window.devicePixelRatio || 1);
+        };
+        
+        // Initial resize
+        initializeCanvas();
+        
+        // Handle window resize
+        window.addEventListener('resize', initializeCanvas);
+        
+        // Add visibility change handler to prevent issues on tab switch
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                // Pause intensive operations when tab is hidden
+                return;
+            }
+            // Resume when tab becomes visible
+            setTimeout(initializeCanvas, 100);
+        };
+        
+        document.addEventListener('visibilitychange', handleVisibilityChange);
 
         // Adjust settings for low-performance devices
         const adjustedConfig = {
@@ -992,19 +1019,94 @@ function SplashCursor({
         };
 
         const handleTouchMove = (e) => {
-            e.preventDefault();
+            // Don't prevent default to allow scrolling
             const touches = e.targetTouches;
             let pointer = pointers[0];
             for (let i = 0; i < touches.length; i++) {
                 let posX = scaleByPixelRatio(touches[i].clientX);
                 let posY = scaleByPixelRatio(touches[i].clientY);
-                updatePointerMoveData(pointer, posX, posY, pointer.color);
+                const color = generateColor();
+                color.r *= 4; // More intense on mobile
+                color.g *= 4;
+                color.b *= 4;
+                updatePointerMoveData(pointer, posX, posY, color);
+            }
+        };
+
+        const handleScroll = () => {
+            if (isMobile) {
+                // Create splash effects during scroll on mobile
+                const pointer = pointers[0];
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const color = generateColor();
+                color.r *= 3;
+                color.g *= 3;
+                color.b *= 3;
+                updatePointerMoveData(pointer, x, y, color);
             }
         };
 
         // Add event listeners
         window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("touchmove", handleTouchMove, { passive: false });
+        window.addEventListener("touchmove", handleTouchMove, { passive: true }); // Allow passive scrolling
+        
+        // Add scroll listener for mobile splash effects
+        let throttledScroll;
+        if (isMobile) {
+            let scrollTimeout;
+            throttledScroll = () => {
+                if (scrollTimeout) return;
+                scrollTimeout = setTimeout(() => {
+                    try {
+                        handleScroll();
+                    } catch (error) {
+                        console.warn('Splash cursor scroll effect error:', error);
+                    }
+                    scrollTimeout = null;
+                }, 50); // Throttle to 20fps
+            };
+            window.addEventListener("scroll", throttledScroll, { passive: true });
+            const handleTouchStart = (e) => {
+                try {
+                    // Add splash on touch start for mobile
+                    const touch = e.touches[0];
+                    if (!touch) return;
+                    const x = scaleByPixelRatio(touch.clientX);
+                    const y = scaleByPixelRatio(touch.clientY);
+                    const color = generateColor();
+                    color.r *= 6; // Very intense splash on touch start
+                    color.g *= 6;
+                    color.b *= 6;
+                    updatePointerMoveData(pointers[0], x, y, color);
+                } catch (error) {
+                    console.warn('Splash cursor touch start error:', error);
+                }
+            };
+            
+            window.addEventListener("touchstart", handleTouchStart, { passive: true });
+            
+            // Add more frequent mobile splashes during any interaction
+            const handleAnyTouchEvent = (e) => {
+                try {
+                    const touch = e.touches[0] || e.changedTouches[0];
+                    if (touch) {
+                        const x = scaleByPixelRatio(touch.clientX);
+                        const y = scaleByPixelRatio(touch.clientY);
+                        const color = generateColor();
+                        color.r *= 3;
+                        color.g *= 3;
+                        color.b *= 3;
+                        updatePointerMoveData(pointers[0], x, y, color);
+                    }
+                } catch (error) {
+                    console.warn('Splash cursor touch event error:', error);
+                }
+            };
+            
+            window.addEventListener("touchend", handleAnyTouchEvent, { passive: true });
+            window.addEventListener("touchcancel", handleAnyTouchEvent, { passive: true });
+        }
 
         // INTENSE automatic color bursts for first 3 seconds - EVERYWHERE!
         const startTime = Date.now();
@@ -1110,6 +1212,21 @@ function SplashCursor({
             window.periodicBurstInterval = periodicBurstInterval;
         }, 3000); // Start after initial 3 seconds
 
+        // Mobile-specific: Add continuous gentle splashes to keep cursor visible
+        let mobileSplashInterval;
+        if (isMobile) {
+            mobileSplashInterval = setInterval(() => {
+                const pointer = pointers[0];
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const color = generateColor();
+                color.r *= 1.5;
+                color.g *= 1.5;
+                color.b *= 1.5;
+                updatePointerMoveData(pointer, x, y, color);
+            }, 2000); // Gentle splash every 2 seconds
+        }
+
         // Start animation
         updateFrame();
 
@@ -1128,8 +1245,19 @@ function SplashCursor({
                 clearInterval(window.periodicBurstInterval);
                 delete window.periodicBurstInterval;
             }
+            if (mobileSplashInterval) {
+                clearInterval(mobileSplashInterval);
+            }
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("touchmove", handleTouchMove);
+            window.removeEventListener('resize', initializeCanvas);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            if (isMobile && throttledScroll) {
+                window.removeEventListener("scroll", throttledScroll);
+                window.removeEventListener("touchstart", handleTouchStart);
+                window.removeEventListener("touchend", handleAnyTouchEvent);
+                window.removeEventListener("touchcancel", handleAnyTouchEvent);
+            }
         };
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1151,14 +1279,18 @@ function SplashCursor({
     ]);
 
     return (
-        <div className={`absolute inset-0 pointer-events-none ${className}`}>
+        <div className={`absolute inset-0 pointer-events-none ${className}`} style={{ zIndex: -1 }}>
             <canvas
                 ref={canvasRef}
                 className="w-full h-full"
                 style={{
                     mixBlendMode: 'normal',
                     background: 'transparent',
-                    opacity: 0.8
+                    opacity: isLowPerformance ? 0.6 : 0.8,
+                    touchAction: 'none',
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    WebkitTouchCallout: 'none'
                 }}
             />
         </div>

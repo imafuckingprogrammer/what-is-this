@@ -132,13 +132,21 @@ const Header = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
-              className="md:hidden py-6 border-t border-gray-100"
+              className="md:hidden py-8 px-6 border-t border-white/10 backdrop-blur-xl rounded-b-3xl mx-2 mt-1"
+              style={{
+                backdropFilter: 'blur(24px) saturate(200%) contrast(120%) brightness(110%)',
+                WebkitBackdropFilter: 'blur(24px) saturate(200%) contrast(120%) brightness(110%)',
+                background: 'rgba(255,255,255,0.2)',
+                boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
+                margin: '0.25rem 0.5rem',
+                padding: '2rem 1.5rem'
+              }}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
             >
-              <nav className="flex flex-col space-y-4">
+              <nav className="flex flex-col space-y-6">
                 {navigation.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -151,8 +159,8 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-lg font-medium transition-colors ${
                         location.pathname === item.href
-                          ? 'text-black'
-                          : 'text-gray-600 hover:text-black'
+                          ? 'text-slate-900 font-semibold'
+                          : 'text-slate-800 hover:text-slate-900'
                       }`}
                     >
                       {item.name}
@@ -167,7 +175,7 @@ const Header = () => {
                   <Link
                     to="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="mt-4 block"
+                    className="mt-6 block"
                   >
                     <CleanButton text="Start" className="w-full text-center" />
                   </Link>
