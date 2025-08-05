@@ -2,11 +2,11 @@
 
 ```css
 :root {
-  --dark-purple: #330c2f;
-  --purple: #7b287d;
-  --slate-blue: #7067cf;
-  --periwinkle: #b7c0ee;
-  --tea-green: #cbf3d2;
+  --amber: #FFA400;
+  --blue: #009FFD;
+  --navy: #2A2A72;
+  --charcoal: #232528;
+  --ice: #EAF6FF;
 }
 ```
 
@@ -17,11 +17,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-purple': '#330c2f',
-        'purple': '#7b287d',
-        'slate-blue': '#7067cf',
-        'periwinkle': '#b7c0ee',
-        'tea-green': '#cbf3d2',
+        'amber': '#FFA400',
+        'blue': '#009FFD',
+        'navy': '#2A2A72',
+        'charcoal': '#232528',
+        'ice': '#EAF6FF',
       }
     }
   }
@@ -30,32 +30,32 @@ module.exports = {
 
 ## Tailwind Classes
 
-- `bg-dark-purple` / `text-dark-purple` / `border-dark-purple`
-- `bg-purple` / `text-purple` / `border-purple`
-- `bg-slate-blue` / `text-slate-blue` / `border-slate-blue`
-- `bg-periwinkle` / `text-periwinkle` / `border-periwinkle`
-- `bg-tea-green` / `text-tea-green` / `border-tea-green`
+- `bg-amber` / `text-amber` / `border-amber`
+- `bg-blue` / `text-blue` / `border-blue`
+- `bg-navy` / `text-navy` / `border-navy`
+- `bg-charcoal` / `text-charcoal` / `border-charcoal`
+- `bg-ice` / `text-ice` / `border-ice`
 
 ## CSS Classes
 
 ```css
-.bg-dark-purple { background-color: #330c2f; }
-.bg-purple { background-color: #7b287d; }
-.bg-slate-blue { background-color: #7067cf; }
-.bg-periwinkle { background-color: #b7c0ee; }
-.bg-tea-green { background-color: #cbf3d2; }
+.bg-amber { background-color: #FFA400; }
+.bg-blue { background-color: #009FFD; }
+.bg-navy { background-color: #2A2A72; }
+.bg-charcoal { background-color: #232528; }
+.bg-ice { background-color: #EAF6FF; }
 
-.text-dark-purple { color: #330c2f; }
-.text-purple { color: #7b287d; }
-.text-slate-blue { color: #7067cf; }
-.text-periwinkle { color: #b7c0ee; }
-.text-tea-green { color: #cbf3d2; }
+.text-amber { color: #FFA400; }
+.text-blue { color: #009FFD; }
+.text-navy { color: #2A2A72; }
+.text-charcoal { color: #232528; }
+.text-ice { color: #EAF6FF; }
 ```
 
 ## Hex Values
 
-- Dark Purple: `#330c2f`
-- Purple: `#7b287d`
-- Slate Blue: `#7067cf`
-- Periwinkle: `#b7c0ee`
-- Tea Green: `#cbf3d2`
+- Amber: `#FFA400`
+- Blue: `#009FFD`
+- Navy: `#2A2A72`
+- Charcoal: `#232528`
+- Ice: `#EAF6FF`

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CleanButton } from '../components/ui/clean-button'
+import { MultiSelectButtons } from '../components/ui/multi-select-buttons'
 import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 import AnimatedSection from '../components/ui/AnimatedSection'
 
@@ -9,8 +10,8 @@ const Contact = () => {
     name: '',
     email: '',
     company: '',
-    projectType: '',
-    budget: '',
+    projectType: [],
+    budget: [],
     message: '',
   })
   const [errors, setErrors] = useState({})
@@ -72,7 +73,7 @@ const Contact = () => {
       newErrors.email = 'Please enter a valid email'
     }
     if (!formData.company.trim()) newErrors.company = 'Company is required'
-    if (!formData.projectType) newErrors.projectType = 'Please select a project type'
+    if (!formData.projectType.length) newErrors.projectType = 'Please select at least one project type'
     if (!formData.message.trim()) newErrors.message = 'Message is required'
 
     setErrors(newErrors)
@@ -82,6 +83,14 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }))
+    }
+  }
+
+  const handleMultiSelectChange = (name, values) => {
+    setFormData(prev => ({ ...prev, [name]: values }))
     
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }))
@@ -103,8 +112,8 @@ const Contact = () => {
       name: '',
       email: '',
       company: '',
-      projectType: '',
-      budget: '',
+      projectType: [],
+      budget: [],
       message: '',
     })
   }
@@ -135,25 +144,7 @@ const Contact = () => {
 
   return (
     <div className="bg-bg-primary">
-      <section className="h-screen flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
-        <div className="max-w-4xl mx-auto text-center">
-          <AnimatedSection direction="up" delay={0.1}>
-            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
-              Let's start<br />
-              something great
-            </h1>
-          </AnimatedSection>
-          <AnimatedSection direction="up" delay={0.3}>
-            <SmoothTextReveal 
-              text="Ready to accelerate your business growth? We'd love to hear about your project and explore how TrendArt can help you achieve your goals."
-              className="text-xl text-text-secondary leading-relaxed"
-              delay={0.2}
-            />
-          </AnimatedSection>
-        </div>
-      </section>
-
-      <section className="py-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+      <section className="pt-32 pb-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <AnimatedSection direction="left" delay={0.1}>
@@ -216,46 +207,25 @@ const Contact = () => {
                   {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium text-text-primary mb-2">
-                      Project Type *
-                    </label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-text-primary transition-colors bg-white ${
-                        errors.projectType ? 'border-red-500' : 'border-border-light'
-                      }`}
-                    >
-                      <option value="">Select a service</option>
-                      {projectTypes.map((type) => (
-                        <option key={type} value={type}>{type}</option>
-                      ))}
-                    </select>
-                    {errors.projectType && <p className="text-red-500 text-sm mt-1">{errors.projectType}</p>}
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-text-primary mb-2">
-                      Budget Range
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-border-light rounded-xl focus:outline-none focus:border-text-primary transition-colors bg-white"
-                    >
-                      <option value="">Select budget range</option>
-                      {budgetRanges.map((range) => (
-                        <option key={range} value={range}>{range}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+                <MultiSelectButtons
+                  options={projectTypes}
+                  selectedValues={formData.projectType}
+                  onChange={(values) => handleMultiSelectChange('projectType', values)}
+                  label="Project Type"
+                  required={true}
+                  error={errors.projectType}
+                  multiple={true}
+                />
+
+                <MultiSelectButtons
+                  options={budgetRanges}
+                  selectedValues={formData.budget}
+                  onChange={(values) => handleMultiSelectChange('budget', values)}
+                  label="Budget Range"
+                  required={false}
+                  error={errors.budget}
+                  multiple={false}
+                />
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">

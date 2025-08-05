@@ -12,27 +12,34 @@ export default {
         swiss: ['DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
+        // New color palette
+        'amber': '#FFA400',
+        'blue': '#009FFD',
+        'navy': '#2A2A72',
+        'charcoal': '#232528',
+        'ice': '#EAF6FF',
+        
         // Clean foundation with modern accents
-        'bg-primary': '#f6f7f8',
+        'bg-primary': '#EAF6FF', // Using ice as primary bg
         'bg-secondary': '#ffffff', 
         'bg-tertiary': '#fafafb',
         'bg-quaternary': '#fcfcfc',
-        'text-primary': '#011627',
-        'text-secondary': '#2c3137',
+        'text-primary': '#232528', // Using charcoal as primary text
+        'text-secondary': '#2A2A72', // Using navy as secondary text
         'text-tertiary': '#57636f',
         'text-quaternary': '#8894a1',
         'border-light': '#e5e5e5',
         'border-medium': '#d4d4d4',
-        'accent-primary': '#20a4f3',
-        'accent-hover': '#0b89d1',
-        'accent-light': '#d2edfd',
+        'accent-primary': '#009FFD', // Using blue as primary accent
+        'accent-hover': '#FFA400', // Using amber for hover
+        'accent-light': '#EAF6FF', // Using ice for light accent
         
-        // New modern color palette (used subtly)
-        'rich-black': '#011627',
+        // Legacy colors for compatibility
+        'rich-black': '#232528',
         'folly': '#ff3366',
         'light-sea-green': '#2ec4b6',
-        'seasalt': '#f6f7f8',
-        'celestial-blue': '#20a4f3',
+        'seasalt': '#EAF6FF',
+        'celestial-blue': '#009FFD',
         
         // Legacy colors for compatibility
         accent: {

@@ -1054,6 +1054,62 @@ function SplashCursor({
             }
         }, 150 + Math.random() * 100); // MUCH faster interval: 150-250ms
 
+        // Periodic smaller bursts every 5 seconds (after initial 3 seconds)
+        const periodicBurstTimeout = setTimeout(() => {
+            const periodicBurstInterval = setInterval(() => {
+                // Create smaller burst for 1 second
+                const burstStartTime = Date.now();
+                const smallBurstInterval = setInterval(() => {
+                    const burstElapsed = (Date.now() - burstStartTime) / 1000;
+                    
+                    // Stop after 1 second
+                    if (burstElapsed >= 1) {
+                        clearInterval(smallBurstInterval);
+                        return;
+                    }
+                    
+                    // Create 6 smaller bursts with shorter strokes
+                    const numSmallBursts = 6;
+                    for (let i = 0; i < numSmallBursts; i++) {
+                        setTimeout(() => {
+                            const pointer = pointers[0];
+                            
+                            // Create shorter stroke movements
+                            const startX = Math.random() * canvas.width;
+                            const startY = Math.random() * canvas.height;
+                            const strokeLength = 80 + Math.random() * 120; // 80-200px strokes (smaller)
+                            const angle = Math.random() * Math.PI * 2;
+                            
+                            const color = generateColor();
+                            // Moderate intensity for periodic bursts
+                            color.r *= 6;
+                            color.g *= 6;
+                            color.b *= 6;
+                            
+                            // Create stroke with fewer steps
+                            const strokeSteps = 8; // Fewer steps for smaller bursts
+                            for (let step = 0; step < strokeSteps; step++) {
+                                setTimeout(() => {
+                                    const progress = step / strokeSteps;
+                                    const currentX = startX + Math.cos(angle) * strokeLength * progress;
+                                    const currentY = startY + Math.sin(angle) * strokeLength * progress;
+                                    
+                                    // Keep within canvas bounds
+                                    const clampedX = Math.max(0, Math.min(canvas.width, currentX));
+                                    const clampedY = Math.max(0, Math.min(canvas.height, currentY));
+                                    
+                                    updatePointerMoveData(pointer, clampedX, clampedY, color);
+                                }, step * 12); // Slightly slower stroke steps
+                            }
+                        }, i * 40); // More spacing between small bursts
+                    }
+                }, 200 + Math.random() * 150); // 200-350ms interval for small bursts
+            }, 5000); // Every 5 seconds
+            
+            // Store interval for cleanup
+            window.periodicBurstInterval = periodicBurstInterval;
+        }, 3000); // Start after initial 3 seconds
+
         // Start animation
         updateFrame();
 
@@ -1064,6 +1120,13 @@ function SplashCursor({
             }
             if (autoBurstInterval) {
                 clearInterval(autoBurstInterval);
+            }
+            if (periodicBurstTimeout) {
+                clearTimeout(periodicBurstTimeout);
+            }
+            if (window.periodicBurstInterval) {
+                clearInterval(window.periodicBurstInterval);
+                delete window.periodicBurstInterval;
             }
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("touchmove", handleTouchMove);

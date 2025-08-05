@@ -2,12 +2,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CleanButton } from './ui/clean-button'
+import { MagneticButton } from './ui/magnetic-button'
 
 const Header = () => {
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [navTheme, setNavTheme] = useState('light') // 'light', 'dark', 'accent'
-
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
@@ -16,62 +15,14 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ]
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionBg = entry.target.getAttribute('data-nav-theme')
-            if (sectionBg) {
-              setNavTheme(sectionBg)
-            }
-          }
-        })
-      },
-      { 
-        threshold: 0.3,
-        rootMargin: '-80px 0px 0px 0px' // Account for navbar height
-      }
-    )
-
-    // Observe all sections with data-nav-theme attribute
-    const sections = document.querySelectorAll('[data-nav-theme]')
-    sections.forEach((section) => observer.observe(section))
-
-    return () => observer.disconnect()
-  }, [location.pathname])
-
-  // Dynamic color schemes based on background
-  const getNavColors = () => {
-    switch (navTheme) {
-      case 'dark':
-        return {
-          logo: '#ffffff',
-          navActive: '#ffffff',
-          navInactive: '#cbd5e1',
-          navHover: '#ffffff',
-          hamburger: '#ffffff'
-        }
-      case 'accent':
-        return {
-          logo: '#3b82f6',
-          navActive: '#3b82f6',
-          navInactive: '#64748b',
-          navHover: '#3b82f6',
-          hamburger: '#3b82f6'
-        }
-      default: // light
-        return {
-          logo: '#0f172a',
-          navActive: '#0f172a',
-          navInactive: '#64748b',
-          navHover: '#0f172a',
-          hamburger: '#0f172a'
-        }
-    }
+  // Clean, consistent colors - no more adaptive nonsense
+  const colors = {
+    logo: '#0f172a',
+    navActive: '#0f172a', 
+    navInactive: '#64748b',
+    navHover: '#0f172a',
+    hamburger: '#0f172a'
   }
-
-  const colors = getNavColors()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
@@ -153,7 +104,7 @@ const Header = () => {
 
           <div className="hidden md:block">
             <Link to="/contact">
-              <CleanButton text="Start" />
+              <MagneticButton text="Start" />
             </Link>
           </div>
 
