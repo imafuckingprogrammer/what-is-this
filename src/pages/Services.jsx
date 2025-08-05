@@ -223,7 +223,7 @@ const Services = () => {
 
   return (
     <div className="bg-bg-primary">
-      <section className="h-screen flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
+      <section className="min-h-[70vh] flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.2}>
             <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
