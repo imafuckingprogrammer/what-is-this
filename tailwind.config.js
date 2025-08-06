@@ -13,40 +13,40 @@ export default {
       },
       colors: {
         // New color palette
-        'amber': '#FFA400',
-        'blue': '#009FFD',
-        'navy': '#2A2A72',
-        'charcoal': '#232528',
-        'ice': '#EAF6FF',
+        'teal': '#25CED1',
+        'white': '#FFFFFF',
+        'cream': '#FCEADE',
+        'orange': '#FF8A5B',
+        'pink': '#EA526F',
         
-        // Clean foundation with modern accents
-        'bg-primary': '#EAF6FF', // Using ice as primary bg
-        'bg-secondary': '#ffffff', 
-        'bg-tertiary': '#fafafb',
-        'bg-quaternary': '#fcfcfc',
-        'text-primary': '#232528', // Using charcoal as primary text
-        'text-secondary': '#2A2A72', // Using navy as secondary text
-        'text-tertiary': '#57636f',
-        'text-quaternary': '#8894a1',
-        'text-accent': '#009FFD', // Using blue as accent text
-        'border-light': '#e5e5e5',
-        'border-medium': '#d4d4d4',
-        'accent-primary': '#009FFD', // Using blue as primary accent
-        'accent-hover': '#FFA400', // Using amber for hover
-        'accent-light': '#EAF6FF', // Using ice for light accent
+        // Clean foundation with new colors
+        'bg-primary': '#FFFFFF', // White as primary bg
+        'bg-secondary': '#FCEADE', // Cream as secondary bg
+        'bg-tertiary': '#f8f9fa', // Very light gray
+        'bg-quaternary': '#25CED1', // Teal as accent bg
+        'text-primary': '#2c3137', // Dark gray for primary text
+        'text-secondary': '#57636f', // Medium gray for secondary text
+        'text-tertiary': '#8894a1', // Light gray for tertiary text
+        'text-quaternary': '#a8b5c0', // Lighter gray
+        'text-accent': '#EA526F', // Pink as accent text
+        'border-light': '#e5e7eb',
+        'border-medium': '#d1d5db',
+        'accent-primary': '#25CED1', // Teal as primary accent
+        'accent-hover': '#FF8A5B', // Orange for hover
+        'accent-light': '#FCEADE', // Cream for light accent
         
         // Legacy colors for compatibility
-        'rich-black': '#232528',
-        'folly': '#ff3366',
-        'light-sea-green': '#2ec4b6',
-        'seasalt': '#EAF6FF',
-        'celestial-blue': '#009FFD',
+        'rich-black': '#2c3137',
+        'folly': '#EA526F',
+        'light-sea-green': '#25CED1',
+        'seasalt': '#FCEADE',
+        'celestial-blue': '#25CED1',
         
         // Legacy colors for compatibility
         accent: {
-          DEFAULT: '#2563eb',
-          light: '#60a5fa',
-          dark: '#1d4ed8',
+          DEFAULT: '#25CED1',
+          light: '#FCEADE',
+          dark: '#1a9b9e',
         },
         gray: {
           50: '#fafafa',
