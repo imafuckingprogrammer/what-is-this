@@ -45,7 +45,7 @@ const Home = () => {
       description: 'We partnered with Eblon to build a bold identity and digital presence that tells customers: "You\'ve found your performance partner. You\'re in good hands."',
       metrics: ['4 new partnership opportunities', 'Scalable brand identity', 'Lebanon to MENA expansion'],
       services: ['Branding', 'Creative Direction', 'Web Development'],
-      year: '2024',
+      year: '2025',
       heroImage: '/images/casestudies/eblon/Mockup2.png',
     },
     {
@@ -56,7 +56,7 @@ const Home = () => {
       description: 'We helped Nexus Bridge tell a clearer story, positioning it as the obvious guide for international companies navigating Syria\'s high-risk, high-potential market.',
       metrics: ['Visual identity that inspires trust', 'Scalable platform ready for growth', 'Matched real-world authority'],
       services: ['Branding', 'Creative Direction', 'Web Design'],
-      year: '2024',
+      year: '2025',
       heroImage: '/images/casestudies/nexus/paper%20logo%20mockup.png',
     },
   ]
@@ -142,6 +142,7 @@ const Home = () => {
 
   return (
     <div className="bg-bg-primary">
+      {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center px-6 lg:px-8 overflow-hidden" data-nav-theme="light">
         {shouldRender('complex-effects') && (
           <div className="absolute inset-0 z-0">
@@ -168,7 +169,7 @@ const Home = () => {
               <Link to="/contact">
                 <CleanButton 
                   text="Start Your Project" 
-                  className="px-8 py-4 bg-text-primary text-bg-primary hover:bg-text-primary/90"
+                  className="px-8 py-4 !bg-black !text-white"
                 />
               </Link>
               <Link to="/work">
@@ -182,6 +183,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* What we do */}
       <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
@@ -224,9 +226,9 @@ const Home = () => {
                   <div className="bg-bg-secondary p-8 h-80 flex flex-col justify-between border border-border-light hover:border-border-medium transition-all duration-300 rounded-2xl relative overflow-hidden shadow-sm hover:shadow-md">
                     {/* Background image that appears on hover */}
                     <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                       style={{
-                        backgroundImage: `url(https://picsum.photos/400/320?random=${index + 1}&t=${Date.now()})`,
+                        backgroundImage: `url(/images/casestudies/pagewiseimages/Home%20page/What%20we%20do/${['austin-distel-tLZhFRLj6nY-unsplash.jpg', 'crystal-y-S8qMG2g-eFM-unsplash.jpg', 'daria-nepriakhina-zoCDWPuiRuA-unsplash.jpg', 'eftakher-alam-i1VQZsU86ok-unsplash.jpg'][index] || 'austin-distel-tLZhFRLj6nY-unsplash.jpg'})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}
@@ -247,7 +249,7 @@ const Home = () => {
                       style={{
                         width: '200px',
                         height: '150px',
-                        backgroundImage: `url(https://picsum.photos/200/150?random=${index + 10}&t=${Date.now()})`,
+                        backgroundImage: `url(/images/casestudies/pagewiseimages/Home%20page/What%20we%20do/${['fiona-murray-degraaff-sSmAGI0HUtw-unsplash.jpg', 'harrison-kugler-YNIlpT-P68I-unsplash.jpg', 'map-lying-wooden-table.jpg', 'pexels-bibekghosh-14553705.jpg'][index] || 'fiona-murray-degraaff-sSmAGI0HUtw-unsplash.jpg'})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         borderRadius: '12px',
@@ -281,6 +283,69 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Problem we solve */}
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+                The Problem We Solve
+              </h2>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're not here because you're short on ideas.
+              </p>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're here because your marketing isn't landing the way it should.
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  'Confusing messaging',
+                  'Wasted ad spend', 
+                  'Low engagement',
+                  'A brand that doesn\'t feel like you'
+                ].map((problem, index) => (
+                  <motion.div 
+                    key={index}
+                    className="text-left"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20,
+                        delay: index * 0.1 + 0.3
+                      }
+                    }}
+                  >
+                    <span className="text-text-secondary">{problem}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <p className="text-xl font-semibold text-text-primary">
+                You shouldn't have to settle for mediocre marketing.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/Home%20page/Problem%20we%20solve/pexels-karolina-grabowska-4959785.jpg)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
       <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
@@ -360,6 +425,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Featured work */}
       <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
@@ -391,7 +457,7 @@ const Home = () => {
                       }
                     }}
                     style={{
-                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 20}&t=${Date.now()}`})`,
+                      backgroundImage: `url(${project.heroImage || `/images/casestudies/pagewiseimages/Services/${['Brand strategy/brands-people-0adHvNJu-Zo-unsplash.jpg', 'Web/pexels-seven11nash-325111.jpg'][index] || 'Brand strategy/brands-people-0adHvNJu-Zo-unsplash.jpg'}`})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}
@@ -439,68 +505,8 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Real marketers */}
       <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
-                The Problem We Solve
-              </h2>
-              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-                You're not here because you're short on ideas.
-              </p>
-              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-                You're here because your marketing isn't landing the way it should.
-              </p>
-              <div className="space-y-4 mb-8">
-                {[
-                  'Confusing messaging',
-                  'Wasted ad spend', 
-                  'Low engagement',
-                  'A brand that doesn\'t feel like you'
-                ].map((problem, index) => (
-                  <motion.div 
-                    key={index}
-                    className="text-left"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { 
-                        type: "spring", 
-                        stiffness: 300, 
-                        damping: 20,
-                        delay: index * 0.1 + 0.3
-                      }
-                    }}
-                  >
-                    <span className="text-text-secondary">{problem}</span>
-                  </motion.div>
-                ))}
-              </div>
-              <p className="text-xl font-semibold text-text-primary">
-                You shouldn't have to settle for mediocre marketing.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection direction="right" delay={0.2}>
-              <motion.div 
-                className="aspect-[4/3] rounded-2xl overflow-hidden"
-                style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=200)`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 300, damping: 20 }
-                }}
-              />
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
@@ -550,7 +556,7 @@ const Home = () => {
               <motion.div 
                 className="aspect-[4/3] rounded-2xl overflow-hidden"
                 style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=300)`,
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/Home%20page/real%20marketers/authentic-small-youthful-marketing-agency.jpg)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -564,6 +570,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Final CTA */}
       <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>

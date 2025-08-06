@@ -10,6 +10,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import Work from './pages/Work'
 import Contact from './pages/Contact'
+import Terms from './pages/Terms'
 
 function App() {
   const { shouldShowLoader, handleLoadingComplete } = useInitialLoader()
@@ -26,6 +27,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<Terms />} />
 
           </Routes>
         </PageTransition>

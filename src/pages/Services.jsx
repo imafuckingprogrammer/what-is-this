@@ -464,7 +464,16 @@ const Services = () => {
                 <motion.div 
                   className="aspect-[4/3] rounded-2xl overflow-hidden"
                   style={{
-                    backgroundImage: `url(https://picsum.photos/600/450?random=${activeService + 30})`,
+                    backgroundImage: `url(/images/casestudies/pagewiseimages/Services/${
+                      [
+                        'Brand%20strategy/brands-people-0adHvNJu-Zo-unsplash.jpg',
+                        'Web/balazs-ketyi-9VzoRKfBsMM-unsplash.jpg', 
+                        'content%20production/pexels-kyleloftusstudios-18015188.jpg',
+                        'marketing/pexels-n-voitkevich-8062287.jpg',
+                        'consulting/pexels-mikael-blomkvist-6476779.jpg',
+                        'B2B/pexels-kindelmedia-7688336.jpg'
+                      ][activeService] || 'Brand%20strategy/brands-people-0adHvNJu-Zo-unsplash.jpg'
+                    })`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

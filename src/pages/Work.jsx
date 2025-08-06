@@ -24,11 +24,11 @@ const Work = () => {
       title: 'Eblon Dynamics',
       category: 'Heavy Machinery Parts',
       type: 'branding',
-      tags: ['Digital', 'Web Dev', 'Branding', 'B2B', 'Industrial', 'MENA'],
+      tags: ['Branding', 'Web Dev', 'B2B'],
       description: 'We partnered with Eblon to build a bold identity and digital presence that tells customers: "You\'ve found your performance partner. You\'re in good hands."',
       metrics: ['4 new partnership opportunities', 'Scalable brand identity', 'Lebanon to MENA expansion'],
       services: ['Branding', 'Creative Direction', 'Web Development'],
-      year: '2024',
+      year: '2025',
       heroImage: '/images/casestudies/eblon/Mockup2.png',
       websiteUrl: 'https://eblondynamics.com',
       fullCaseStudy: {
@@ -74,11 +74,11 @@ const Work = () => {
       title: 'Nexus Bridge Advisors',
       category: 'International Consulting',
       type: 'web',
-      tags: ['Digital', 'Web Dev', 'Branding', 'B2B', 'Consulting', 'International'],
+      tags: ['Branding', 'Web Design', 'B2B'],
       description: 'We helped Nexus Bridge tell a clearer story, positioning it as the obvious guide for international companies navigating Syria\'s high-risk, high-potential market.',
       metrics: ['Visual identity that inspires trust', 'Scalable platform ready for growth', 'Matched real-world authority'],
       services: ['Branding', 'Creative Direction', 'Web Design'],
-      year: '2024',
+      year: '2025',
       heroImage: '/images/casestudies/nexus/paper%20logo%20mockup.png',
       websiteUrl: 'https://nexusbridgeadvisors.com',
       fullCaseStudy: {
@@ -117,6 +117,30 @@ const Work = () => {
           '/images/casestudies/nexus/NexusBridgeLogo.V1.png'
         ]
       }
+    },
+    {
+      id: 3,
+      title: 'Verde Wellness',
+      category: 'Healthcare & Wellness',
+      type: 'branding',
+      tags: ['Branding', 'Content Strategy', 'Healthcare'],
+      description: 'Developed a comprehensive wellness brand identity that positions Verde as the trusted partner for holistic health solutions and sustainable wellness practices.',
+      metrics: ['40% increase in client inquiries', 'Brand recognition across 3 markets', 'Digital platform engagement up 60%'],
+      services: ['Brand Identity', 'Content Strategy', 'Digital Marketing'],
+      year: '2025',
+      heroImage: '/images/casestudies/pagewiseimages/Services/consulting/pexels-rdne-9034728.jpg'
+    },
+    {
+      id: 4,
+      title: 'Quantum Ventures',
+      category: 'Investment & Finance',
+      type: 'web',
+      tags: ['Web Development', 'Fintech', 'B2B'],
+      description: 'Created a sophisticated digital presence for Quantum Ventures that communicates trust, expertise, and innovation in the competitive fintech investment space.',
+      metrics: ['35% more qualified leads', 'Professional credibility established', 'Streamlined client onboarding'],
+      services: ['Web Development', 'UX Design', 'Brand Strategy'],
+      year: '2025',
+      heroImage: '/images/casestudies/pagewiseimages/Services/Web/budka-damdinsuren-xihqiK6rD9k-unsplash.jpg'
     }
   ]
 
@@ -176,7 +200,7 @@ const Work = () => {
                   <motion.div 
                     className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 relative"
                     style={{
-                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 40}&t=${Date.now() + index}`})`,
+                      backgroundImage: `url(${project.heroImage || `/images/casestudies/pagewiseimages/Services/${['Brand strategy/brands-people-0adHvNJu-Zo-unsplash.jpg', 'Web/balazs-ketyi-9VzoRKfBsMM-unsplash.jpg', 'consulting/pexels-mikael-blomkvist-6476779.jpg', 'marketing/pexels-rethaferguson-3811082.jpg'][index] || 'Brand strategy/brands-people-0adHvNJu-Zo-unsplash.jpg'}`})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}

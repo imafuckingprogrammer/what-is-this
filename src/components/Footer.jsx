@@ -52,15 +52,15 @@ const Footer = () => {
 
         <div className="border-t border-gray-600 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm">
-            © 2024 TrendArt. All rights reserved.
+            © 2025 TrendArt. All rights reserved.
           </p>
           <div className="flex space-x-8 mt-4 md:mt-0">
             <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+            <Link to="/terms" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Terms of Service
-            </a>
+            </Link>
             <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
               Careers
             </a>

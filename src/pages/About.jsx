@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { CleanButton } from '../components/ui/clean-button'
 import SmoothTextReveal from '../components/ui/SmoothTextReveal'
 import AnimatedSection from '../components/ui/AnimatedSection'
@@ -90,7 +91,7 @@ const About = () => {
               <motion.div 
                 className="aspect-[4/3] lg:aspect-[3/4] rounded-2xl overflow-hidden"
                 style={{
-                  backgroundImage: `url(https://picsum.photos/600/800?random=70)`,
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/About/kaboompics_serenity-by-the-sea-coastal-landscapes-and-beach-textures-36105.jpg)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -118,7 +119,7 @@ const About = () => {
               <motion.div 
                 className="aspect-[4/3] rounded-2xl overflow-hidden"
                 style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=101)`,
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/About/pexels-fauxels-3184291.jpg)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -139,7 +140,7 @@ const About = () => {
               <motion.div 
                 className="aspect-[4/3] rounded-2xl overflow-hidden"
                 style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=102)`,
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/About/pexels-polina-zimmerman-3782235.jpg)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -217,7 +218,7 @@ const About = () => {
               <motion.div 
                 className="aspect-[4/3] rounded-2xl overflow-hidden"
                 style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=95)`,
+                  backgroundImage: `url(/images/casestudies/pagewiseimages/About/pexels-shvetsa-5324974.jpg)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
@@ -254,12 +255,16 @@ const About = () => {
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.3}>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <CleanButton className="px-8 py-4">
-                Start a Project
-              </CleanButton>
-              <CleanButton className="px-8 py-4">
-                See Our Work
-              </CleanButton>
+              <Link to="/contact">
+                <CleanButton className="px-8 py-4">
+                  Start a Project
+                </CleanButton>
+              </Link>
+              <Link to="/work">
+                <CleanButton className="px-8 py-4">
+                  See Our Work
+                </CleanButton>
+              </Link>
             </div>
           </AnimatedSection>
         </div>
