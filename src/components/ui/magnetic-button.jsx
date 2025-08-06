@@ -94,17 +94,14 @@ const MagneticButton = React.forwardRef(
         {...props}
       >
         {/* Text */}
-        <span className="relative z-10 block text-white">
+        <span className="relative z-10 block text-bg-primary">
           {children || text}
         </span>
 
-        {/* Glass blur background */}
-        <div className="absolute inset-0 backdrop-blur-xl rounded-full border border-white/10"
+        {/* Dark background */}
+        <div className="absolute inset-0 rounded-full border border-text-primary/20 bg-text-primary"
           style={{
-            backdropFilter: 'blur(12px) saturate(200%) contrast(150%) brightness(110%) hue-rotate(2deg)',
-            WebkitBackdropFilter: 'blur(12px) saturate(200%) contrast(150%) brightness(110%) hue-rotate(2deg)',
-            filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
-            background: 'rgba(0,0,0,0.8)'
+            filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
           }} />
       </motion.button>
     );

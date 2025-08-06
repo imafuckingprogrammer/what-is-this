@@ -546,7 +546,7 @@ const Services = () => {
                 <motion.div 
                   className={`p-8 rounded-2xl border h-full transition-all duration-300 ${
                     pkg.popular 
-                      ? 'bg-bg-quaternary border-border-medium shadow-lg' 
+                      ? 'bg-bg-tertiary border-text-primary border-2 shadow-lg' 
                       : 'bg-bg-tertiary border-border-light hover:border-border-medium shadow-sm hover:shadow-md'
                   }`}
                   whileHover={{ 
@@ -560,7 +560,7 @@ const Services = () => {
                   }}
                 >
                   {pkg.popular && (
-                    <div className="bg-text-accent text-bg-primary px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
+                    <div className="bg-text-primary text-bg-primary px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
                       Most Popular
                     </div>
                   )}

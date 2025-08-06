@@ -50,10 +50,10 @@ const CleanButton = React.forwardRef(
       >
         {/* Text changes color with hover */}
         <motion.span 
-          className="relative z-10 block"
+          className="relative z-10 block text-inherit"
           animate={{ 
             y: isHovered ? -1 : 0,
-            color: isHovered ? "#ffffff" : "#000000"
+            color: isHovered ? "#ffffff" : "inherit"
           }}
           transition={{ 
             duration: 0.3,

@@ -10,13 +10,12 @@ const Work = () => {
   const [activeFilter, setActiveFilter] = useState(['All Work'])
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null)
 
-  const filterOptions = ['All Work', 'Branding', 'Digital', 'Campaigns', 'Web Development']
+  const filterOptions = ['All Work', 'Branding', 'Web Development', 'Other']
   const filterMap = {
     'All Work': 'all',
     'Branding': 'branding', 
-    'Digital': 'digital',
-    'Campaigns': 'campaigns',
-    'Web Development': 'web'
+    'Web Development': 'web',
+    'Other': 'other'
   }
 
   const portfolio = [
@@ -24,7 +23,7 @@ const Work = () => {
       id: 1,
       title: 'Eblon Dynamics',
       category: 'Heavy Machinery Parts',
-      type: 'digital',
+      type: 'branding',
       tags: ['Digital', 'Web Dev', 'Branding', 'B2B', 'Industrial', 'MENA'],
       description: 'We partnered with Eblon to build a bold identity and digital presence that tells customers: "You\'ve found your performance partner. You\'re in good hands."',
       metrics: ['4 new partnership opportunities', 'Scalable brand identity', 'Lebanon to MENA expansion'],
@@ -126,7 +125,6 @@ const Work = () => {
     'Stellar Corp', 'Infinity Labs', 'Apex Technologies', 'Matrix Enterprises', 'Phoenix Partners', 'Summit Group',
   ]
 
-  const caseStudies = portfolio.filter(item => item.fullCaseStudy)
 
   const filteredPortfolio = activeFilter[0] === 'All Work' || filterMap[activeFilter[0]] === 'all'
     ? portfolio 
@@ -170,12 +168,13 @@ const Work = () => {
             {filteredPortfolio.map((project, index) => (
               <AnimatedSection key={project.id} delay={index * 0.1} direction="up">
                 <motion.div 
-                  className="group"
+                  className="group cursor-pointer"
                   whileHover={{ scale: 1.02, y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  onClick={() => setSelectedCaseStudy(project)}
                 >
                   <motion.div 
-                    className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
+                    className="aspect-[4/3] mb-6 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 relative"
                     style={{
                       backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 40}&t=${Date.now() + index}`})`,
                       backgroundSize: 'cover',
@@ -189,7 +188,13 @@ const Work = () => {
                         damping: 20 
                       }
                     }}
-                  />
+                  >
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                      <div className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Click for case study
+                      </div>
+                    </div>
+                  </motion.div>
                   <div className="space-y-4">
                     <div className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                       {project.category} • {project.year}
@@ -277,71 +282,6 @@ const Work = () => {
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
-              Case studies
-            </h2>
-            <SmoothTextReveal 
-              text="Deep dives into our most impactful projects, showcasing the strategic process and measurable outcomes that define our approach."
-              className="text-xl text-text-secondary max-w-3xl mx-auto"
-              delay={0.1}
-            />
-          </AnimatedSection>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <AnimatedSection key={index} delay={index * 0.1} direction="up">
-                <motion.div 
-                  className="bg-bg-secondary p-8 rounded-2xl border border-border-light hover:border-border-medium transition-all duration-300 cursor-pointer h-full flex flex-col justify-between shadow-sm hover:shadow-md"
-                  whileHover={{ 
-                    scale: 1.02,
-                    y: -8,
-                    transition: { 
-                      type: "spring", 
-                      stiffness: 400, 
-                      damping: 25 
-                    }
-                  }}
-                  onClick={() => setSelectedCaseStudy(study)}
-                >
-                  <div>
-                    <div 
-                      className="aspect-[4/3] mb-6 rounded-xl overflow-hidden"
-                      style={{
-                        backgroundImage: `url(${study.id === 2 ? study.fullCaseStudy?.gallery?.[0] : study.heroImage})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{study.title}</h3>
-                    <p className="text-text-secondary mb-4 text-sm leading-relaxed">{study.fullCaseStudy?.subtitle}</p>
-                    
-                    <div className="space-y-3">
-                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
-                      <div className="grid grid-cols-1 gap-2">
-                        {study.metrics.slice(0, 2).map((result, resultIndex) => (
-                          <div key={resultIndex} className="text-sm text-text-secondary font-medium">
-                            {result}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-6 pt-4 border-t border-border-light">
-                    <div className="text-sm text-text-primary font-medium hover:underline">
-                      Read full case study →
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Case Study Modal */}
       <AnimatePresence>

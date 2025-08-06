@@ -9,9 +9,9 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
     { name: 'Work', href: '/work' },
+    { name: 'Services', href: '/services' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]
 

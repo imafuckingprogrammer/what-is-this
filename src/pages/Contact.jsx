@@ -256,9 +256,8 @@ const Contact = () => {
                     >
                       <div className="font-semibold text-text-primary mb-2">Office</div>
                       <p className="text-text-secondary">
-                        123 Design Street<br />
-                        San Francisco, CA 94102<br />
-                        United States
+                        Abu Dhabi<br />
+                        United Arab Emirates
                       </p>
                     </motion.div>
                     
@@ -277,8 +276,8 @@ const Contact = () => {
                     >
                       <div className="font-semibold text-text-primary mb-2">General Inquiries</div>
                       <p className="text-text-secondary">
-                        Phone: +1 (555) 123-4567<br />
-                        Email: hello@trendart.co
+                        Phone: +971586954842<br />
+                        Email: info@trendartagency.com
                       </p>
                     </motion.div>
                     
@@ -297,7 +296,7 @@ const Contact = () => {
                     >
                       <div className="font-semibold text-text-primary mb-2">Business Hours</div>
                       <p className="text-text-secondary">
-                        Monday - Friday: 9:00 AM - 6:00 PM PST<br />
+                        Monday - Friday: 9:00 AM - 6:00 PM GST<br />
                         We typically respond within 4 hours during business hours
                       </p>
                     </motion.div>
@@ -326,7 +325,7 @@ const Contact = () => {
             />
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.5}>
-            <a href="tel:+15551234567">
+            <a href="tel:+971586954842">
               <CleanButton 
                 text="Call" 
                 className="w-40"

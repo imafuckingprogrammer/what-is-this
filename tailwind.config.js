@@ -28,6 +28,7 @@ export default {
         'text-secondary': '#2A2A72', // Using navy as secondary text
         'text-tertiary': '#57636f',
         'text-quaternary': '#8894a1',
+        'text-accent': '#009FFD', // Using blue as accent text
         'border-light': '#e5e5e5',
         'border-medium': '#d4d4d4',
         'accent-primary': '#009FFD', // Using blue as primary accent

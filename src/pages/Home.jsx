@@ -57,7 +57,7 @@ const Home = () => {
       metrics: ['Visual identity that inspires trust', 'Scalable platform ready for growth', 'Matched real-world authority'],
       services: ['Branding', 'Creative Direction', 'Web Design'],
       year: '2024',
-      heroImage: '/images/casestudies/nexus/Frame109.png',
+      heroImage: '/images/casestudies/nexus/paper%20logo%20mockup.png',
     },
   ]
 
@@ -168,7 +168,7 @@ const Home = () => {
               <Link to="/contact">
                 <CleanButton 
                   text="Start Your Project" 
-                  className="px-8 py-4"
+                  className="px-8 py-4 bg-text-primary text-bg-primary hover:bg-text-primary/90"
                 />
               </Link>
               <Link to="/work">
@@ -179,68 +179,6 @@ const Home = () => {
               </Link>
             </div>
           </AnimatedSection>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
-                The Problem We Solve
-              </h2>
-              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-                You're not here because you're short on ideas.
-              </p>
-              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
-                You're here because your marketing isn't landing the way it should.
-              </p>
-              <div className="space-y-4 mb-8">
-                {[
-                  'Confusing messaging',
-                  'Wasted ad spend', 
-                  'Low engagement',
-                  'A brand that doesn\'t feel like you'
-                ].map((problem, index) => (
-                  <motion.div 
-                    key={index}
-                    className="flex items-start space-x-3"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { 
-                        type: "spring", 
-                        stiffness: 300, 
-                        damping: 20,
-                        delay: index * 0.1 + 0.3
-                      }
-                    }}
-                  >
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-3 flex-shrink-0" />
-                    <span className="text-text-secondary">{problem}</span>
-                  </motion.div>
-                ))}
-              </div>
-              <p className="text-xl font-semibold text-text-primary">
-                You shouldn't have to settle for mediocre marketing.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection direction="right" delay={0.2}>
-              <motion.div 
-                className="aspect-[4/3] rounded-2xl overflow-hidden"
-                style={{
-                  backgroundImage: `url(https://picsum.photos/600/450?random=200)`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 300, damping: 20 }
-                }}
-              />
-            </AnimatedSection>
-          </div>
         </div>
       </section>
 
@@ -343,85 +281,6 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
-              Featured work
-            </h2>
-            <SmoothTextReveal 
-              text="A selection of our most impactful projects, showcasing the strategic thinking and creative execution that delivers measurable business outcomes."
-              className="text-xl text-text-secondary max-w-3xl mx-auto"
-              delay={0.1}
-            />
-          </AnimatedSection>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {featuredWork.map((project, index) => (
-              <AnimatedSection key={index} delay={index * 0.1} direction="up">
-                <motion.div 
-                  className="group cursor-pointer"
-                  whileHover={{ scale: 1.02, y: -8 }}
-                >
-                  <motion.div 
-                    className="aspect-[4/3] mb-8 transition-opacity rounded-2xl overflow-hidden shadow-sm hover:shadow-md"
-                    whileHover={{ 
-                      scale: 1.02,
-                      transition: { 
-                        type: "spring", 
-                        stiffness: 300, 
-                        damping: 20 
-                      }
-                    }}
-                    style={{
-                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 20}&t=${Date.now()}`})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  />
-                  <div className="space-y-4">
-                    <div className="text-sm font-medium text-accent-primary uppercase tracking-wide">
-                      {project.category} • {project.year}
-                    </div>
-                    <h3 className="text-2xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-text-secondary leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="space-y-2">
-                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
-                      <div className="text-sm text-text-secondary">
-                        {project.metrics.join(' • ')}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.services.map((service, serviceIndex) => (
-                        <span
-                          key={serviceIndex}
-                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-          
-          <div className="text-center mt-16">
-            <Link to="/work">
-              <CleanButton 
-                text="View" 
-                className="w-36"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
@@ -502,6 +361,146 @@ const Home = () => {
       </section>
 
       <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
+        <div className="max-w-7xl mx-auto">
+          <AnimatedSection className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
+              Featured work
+            </h2>
+            <SmoothTextReveal 
+              text="A selection of our most impactful projects, showcasing the strategic thinking and creative execution that delivers measurable business outcomes."
+              className="text-xl text-text-secondary max-w-3xl mx-auto"
+              delay={0.1}
+            />
+          </AnimatedSection>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {featuredWork.map((project, index) => (
+              <AnimatedSection key={index} delay={index * 0.1} direction="up">
+                <motion.div 
+                  className="group cursor-pointer"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                >
+                  <motion.div 
+                    className="aspect-[4/3] mb-8 transition-opacity rounded-2xl overflow-hidden shadow-sm hover:shadow-md"
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20 
+                      }
+                    }}
+                    style={{
+                      backgroundImage: `url(${project.heroImage || `https://picsum.photos/600/450?random=${index + 20}&t=${Date.now()}`})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center'
+                    }}
+                  />
+                  <div className="space-y-4">
+                    <div className="text-sm font-medium text-accent-primary uppercase tracking-wide">
+                      {project.category} • {project.year}
+                    </div>
+                    <h3 className="text-2xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed">
+                      {project.description}
+                    </p>
+                    <div className="space-y-2">
+                      <div className="text-sm font-medium text-text-primary">Key Results:</div>
+                      <div className="text-sm text-text-secondary">
+                        {project.metrics.join(' • ')}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.services.map((service, serviceIndex) => (
+                        <span
+                          key={serviceIndex}
+                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+          
+          <div className="text-center mt-16">
+            <Link to="/work">
+              <CleanButton 
+                text="View" 
+                className="w-36"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <AnimatedSection direction="left" delay={0.1}>
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+                The Problem We Solve
+              </h2>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're not here because you're short on ideas.
+              </p>
+              <p className="text-xl text-text-secondary mb-8 leading-relaxed">
+                You're here because your marketing isn't landing the way it should.
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  'Confusing messaging',
+                  'Wasted ad spend', 
+                  'Low engagement',
+                  'A brand that doesn\'t feel like you'
+                ].map((problem, index) => (
+                  <motion.div 
+                    key={index}
+                    className="text-left"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ 
+                      opacity: 1, 
+                      y: 0,
+                      transition: { 
+                        type: "spring", 
+                        stiffness: 300, 
+                        damping: 20,
+                        delay: index * 0.1 + 0.3
+                      }
+                    }}
+                  >
+                    <span className="text-text-secondary">{problem}</span>
+                  </motion.div>
+                ))}
+              </div>
+              <p className="text-xl font-semibold text-text-primary">
+                You shouldn't have to settle for mediocre marketing.
+              </p>
+            </AnimatedSection>
+            <AnimatedSection direction="right" delay={0.2}>
+              <motion.div 
+                className="aspect-[4/3] rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(https://picsum.photos/600/450?random=200)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                }}
+              />
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
@@ -529,7 +528,7 @@ const Home = () => {
                 ].map((point, index) => (
                   <motion.div 
                     key={index}
-                    className="flex items-start space-x-3"
+                    className="text-left"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ 
                       opacity: 1, 
@@ -542,7 +541,6 @@ const Home = () => {
                       }
                     }}
                   >
-                    <div className="w-2 h-2 bg-text-accent rounded-full mt-3 flex-shrink-0" />
                     <span className="text-text-secondary">{point}</span>
                   </motion.div>
                 ))}
@@ -566,7 +564,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+      <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
             <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
