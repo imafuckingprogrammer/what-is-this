@@ -980,9 +980,9 @@ function SplashCursor({
         const handleMouseMove = (e) => {
             let pointer = pointers[0];
             const rect = canvas.getBoundingClientRect();
-            
+
             // Only process if mouse is within canvas bounds
-            if (e.clientX >= rect.left && e.clientX <= rect.right && 
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
                 e.clientY >= rect.top && e.clientY <= rect.bottom) {
                 let posX = scaleByPixelRatio(e.clientX - rect.left);
                 let posY = scaleByPixelRatio(e.clientY - rect.top);
@@ -1010,31 +1010,31 @@ function SplashCursor({
         const startTime = Date.now();
         const autoBurstInterval = setInterval(() => {
             const elapsed = (Date.now() - startTime) / 1000;
-            
+
             // Stop after 3 seconds
             if (elapsed >= 3) {
                 clearInterval(autoBurstInterval);
                 return;
             }
-            
+
             // Create 24 INTENSE bursts with LONG STROKES everywhere
             const numBursts = 24; // Fixed 24 bursts per cycle!
             for (let i = 0; i < numBursts; i++) {
                 setTimeout(() => {
                     const pointer = pointers[0];
-                    
+
                     // Create long stroke movements for glassy effect
                     const startX = Math.random() * canvas.width;
                     const startY = Math.random() * canvas.height;
                     const strokeLength = 200 + Math.random() * 300; // 200-500px strokes
                     const angle = Math.random() * Math.PI * 2; // Random direction
-                    
+
                     const color = generateColor();
                     // SUPER INTENSE colors for auto bursts
                     color.r *= 12;
                     color.g *= 12;
                     color.b *= 12;
-                    
+
                     // Create stroke by moving pointer along path
                     const strokeSteps = 15; // Steps in the stroke
                     for (let step = 0; step < strokeSteps; step++) {
@@ -1042,11 +1042,11 @@ function SplashCursor({
                             const progress = step / strokeSteps;
                             const currentX = startX + Math.cos(angle) * strokeLength * progress;
                             const currentY = startY + Math.sin(angle) * strokeLength * progress;
-                            
+
                             // Keep within canvas bounds
                             const clampedX = Math.max(0, Math.min(canvas.width, currentX));
                             const clampedY = Math.max(0, Math.min(canvas.height, currentY));
-                            
+
                             updatePointerMoveData(pointer, clampedX, clampedY, color);
                         }, step * 8); // 8ms between stroke steps for smooth movement
                     }

@@ -12,41 +12,41 @@ export default {
         swiss: ['DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
-        // New color palette
-        'teal': '#25CED1',
+        // New color palette - Modern Blue & Monochrome
+        'electric-blue': '#0040FF',
+        'black': '#000000',
         'white': '#FFFFFF',
-        'cream': '#FCEADE',
-        'orange': '#FF8A5B',
-        'pink': '#EA526F',
+        'light-gray': '#F8F9FA',
+        'medium-gray': '#6B7280',
         
         // Clean foundation with new colors
         'bg-primary': '#FFFFFF', // White as primary bg
-        'bg-secondary': '#FCEADE', // Cream as secondary bg
-        'bg-tertiary': '#f8f9fa', // Very light gray
-        'bg-quaternary': '#25CED1', // Teal as accent bg
-        'text-primary': '#2c3137', // Dark gray for primary text
-        'text-secondary': '#57636f', // Medium gray for secondary text
-        'text-tertiary': '#8894a1', // Light gray for tertiary text
-        'text-quaternary': '#a8b5c0', // Lighter gray
-        'text-accent': '#EA526F', // Pink as accent text
-        'border-light': '#e5e7eb',
-        'border-medium': '#d1d5db',
-        'accent-primary': '#25CED1', // Teal as primary accent
-        'accent-hover': '#FF8A5B', // Orange for hover
-        'accent-light': '#FCEADE', // Cream for light accent
+        'bg-secondary': '#F8F9FA', // Light gray as secondary bg
+        'bg-tertiary': '#F1F5F9', // Very light gray
+        'bg-quaternary': '#FAFBFC', // Lightest gray as quaternary bg
+        'text-primary': '#000000', // Black for primary text
+        'text-secondary': '#374151', // Dark gray for secondary text
+        'text-tertiary': '#6B7280', // Medium gray for tertiary text
+        'text-quaternary': '#9CA3AF', // Light gray
+        'text-accent': '#0040FF', // Electric blue as accent text
+        'border-light': '#E5E7EB',
+        'border-medium': '#D1D5DB',
+        'accent-primary': '#0040FF', // Electric blue as primary accent
+        'accent-hover': '#0033CC', // Darker blue for hover
+        'accent-light': '#EFF6FF', // Very light blue for light accent
         
         // Legacy colors for compatibility
-        'rich-black': '#2c3137',
-        'folly': '#EA526F',
-        'light-sea-green': '#25CED1',
-        'seasalt': '#FCEADE',
-        'celestial-blue': '#25CED1',
+        'rich-black': '#000000',
+        'folly': '#0040FF',
+        'light-sea-green': '#0040FF',
+        'seasalt': '#F8F9FA',
+        'celestial-blue': '#0040FF',
         
         // Legacy colors for compatibility
         accent: {
-          DEFAULT: '#25CED1',
-          light: '#FCEADE',
-          dark: '#1a9b9e',
+          DEFAULT: '#0040FF',
+          light: '#EFF6FF',
+          dark: '#0033CC',
         },
         gray: {
           50: '#fafafa',

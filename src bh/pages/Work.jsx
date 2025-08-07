@@ -161,7 +161,7 @@ const Work = () => {
           <AnimatedSection direction="up" delay={0.1}>
             <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
               Work that drives<br />
-              measurable impact
+              measurable <span style={{ color: '#0040FF' }}>impact</span>
             </h1>
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.3}>

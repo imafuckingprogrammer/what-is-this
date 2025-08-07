@@ -152,7 +152,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up" delay={0.2}>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary mb-8 leading-tight">
-              In a world of noise, we help you shape what people remember
+              In a world of noise, we help you shape what people <span style={{ color: '#0040FF' }}>remember</span>
             </h1>
           </AnimatedSection>
           <AnimatedSection direction="up" delay={0.6}>
@@ -169,7 +169,8 @@ const Home = () => {
               <Link to="/contact">
                 <CleanButton 
                   text="Start Your Project" 
-                  className="px-8 py-4 !bg-black !text-white"
+                  className="px-8 py-4"
+                  style={{ backgroundColor: '#0040FF', color: 'white' }}
                 />
               </Link>
               <Link to="/work">
@@ -188,7 +189,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
-              What we do
+              What we <span style={{ color: '#0040FF' }}>do</span>
             </h2>
             <SmoothTextReveal 
               text="We help brands cut through the noise and make things people care about, with strategy, design, content, and marketing that's clear, intentional, and built to perform."
@@ -289,7 +290,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
               <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
-                The Problem We Solve
+                The <span style={{ color: '#0040FF' }}>Problem</span> We Solve
               </h2>
               <p className="text-xl text-text-secondary mb-8 leading-relaxed">
                 You're not here because you're short on ideas.
@@ -430,7 +431,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
-              Featured work
+              Featured <span style={{ color: '#0040FF' }}>work</span>
             </h2>
             <SmoothTextReveal 
               text="A selection of our most impactful projects, showcasing the strategic thinking and creative execution that delivers measurable business outcomes."
@@ -463,7 +464,7 @@ const Home = () => {
                     }}
                   />
                   <div className="space-y-4">
-                    <div className="text-sm font-medium text-accent-primary uppercase tracking-wide">
+                    <div className="text-sm font-medium uppercase tracking-wide" style={{ color: '#0040FF' }}>
                       {project.category} • {project.year}
                     </div>
                     <h3 className="text-2xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
@@ -511,7 +512,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
               <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
-                Real marketers. Not just button-pushers.
+                <span style={{ color: '#0040FF' }}>Real</span> marketers. Not just button-pushers.
               </h2>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>
