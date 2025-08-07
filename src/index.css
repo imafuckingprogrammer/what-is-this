@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elegant+Pro:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elegant+Pro+Typewriter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Elegant+Pro+8bit:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -11,70 +14,207 @@
     --foreground: 0 0% 0%;
     --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
-    
-    /* New Color Palette - Modern Blue & Monochrome */
-    --electric-blue: #0040FF;
-    --black: #000000;
-    --white: #FFFFFF;
-    --light-gray: #F8F9FA;
-    --medium-gray: #6B7280;
-    
-    /* Clean foundation with new colors */
-    --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FA;
-    --bg-tertiary: #F1F5F9;
-    --bg-quaternary: #0040FF;
-    --text-primary: #000000;
-    --text-secondary: #374151;
-    --text-tertiary: #6B7280;
-    --text-quaternary: #9CA3AF;
-    --border-light: #E5E7EB;
-    --border-medium: #D1D5DB;
-    --accent-primary: #0040FF;
-    --accent-hover: #0033CC;
-    --accent-light: #EFF6FF;
-    
-    /* Legacy colors for compatibility */
-    --rich-black: #000000;
-    --folly: #0040FF;
-    --light-sea-green: #0040FF;
-    --seasalt: #F8F9FA;
-    --celestial-blue: #0040FF;
+
+    /* Subtle Color Palette Application */
+    --dark-purple: #331832;
+    --english-violet: #694d75;
+    --vista-blue: #809bce;
+    --rose-pink: #ff74d4;
+    --fairy-tale: #eac4d5;
+
+    /* Subtle background approach - keep it light */
+    --bg-primary: #ffffff;
+    /* Keep white as main background */
+    --bg-secondary: #fbf3f6;
+    /* Very light fairy tale for subtle sections */
+    --bg-tertiary: #e5ebf5;
+    /* Very light vista blue for cards */
+    --bg-quaternary: #f6f8fc;
+    /* Even lighter blue tint */
+
+    /* Text colors using the palette */
+    --text-primary: #331832;
+    /* Dark purple for main text */
+    --text-secondary: #694d75;
+    /* English violet for secondary text */
+    --text-tertiary: #809bce;
+    /* Vista blue for muted text */
+    --text-quaternary: #a88cb4;
+    /* Light english violet for very muted text */
+
+    /* Borders and accents */
+    --border-light: #e2d9e6;
+    /* Light english violet for subtle borders */
+    --border-medium: #ccd7eb;
+    /* Light vista blue for medium borders */
+    --accent-primary: #809bce;
+    /* Vista blue as primary accent */
+    --accent-hover: #694d75;
+    /* English violet for hover states */
+    --accent-light: #e5ebf5;
+    /* Very light vista blue for light accents */
+    --accent-pink: #ff74d4;
+    /* Rose pink for special highlights */
+
+    /* Legacy colors updated subtly */
+    --electric-blue: #809bce;
+    --black: #331832;
+    --white: #ffffff;
+    --light-gray: #e5ebf5;
+    --medium-gray: #694d75;
+    --rich-black: #331832;
+    --folly: #ff74d4;
+    --light-sea-green: #809bce;
+    --seasalt: #fbf3f6;
+    --celestial-blue: #809bce;
   }
 
   * {
     @apply transition-all duration-250 ease-out;
   }
-  
+
   html {
     @apply scroll-smooth;
   }
-  
+
   body {
-    @apply font-sans text-gray-900 antialiased;
+    @apply font-sans text-dark_purple bg-white antialiased;
     font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   }
-  
+
   /* Custom cursor styles */
   * {
     cursor: none !important;
   }
-  
+
   /* Ensure cursor is hidden on all interactive elements */
-  a, button, input, textarea, select, [role="button"], [data-cursor="pointer"] {
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [data-cursor="pointer"] {
     cursor: none !important;
   }
-  
+
+  /* Default font family - without !important to allow overrides */
   * {
-    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+    font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  /* Only apply !important to specific elements that should always use DM Sans */
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
     font-weight: 600;
   }
-  
+
   button {
     font-family: 'DM Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  }
+
+  /* Allow h1 elements to use custom fonts (for Ari page) */
+  h1 {
+    font-weight: 600;
+  }
+}
+
+@layer components {
+
+  /* Vibrant Button Styles - Darker Text for Better Readability */
+  .btn-primary {
+    @apply bg-vista_blue hover:bg-vista_blue-600 text-dark_purple font-medium px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-english_violet hover:bg-english_violet-600 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+  }
+
+  .btn-accent {
+    @apply bg-rose_pink hover:bg-rose_pink-600 text-dark_purple font-medium px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105;
+  }
+
+  .btn-outline-blue {
+    @apply border-2 border-vista_blue text-vista_blue-400 hover:bg-vista_blue hover:text-dark_purple font-medium px-6 py-3 rounded-full transition-all duration-300;
+  }
+
+  .btn-outline-lavender {
+    @apply border-2 border-english_violet text-english_violet-400 hover:bg-english_violet hover:text-white font-medium px-6 py-3 rounded-full transition-all duration-300;
+  }
+
+  .btn-outline-pink {
+    @apply border-2 border-rose_pink text-rose_pink-400 hover:bg-rose_pink hover:text-dark_purple font-medium px-6 py-3 rounded-full transition-all duration-300;
+  }
+
+  /* Colorful Card Styles */
+  .card-blue {
+    @apply bg-vista_blue-900 border border-vista_blue-700/30 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+
+  .card-lavender {
+    @apply bg-english_violet-900 border border-english_violet-700/30 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+
+  .card-pink {
+    @apply bg-rose_pink-900 border border-rose_pink-700/30 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+
+  /* Vibrant Text Colors */
+  .text-vibrant-blue {
+    @apply text-vista_blue-600;
+  }
+
+  .text-vibrant-lavender {
+    @apply text-english_violet-600;
+  }
+
+  .text-vibrant-pink {
+    @apply text-rose_pink-600;
+  }
+
+  /* Colorful Backgrounds */
+  .bg-soft-blue {
+    @apply bg-vista_blue-800;
+  }
+
+  .bg-soft-lavender {
+    @apply bg-english_violet-800;
+  }
+
+  .bg-soft-pink {
+    @apply bg-rose_pink-800;
+  }
+
+  /* Navigation Pills */
+  .nav-pill-active {
+    @apply bg-vista_blue text-white shadow-lg;
+  }
+
+  .nav-pill-inactive {
+    @apply bg-white text-english_violet border border-english_violet-300 hover:bg-english_violet-800 hover:text-white hover:border-english_violet-600;
+  }
+}
+/* Pi
+xelated splash animation for Ari page */
+@keyframes pixelFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-5px, 10px) scale(0.9);
+    opacity: 0.15;
+  }
+  75% {
+    transform: translate(15px, 5px) scale(1.05);
+    opacity: 0.25;
   }
 }

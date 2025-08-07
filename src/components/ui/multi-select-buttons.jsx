@@ -44,7 +44,7 @@ const MultiSelectButtons = ({
               type="button"
               onClick={() => handleToggle(option)}
               className={cn(
-                "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-black"
+                "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-dark_purple"
               )}
               onHoverStart={() => setIsHovered(true)}
               onHoverEnd={() => setIsHovered(false)}
@@ -105,10 +105,10 @@ const MultiSelectButtons = ({
                      borderColor: 'rgba(156, 163, 175, 0.25)'
                    }} />
 
-              {/* Black slide-in overlay - shows on hover or when selected */}
+              {/* Darker english violet slide-in overlay - shows on hover or when selected */}
               <motion.div 
                 key={isHovered || isSelected ? "active" : "inactive"}
-                className="absolute inset-0 rounded-full bg-black z-[5]"
+                className="absolute inset-0 rounded-full bg-english_violet-600 z-[5]"
                 initial={{ y: isHovered || isSelected ? "100%" : "0%" }}
                 animate={{ y: isHovered || isSelected ? "0%" : "-100%" }}
                 transition={{

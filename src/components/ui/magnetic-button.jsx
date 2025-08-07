@@ -56,7 +56,7 @@ const MagneticButton = React.forwardRef(
       <motion.button
         ref={buttonRef}
         className={cn(
-          "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-black",
+          "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-dark_purple",
           className,
         )}
         onMouseMove={handleMouseMove}

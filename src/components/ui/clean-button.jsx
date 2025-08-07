@@ -10,7 +10,7 @@ const CleanButton = React.forwardRef(
       <motion.button
         ref={ref}
         className={cn(
-          "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-black",
+          "relative cursor-pointer overflow-hidden rounded-full px-6 py-3 text-sm font-medium bg-transparent text-dark_purple",
           className,
         )}
         onHoverStart={() => setIsHovered(true)}
@@ -73,10 +73,10 @@ const CleanButton = React.forwardRef(
                borderColor: 'rgba(156, 163, 175, 0.25)' // Subtle gray border that's visible on white
              }} />
 
-        {/* Black slide-in overlay - comes from bottom on hover, exits through top */}
+        {/* Darker vista blue slide-in overlay - comes from bottom on hover, exits through top */}
         <motion.div 
           key={isHovered ? "hover" : "exit"}
-          className="absolute inset-0 rounded-full bg-black z-[5]"
+          className="absolute inset-0 rounded-full bg-vista_blue-600 z-[5]"
           initial={{ y: isHovered ? "100%" : "0%" }}
           animate={{ y: isHovered ? "0%" : "-100%" }}
           transition={{

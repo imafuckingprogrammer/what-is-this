@@ -55,7 +55,7 @@ const About = () => {
       <section className="min-h-[60vh] flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-english_violet mb-8">
               Built in Abu Dhabi.<br />
               Wired for what's next.
             </h1>
@@ -74,7 +74,7 @@ const About = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl font-bold text-text-primary mb-8">The Problem We Saw</h2>
+              <h2 className="text-4xl font-bold text-english_violet mb-8">The Problem We Saw</h2>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>
                   Too many brands were stuck in the same loop: flashy visuals, no real strategy, and disappointing results.
@@ -109,7 +109,7 @@ const About = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl font-bold text-text-primary mb-8">{whatWeDo.title}</h2>
+              <h2 className="text-4xl font-bold text-english_violet mb-8">{whatWeDo.title}</h2>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>{whatWeDo.description}</p>
                 <p>{whatWeDo.details}</p>
@@ -151,7 +151,7 @@ const About = () => {
               />
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.2}>
-              <h2 className="text-4xl font-bold text-text-primary mb-8">What Makes Us Different</h2>
+              <h2 className="text-4xl font-bold text-english_violet mb-8">What Makes Us Different</h2>
               <div className="space-y-4">
                 {whatMakesUsDifferent.map((point, index) => (
                   <motion.div 
@@ -182,7 +182,7 @@ const About = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-english_violet">
               How We Work
             </h2>
             <SmoothTextReveal 
@@ -229,7 +229,7 @@ const About = () => {
               />
             </AnimatedSection>
             <AnimatedSection direction="right" delay={0.2}>
-              <h2 className="text-4xl font-bold text-text-primary mb-8">What It's Like to Work With Us</h2>
+              <h2 className="text-4xl font-bold text-english_violet mb-8">What It's Like to Work With Us</h2>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
                 <p>
                   No confusion. No inflated decks. No disappearing after the contract is signed.
@@ -249,7 +249,7 @@ const About = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet mb-8">
               Ready to start something that actually works?
             </h2>
           </AnimatedSection>

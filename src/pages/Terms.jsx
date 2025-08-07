@@ -35,7 +35,7 @@ const Terms = () => {
       <section className="min-h-[50vh] flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-english_violet mb-8">
               Terms & Conditions
             </h1>
           </AnimatedSection>

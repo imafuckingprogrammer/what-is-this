@@ -295,7 +295,7 @@ const Services = () => {
       <section className="min-h-[70vh] flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.2}>
-            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-english_violet-400 mb-8">
               <SmoothTextReveal text="Everything you need. Nothing you don't." />
             </h1>
           </AnimatedSection>
@@ -334,10 +334,10 @@ const Services = () => {
                     damping: 30 
                   }
                 }}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`text-sm transition-all duration-300 ${
                   activeService === index
-                    ? 'bg-black text-white'
-                    : 'bg-white text-gray-600 hover:text-black border border-gray-200 hover:border-gray-300'
+                    ? 'nav-pill-active'
+                    : 'nav-pill-inactive'
                 }`}
               >
                 {service.title}
@@ -363,7 +363,7 @@ const Services = () => {
               {/* Left: Content */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-4xl font-bold text-text-primary mb-4">
+                  <h2 className="text-4xl font-bold text-english_violet-400 mb-4">
                     {services[activeService].title}
                   </h2>
                   <p className="text-xl text-text-secondary leading-relaxed mb-8">
@@ -390,7 +390,7 @@ const Services = () => {
                           }
                         }}
                       >
-                        <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                        <div className="w-2 h-2 bg-vista_blue rounded-full mt-2 flex-shrink-0" />
                         <span className="text-text-secondary font-medium">{feature}</span>
                       </motion.div>
                     ))}
@@ -402,7 +402,7 @@ const Services = () => {
                     <CleanButton
                       text={showLearnMore ? 'Show Less' : 'Learn More'}
                       onClick={() => setShowLearnMore(!showLearnMore)}
-                      className={showLearnMore ? 'ring-2 ring-black' : ''}
+                      className={`btn-outline-lavender ${showLearnMore ? 'ring-2 ring-english_violet' : ''}`}
                     />
                   </div>
                   
@@ -426,7 +426,7 @@ const Services = () => {
                               <div className="space-y-3">
                                 {services[activeService].detailedFeatures.map((feature, index) => (
                                   <div key={index} className="flex items-start space-x-3">
-                                    <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                                    <div className="w-2 h-2 bg-english_violet rounded-full mt-2 flex-shrink-0" />
                                     <span className="text-text-secondary text-sm leading-relaxed">{feature}</span>
                                   </div>
                                 ))}
@@ -504,7 +504,7 @@ const Services = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-6">
               <SmoothTextReveal text="Our process" />
             </h2>
             <SmoothTextReveal 
@@ -539,7 +539,7 @@ const Services = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet mb-6">
               <SmoothTextReveal text="Packages" />
             </h2>
             <SmoothTextReveal 
@@ -580,7 +580,7 @@ const Services = () => {
                   <div className="space-y-3 mb-6">
                     {pkg.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                        <div className="w-2 h-2 bg-rose_pink rounded-full mt-2 flex-shrink-0" />
                         <span className="text-text-secondary text-sm">{feature}</span>
                       </div>
                     ))}

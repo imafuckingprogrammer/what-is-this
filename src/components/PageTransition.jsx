@@ -47,7 +47,7 @@ const PageTransition = ({ children }) => {
       <AnimatePresence>
         {isTransitioning && (
           <motion.div
-            className="fixed inset-0 bg-black z-50"
+            className="fixed inset-0 bg-vista_blue z-50"
             initial={{ y: "-100%", borderRadius: "0px 0px 60px 60px" }}
             animate={{ y: "0%", borderRadius: "0px 0px 0px 0px" }}
             exit={{ y: "100%", borderRadius: "60px 60px 0px 0px" }}

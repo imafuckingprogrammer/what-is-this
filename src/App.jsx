@@ -11,6 +11,7 @@ import Services from './pages/Services'
 import Work from './pages/Work'
 import Contact from './pages/Contact'
 import Terms from './pages/Terms'
+import Ari from './pages/Ari'
 
 function App() {
   const { shouldShowLoader, handleLoadingComplete } = useInitialLoader()
@@ -28,6 +29,7 @@ function App() {
             <Route path="/work" element={<Work />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/ari" element={<Ari />} />
 
           </Routes>
         </PageTransition>

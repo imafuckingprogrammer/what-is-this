@@ -151,7 +151,7 @@ const Home = () => {
         )}
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up" delay={0.2}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary mb-8 leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-english_violet-400 mb-8 leading-tight">
               In a world of noise, we help you shape what people remember
             </h1>
           </AnimatedSection>
@@ -169,13 +169,13 @@ const Home = () => {
               <Link to="/contact">
                 <CleanButton 
                   text="Start Your Project" 
-                  className="px-8 py-4 !bg-black !text-white"
+                  className="px-8 py-4 btn-primary"
                 />
               </Link>
               <Link to="/work">
                 <CleanButton 
                   text="See Our Work" 
-                  className="px-8 py-4"
+                  className="px-8 py-4 btn-secondary"
                 />
               </Link>
             </div>
@@ -184,10 +184,10 @@ const Home = () => {
       </section>
 
       {/* What we do */}
-      <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
+      <section className="py-32 px-6 lg:px-8 bg-vista_blue-900" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-6 leading-tight">
               What we do
             </h2>
             <SmoothTextReveal 
@@ -276,7 +276,7 @@ const Home = () => {
             <Link to="/services">
               <CleanButton 
                 text="View All Services" 
-                className="px-8 py-4"
+                className="px-8 py-4 btn-accent"
               />
             </Link>
           </div>
@@ -284,11 +284,11 @@ const Home = () => {
       </section>
 
       {/* Problem we solve */}
-      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+      <section className="py-32 px-6 lg:px-8 bg-english_violet-900" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-8">
                 The Problem We Solve
               </h2>
               <p className="text-xl text-text-secondary mb-8 leading-relaxed">
@@ -346,10 +346,10 @@ const Home = () => {
       </section>
 
       {/* Our Process */}
-      <section className="py-32 px-6 lg:px-8 bg-bg-quaternary" data-nav-theme="accent">
+      <section className="py-32 px-6 lg:px-8 bg-rose_pink-900" data-nav-theme="accent">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-english_violet-400">
               Our Process
             </h2>
             <SmoothTextReveal 
@@ -384,7 +384,7 @@ const Home = () => {
                     <CleanButton
                       text={showProcessDetails[index] ? 'Show Less' : 'Learn More'}
                       onClick={() => toggleProcessDetails(index)}
-                      className={`mb-4 ${showProcessDetails[index] ? 'ring-2 ring-black' : ''}`}
+                      className={`mb-4 btn-outline-blue ${showProcessDetails[index] ? 'ring-2 ring-vista_blue' : ''}`}
                     />
                     
                     <AnimatePresence>
@@ -402,7 +402,7 @@ const Home = () => {
                               <div className="space-y-2">
                                 {step.details.map((detail, detailIndex) => (
                                   <div key={detailIndex} className="flex items-start space-x-3">
-                                    <div className="w-2 h-2 bg-text-accent rounded-full mt-2 flex-shrink-0" />
+                                    <div className="w-2 h-2 bg-vista_blue rounded-full mt-2 flex-shrink-0" />
                                     <span className="text-text-secondary text-sm leading-relaxed">{detail}</span>
                                   </div>
                                 ))}
@@ -429,7 +429,7 @@ const Home = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-primary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-6 leading-tight">
               Featured work
             </h2>
             <SmoothTextReveal 
@@ -463,7 +463,7 @@ const Home = () => {
                     }}
                   />
                   <div className="space-y-4">
-                    <div className="text-sm font-medium text-accent-primary uppercase tracking-wide">
+                    <div className="text-sm font-medium text-vista_blue uppercase tracking-wide">
                       {project.category} • {project.year}
                     </div>
                     <h3 className="text-2xl font-semibold text-text-primary group-hover:text-text-primary transition-colors">
@@ -482,7 +482,7 @@ const Home = () => {
                       {project.services.map((service, serviceIndex) => (
                         <span
                           key={serviceIndex}
-                          className="text-xs px-3 py-1 bg-bg-tertiary text-text-secondary rounded-full border border-border-light"
+                          className="text-xs px-3 py-1 bg-fairy_tale-900 text-english_violet rounded-full border border-english_violet-800/20"
                         >
                           {service}
                         </span>
@@ -506,11 +506,11 @@ const Home = () => {
       </section>
 
       {/* Real marketers */}
-      <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
+      <section className="py-32 px-6 lg:px-8 bg-fairy_tale-800" data-nav-theme="light">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-8">
                 Real marketers. Not just button-pushers.
               </h2>
               <div className="space-y-6 text-lg text-text-secondary leading-relaxed">
@@ -571,10 +571,10 @@ const Home = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
+      <section className="py-32 px-6 lg:px-8 bg-vista_blue-800" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet-400 mb-6">
               Ready to start your project?
             </h2>
           </AnimatedSection>
@@ -590,13 +590,13 @@ const Home = () => {
               <Link to="/contact">
                 <CleanButton 
                   text="Start a Project" 
-                  className="px-8 py-4"
+                  className="px-8 py-4 btn-primary"
                 />
               </Link>
               <Link to="/work">
                 <CleanButton 
                   text="See Our Work" 
-                  className="px-8 py-4"
+                  className="px-8 py-4 btn-secondary"
                 />
               </Link>
             </div>

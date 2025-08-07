@@ -119,7 +119,7 @@ const Contact = () => {
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           </div>
-          <h1 className="text-4xl font-bold text-black mb-6">Thank you for reaching out!</h1>
+          <h1 className="text-4xl font-bold text-english_violet mb-6">Thank you for reaching out!</h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
             We've received your message and will get back to you within 24 hours. 
             Our team is excited to learn more about your project.
@@ -140,7 +140,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <AnimatedSection direction="left" delay={0.1}>
-              <h2 className="text-3xl font-bold text-text-primary mb-8">Tell us about your project</h2>
+              <h2 className="text-3xl font-bold text-english_violet mb-8">Tell us about your project</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -239,7 +239,7 @@ const Contact = () => {
             <AnimatedSection direction="right" delay={0.2}>
               <div className="space-y-12">
                 <div>
-                  <h3 className="text-2xl font-bold text-text-primary mb-6">Get in touch</h3>
+                  <h3 className="text-2xl font-bold text-english_violet mb-6">Get in touch</h3>
                   <div className="space-y-6">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -313,7 +313,7 @@ const Contact = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h2 className="text-4xl font-bold text-text-primary mb-6">
+            <h2 className="text-4xl font-bold text-english_violet mb-6">
               Prefer to call?
             </h2>
           </AnimatedSection>

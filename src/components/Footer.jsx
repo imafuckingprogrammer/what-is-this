@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-6 text-celestial-blue">TrendArt</h3>
+            <h3 className="text-2xl font-bold mb-6 text-vista_blue">TrendArt</h3>
             <p className="text-gray-300 mb-8 text-lg leading-relaxed max-w-md">
               We craft exceptional brand experiences that drive growth and create lasting connections between companies and their customers.
             </p>
@@ -16,16 +16,16 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-6 text-lg text-white">Company</h4>
             <nav className="flex flex-col space-y-4">
-              <Link to="/about" className="text-gray-400 hover:text-light-sea-green transition-colors">
+              <Link to="/about" className="text-gray-400 hover:text-vista_blue transition-colors">
                 About Us
               </Link>
-              <Link to="/work" className="text-gray-400 hover:text-light-sea-green transition-colors">
+              <Link to="/work" className="text-gray-400 hover:text-vista_blue transition-colors">
                 Our Work
               </Link>
-              <Link to="/services" className="text-gray-400 hover:text-light-sea-green transition-colors">
+              <Link to="/services" className="text-gray-400 hover:text-vista_blue transition-colors">
                 Services
               </Link>
-              <Link to="/contact" className="text-gray-400 hover:text-light-sea-green transition-colors">
+              <Link to="/contact" className="text-gray-400 hover:text-vista_blue transition-colors">
                 Contact
               </Link>
             </nav>
@@ -34,16 +34,16 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-6 text-lg text-white">Services</h4>
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
+              <a href="#" className="text-gray-400 hover:text-rose_pink transition-colors">
                 Brand Strategy
               </a>
-              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
+              <a href="#" className="text-gray-400 hover:text-rose_pink transition-colors">
                 Digital Marketing
               </a>
-              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
+              <a href="#" className="text-gray-400 hover:text-rose_pink transition-colors">
                 Creative Campaigns
               </a>
-              <a href="#" className="text-gray-400 hover:text-folly transition-colors">
+              <a href="#" className="text-gray-400 hover:text-rose_pink transition-colors">
                 Web Development
               </a>
             </nav>
@@ -55,13 +55,16 @@ const Footer = () => {
             © 2025 TrendArt. All rights reserved.
           </p>
           <div className="flex space-x-8 mt-4 md:mt-0">
-            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+            <a href="#" className="text-gray-500 hover:text-english_violet transition-colors text-sm">
               Privacy Policy
             </a>
-            <Link to="/terms" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+            <Link to="/terms" className="text-gray-500 hover:text-english_violet transition-colors text-sm">
               Terms of Service
             </Link>
-            <a href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+            <Link to="/ari" className="text-gray-500 hover:text-rose_pink transition-colors text-sm">
+              Ari
+            </Link>
+            <a href="#" className="text-gray-500 hover:text-english_violet transition-colors text-sm">
               Careers
             </a>
           </div>

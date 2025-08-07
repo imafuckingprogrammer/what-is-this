@@ -107,7 +107,7 @@ const CustomCursor = () => {
       {/* Optional cursor text */}
       {cursorText && isHovering && (
         <motion.div
-          className="absolute text-black text-xs font-medium whitespace-nowrap"
+          className="absolute text-english_violet text-xs font-medium whitespace-nowrap"
           style={{
             x: '-50%',
             y: '-50%',

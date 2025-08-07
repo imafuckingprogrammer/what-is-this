@@ -15,13 +15,13 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ]
 
-  // Clean, consistent colors - no more adaptive nonsense
+  // Subtle colors using your palette
   const colors = {
-    logo: '#0f172a',
-    navActive: '#0f172a', 
-    navInactive: '#64748b',
-    navHover: '#0f172a',
-    hamburger: '#0f172a'
+    logo: '#331832',        // dark_purple
+    navActive: '#331832',   // dark_purple
+    navInactive: '#694d75', // english_violet
+    navHover: '#809bce',    // vista_blue
+    hamburger: '#331832'    // dark_purple
   }
 
   return (
@@ -159,8 +159,8 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-lg font-medium transition-colors ${
                         location.pathname === item.href
-                          ? 'text-slate-900 font-semibold'
-                          : 'text-slate-800 hover:text-slate-900'
+                          ? 'text-dark_purple font-semibold'
+                          : 'text-english_violet hover:text-vista_blue'
                       }`}
                     >
                       {item.name}

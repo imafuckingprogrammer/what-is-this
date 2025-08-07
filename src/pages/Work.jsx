@@ -159,7 +159,7 @@ const Work = () => {
       <section className="min-h-[70vh] flex items-center justify-center px-6 lg:px-8" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h1 className="text-5xl md:text-6xl font-bold text-text-primary mb-8">
+            <h1 className="text-5xl md:text-6xl font-bold text-english_violet mb-8">
               Work that drives<br />
               measurable impact
             </h1>
@@ -213,7 +213,7 @@ const Work = () => {
                       }
                     }}
                   >
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-vista_blue bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                       <div className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Click for case study
                       </div>
@@ -278,7 +278,7 @@ const Work = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-tertiary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-english_violet mb-6">
               Trusted by industry leaders
             </h2>
             <SmoothTextReveal 
@@ -314,7 +314,7 @@ const Work = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-white bg-opacity-95 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedCaseStudy(null)}
           >
             <motion.div
@@ -468,7 +468,7 @@ const Work = () => {
       <section className="py-32 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up" delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-english_violet">
               Let's create something exceptional
             </h2>
           </AnimatedSection>
