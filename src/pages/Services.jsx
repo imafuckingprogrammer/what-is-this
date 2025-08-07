@@ -312,14 +312,13 @@ const Services = () => {
       <section className="py-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           {/* Service Navigation Pills */}
-          <AnimatedSection className="flex justify-center gap-3 mb-16 overflow-x-auto">
+          <AnimatedSection className="flex justify-center gap-3 mb-16 overflow-x-auto py-2 px-4">
             {services.map((service, index) => (
               <motion.button
                 key={index}
                 onMouseEnter={() => setActiveService(index)}
                 whileHover={{ 
-                  scale: 1.05,
-                  y: -2,
+                  scale: 1.02,
                   transition: { 
                     type: "spring", 
                     stiffness: 400, 
