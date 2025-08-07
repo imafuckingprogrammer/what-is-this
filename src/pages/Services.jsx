@@ -312,7 +312,7 @@ const Services = () => {
       <section className="py-20 px-6 lg:px-8 bg-bg-secondary" data-nav-theme="light">
         <div className="max-w-7xl mx-auto">
           {/* Service Navigation Pills */}
-          <AnimatedSection className="flex flex-wrap justify-center gap-4 mb-16">
+          <AnimatedSection className="flex justify-center gap-3 mb-16 overflow-x-auto">
             {services.map((service, index) => (
               <motion.button
                 key={index}
