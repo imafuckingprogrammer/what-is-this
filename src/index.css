@@ -191,11 +191,11 @@
 
   /* Navigation Pills */
   .nav-pill-active {
-    @apply bg-vista_blue text-white shadow-lg px-6 py-3 rounded-full font-medium transition-all duration-300;
+    @apply bg-vista_blue text-white shadow-lg;
   }
 
   .nav-pill-inactive {
-    @apply bg-white text-english_violet border border-english_violet-300 hover:bg-english_violet-800 hover:text-white hover:border-english_violet-600 px-6 py-3 rounded-full font-medium transition-all duration-300;
+    @apply bg-white text-english_violet border border-english_violet-300 hover:bg-english_violet-800 hover:text-white hover:border-english_violet-600;
   }
 }
 /* Pi

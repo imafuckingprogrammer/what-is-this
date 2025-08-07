@@ -334,7 +334,7 @@ const Services = () => {
                     damping: 30 
                   }
                 }}
-                className={`text-sm transition-all duration-300 ${
+                className={`${
                   activeService === index
                     ? 'nav-pill-active'
                     : 'nav-pill-inactive'
